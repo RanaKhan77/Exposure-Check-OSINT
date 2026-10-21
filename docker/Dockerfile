@@ -14,7 +14,7 @@ FROM php:8.3-apache
 
 LABEL org.opencontainers.image.title="Exposure-Check-OSINT"
 LABEL org.opencontainers.image.description="Self-hosted personal exposure checker (email/username/phone/password/IP) — 18 keyless OSINT sources, no AI"
-LABEL org.opencontainers.image.version="1.0.0"
+LABEL org.opencontainers.image.version="1.1.0"
 LABEL org.opencontainers.image.licenses="Apache-2.0"
 LABEL org.opencontainers.image.source="https://github.com/RanaKhan77/Exposure-Check-OSINT"
 
