@@ -42,13 +42,26 @@
         <div class="meta">Generated locally — no third party received this document.</div>
     </div>
 
+@php
+    $score = $check->exposure_score;
+    $riskLabel = 'Not assessed';
+    if ($score !== null) {
+        if ($check->hits === 0) { $riskLabel = 'No exposure found'; }
+        elseif ($score < 40) { $riskLabel = 'Critical exposure'; }
+        elseif ($score < 70) { $riskLabel = 'Elevated exposure'; }
+        elseif ($score < 95) { $riskLabel = 'Minor exposure'; }
+        else { $riskLabel = 'Low exposure'; }
+    }
+@endphp
+
     <div class="scorebox">
         <div>
-            <div class="big" style="color:{{ $check->exposure_score === null ? '#64748B' : ($check->exposure_score < 40 ? '#B91C1C' : ($check->exposure_score < 70 ? '#B45309' : '#166534')) }}">{{ $check->exposure_score ?? '–' }}</div>
-            <div class="meta">exposure score</div>
+            <div class="big" style="color:{{ $score === null ? '#64748B' : ($score < 40 ? '#B91C1C' : ($score < 70 ? '#B45309' : '#166534')) }}">{{ $score ?? '–' }}@if($score !== null)<span style="font-size:16px;color:#64748B"> / 100</span>@endif</div>
+            <div class="meta">exposure score · 100 = clean, 0 = maximum exposure</div>
         </div>
         <div>
-            <div style="font-weight:800">{{ $check->hits }} exposure signal(s) across {{ $check->total_sources }} assessed sources</div>
+            <div style="font-weight:800;font-size:15px;color:{{ $score === null ? '#64748B' : ($score < 40 ? '#B91C1C' : ($score < 70 ? '#B45309' : '#166534')) }}">{{ strtoupper($riskLabel) }}</div>
+            <div style="font-weight:800;margin-top:6px">{{ $check->hits }} exposure signal(s) across {{ $check->total_sources }} assessed sources</div>
             <div class="meta">Type: {{ $check->type }} · Identifier shown masked by design.</div>
         </div>
     </div>

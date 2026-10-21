@@ -23,7 +23,7 @@
             <span class="chip chip-gray">{{ number_format($stats['records'] / 1000000000, 1) }}B+ leaked records</span>
             <span class="chip chip-gray">{{ number_format($stats['infections'] / 1000000) }}M stealer infections</span>
             <span class="chip chip-gray">{{ $stats['sources'] }} live sources</span>
-            <span id="ox-quota" class="chip chip-green" style="margin-left:auto"></span>
+            <span id="ox-quota" class="chip chip-green" style="margin-left:auto" hidden></span>
         </div>
         <p id="ox-err" class="flash flash-err" hidden style="margin:12px 0 0"></p>
         <p style="color:var(--dim);font-size:11.5px;margin:12px 0 0">
@@ -151,7 +151,8 @@
     }
 
     function updateQuota(q) {
-        if (!q) { quotaEl.textContent = ''; return; }
+        if (!q) { quotaEl.textContent = ''; quotaEl.hidden = true; return; }
+        quotaEl.hidden = false;
         quotaEl.textContent = q.remaining + ' / ' + q.limit + ' checks left today';
         quotaEl.className = 'chip ' + (q.remaining > 0 ? 'chip-green' : 'chip-red');
     }

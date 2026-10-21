@@ -25,13 +25,19 @@ from your own server, with your own eyes.
 
 ---
 
-## 📸 What you get
+## 📸 What you get — real screenshots, live product
 
-<img src="assets/dashboard-preview.png" width="860" alt="Exposure Check dashboard — parallel source cards, exposure score gauge, platform logo grid"/>
+<img src="assets/dashboard-preview.png" width="880" alt="Exposure Check dashboard — one input, 5 identifier types, 18 keyless sources, live corpus stats"/>
 
-A single-admin dashboard. Paste an identifier, the engine fans out to every supporting
-source **in parallel**, and renders one honest card per source — with platform logos,
-severity badges, and an exposure score that never fakes a pass:
+**The dashboard.** Paste any identifier — the type is auto-detected, the corpus stats
+(1,047+ breaches, 17.8B+ leaked records, 37M stealer infections) are computed from the
+actual local indexes, not marketing numbers.
+
+<img src="assets/results-preview.png" width="880" alt="Live results view — exposure score gauge, CRITICAL EXPOSURE verdict, parallel source cards with severity badges"/>
+
+**Live results.** One scan fans out to every supporting source **in parallel** and renders
+one honest card per source — with severity badges, per-source evidence, and an exposure
+score that never fakes a pass (100 = clean, 0 = maximum exposure):
 
 - 📧 **Email** → breaches, stealer-log infections, disposable flags, public-code associations
 - 👤 **Username** → registered on which of 150 platforms (logo grid), Bluesky, Hacker News
@@ -42,6 +48,11 @@ severity badges, and an exposure score that never fakes a pass:
 Every card is one of **exposed / clear / unavailable** — a dead source degrades honestly,
 it never counts as "clear". Results stream into a graphical report with platform logos,
 persist to local history, and print to PDF from the browser.
+
+<img src="assets/report-preview.png" width="880" alt="Printable exposure report — masked identifier by design, 0/100 score, CRITICAL EXPOSURE label, per-source table"/>
+
+**The report.** A self-contained printable document — generated locally, identifier masked
+by design (`j***h@gmail.com`), every source verdict in one table, one click to PDF.
 
 ## 🚀 Quick Start
 

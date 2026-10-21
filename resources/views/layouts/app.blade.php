@@ -50,6 +50,7 @@
         .btn-ghost { background: var(--card-2); color: var(--text); border: 1px solid var(--line); }
         .btn-danger { background: linear-gradient(135deg, #F87171, #EF4444); color: #1A0505; }
         .chip { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 4px 12px; font-size: 12px; font-weight: 700; }
+        [hidden] { display: none !important; }
         .chip-red { background: rgba(248, 113, 113, .14); color: var(--red); }
         .chip-green { background: rgba(52, 211, 153, .13); color: var(--green); }
         .chip-amber { background: rgba(251, 191, 36, .13); color: var(--amber); }
