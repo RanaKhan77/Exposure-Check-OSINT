@@ -391,8 +391,23 @@ class OsintCheckService
             case 'password':
                 return 'SHA-1 ' . substr($identifier, 0, 5) . '***** (k-anonymity)';
             case 'ip':
+                // Privacy contract: never store a raw identifier. IPv4 keeps
+                // first + last octet; IPv6 keeps first + last group; anything
+                // unparseable is fully masked.
+                if (filter_var($identifier, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+                    $p = explode('.', $identifier);
+
+                    return $p[0] . '.***.***.' . $p[3];
+                }
+                if (filter_var($identifier, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+                    $g = explode(':', strtolower($identifier));
+
+                    return ($g[0] ?? '') . ':***:***:' . end($g);
+                }
+
+                return '***.***.***.***';
             default:
-                return $identifier;
+                return '***';
         }
     }
 

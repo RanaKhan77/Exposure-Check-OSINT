@@ -44,8 +44,10 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request->session()->forget('admin_authenticated');
-        $request->session()->regenerate();
+        // Fully destroy the session record (regenerate() alone keeps the old
+        // one alive until expiry) and issue a fresh CSRF token.
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return redirect()->route('login');
     }
