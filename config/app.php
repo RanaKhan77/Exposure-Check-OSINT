@@ -2,7 +2,7 @@
 
 return [
     'name' => env('APP_NAME', 'Exposure-Check-OSINT'),
-    'version' => '1.0.0',
+    'version' => '1.1.0',
     'env' => env('APP_ENV', 'production'),
     'debug' => (bool) env('APP_DEBUG', false),
     'url' => env('APP_URL', 'http://localhost'),

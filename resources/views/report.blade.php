@@ -29,10 +29,18 @@
         .footer { border-top:1px solid var(--line); margin-top:34px; padding-top:14px; color:var(--muted); font-size:11px; }
         .print-btn { position:fixed; right:22px; top:22px; background:#0F172A; color:#fff; border:0; border-radius:9px; padding:9px 16px; font-weight:700; cursor:pointer; }
         @media print { .print-btn { display:none; } body { font-size:12px; } .page { padding:0; } }
+        .export-btns { position:fixed; right:22px; top:64px; display:flex; flex-direction:column; gap:6px; }
+        .export-btns a { background:#F1F5F9; color:#0F172A; border-radius:8px; padding:7px 12px; font-size:12px; font-weight:700; text-decoration:none; }
+        .export-btns a:hover { background:#E2E8F0; }
+        @media print { .export-btns { display:none; } }
     </style>
 </head>
 <body>
 <button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+<div class="export-btns">
+    <a href="{{ route('report.export', [$check, 'json']) }}">⬇ JSON</a>
+    <a href="{{ route('report.export', [$check, 'csv']) }}">⬇ CSV</a>
+</div>
 <div class="page">
     <div class="head">
         <div>
@@ -74,7 +82,16 @@
                 <td><b>{{ $src['label'] ?? $src['key'] }}</b><div class="meta">{{ $src['category'] ?? '' }}</div></td>
                 <td><span class="chip {{ $src['status'] === 'hit' ? 'hit' : ($src['status'] === 'clean' ? 'clean' : 'unavail') }}">{{ $src['status'] }}</span>
                     @if ($src['status'] === 'hit' && !empty($src['severity']))<div style="margin-top:4px"><span class="chip sev-{{ $src['severity'] }}">{{ $src['severity'] }}</span></div>@endif</td>
-                <td>{{ $src['summary'] ?? '' }}</td>
+                <td>{{ $src['summary'] ?? '' }}
+                    @if (!empty($src['data']['found_accounts']))
+                        <div style="margin-top:6px">
+                            @foreach (array_slice($src['data']['found_accounts'], 0, 30) as $fa)
+                                <span class="chip {{ ($fa['confidence'] ?? '') === 'confirmed' ? 'clean' : 'sev-low' }}" style="margin:2px 3px 0 0; font-weight:600">{{ $fa['site'] }}@if (!empty($fa['confidence'])) · {{ $fa['confidence'] }}@endif</span>
+                            @endforeach
+                            @if (count($src['data']['found_accounts']) > 30)<span class="meta">+{{ count($src['data']['found_accounts']) - 30 }} more</span>@endif
+                        </div>
+                    @endif
+                </td>
             </tr>
         @endforeach
         @if (empty($check->results))

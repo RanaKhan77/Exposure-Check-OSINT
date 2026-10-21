@@ -6,6 +6,7 @@ use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\LicenseController;
 use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,11 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/history', [DashboardController::class, 'history'])->name('history');
     Route::get('/report/{check}', [DashboardController::class, 'report'])->name('report');
+
+    // v1.1: download a stored check as JSON or CSV (same admin gate as
+    // the report itself; identifiers stay masked, credentials stripped).
+    Route::get('/report/{check}/export/{format}', [ExportController::class, 'export'])
+        ->whereIn('format', ['json', 'csv'])->name('report.export');
     Route::delete('/history/{check}', [DashboardController::class, 'destroy'])->name('history.destroy');
     Route::post('/history/purge', [DashboardController::class, 'purge'])->name('history.purge');
 

@@ -2,6 +2,30 @@
 
 All notable changes to Exposure-Check-OSINT are documented here.
 
+## [1.1.0] — 2026-10-21
+
+### Added
+- **JSON / CSV export** — every stored check can now be downloaded as a JSON
+  document (full per-source detail) or a flat CSV (one row per source verdict)
+  from the report page, the history table and right after a live check.
+  Exports keep identifiers masked and re-strip credential material
+  belt-and-braces, exactly like the stored rows.
+- **`php artisan ec:doctor`** — install self-test: PHP version and required
+  extensions, app key, admin password, storage writability, maigret site
+  database validity, database + migration state, source-registry health, and
+  a live reachability probe for all 18 sources (parallel, short timeout).
+  Table output by default, structured JSON with `--json`; non-zero exit code
+  when anything FAILs. Run it after install and any time results look wrong.
+- **Username confidence tiers** — every username hit is now labeled
+  `confirmed` (page-content or redirect verified) or `probable`
+  (status-code only) — on the dashboard logo grid, in the report table and
+  in the JSON/CSV exports. Older stored checks render without badges
+  (graceful degradation).
+
+### Fixed
+- Reported version: `config/app.version` was still `1.0.0` inside the
+  v1.0.1 release — now bumped correctly (report header shows v1.1.0).
+
 ## [1.0.1] — 2026-10-21
 
 ### Fixed
