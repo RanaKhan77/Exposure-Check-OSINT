@@ -22,6 +22,7 @@ use App\Modules\Osint\Sources\PresendSource;
 use App\Modules\Osint\Sources\PwnedPasswordsSource;
 use App\Modules\Osint\Sources\ProxyNovaCombSource;
 use App\Modules\Osint\Sources\ShodanInternetDbSource;
+use App\Modules\Osint\Sources\BotCidrSource;
 use App\Modules\Osint\Sources\XposedOrNotSource;
 use App\Services\SettingsService;
 use Illuminate\Http\Client\Pool;
@@ -76,6 +77,8 @@ class OsintCheckService
         HackerNewsSource::class,
         // v2.1 (2026-10-20): where-is-this-identifier-used signals (free)
         GitHubPublicSource::class,
+        // v1.2.0 (2026-10-21, S32): offline bot-CIDR attribution (CrawlerScope-inspired)
+        BotCidrSource::class,
     ];
 
     public const TYPES = ['email', 'username', 'phone', 'password', 'ip'];
