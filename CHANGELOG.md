@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.2.1] — 2026-10-22
+
+### Security
+- **PHP base image now builds against PHP 8.3.36** (released 2026-10-21, fixes
+  CVE-2026-109618 and CVE-2026-109619, the "PHP2Shell" unauthenticated RCE pair,
+  CVSS v4.0 9.2). The Dockerfile uses the floating "php:8.3-apache" tag, so any
+  image built after 2026-10-21 automatically includes the fixed runtime; no
+  Dockerfile change was needed. Self-hosters: pull + rebuild + restart Apache.
+- CI now derives the keyless-source count from the source registry (the stale
+  hardcoded count broke CI after v1.2.0).
+
 
 ## [1.2.0] — 2026-10-21
 
