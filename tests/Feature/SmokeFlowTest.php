@@ -51,8 +51,9 @@ class SmokeFlowTest extends TestCase
         // C2 regression: password must be an explicit tab
         $resp->assertSee('data-type="password"', false);
         $resp->assertSee('ox-tab', false);
-        // honest source count (18 adapters)
-        $resp->assertSee('18 keyless sources');
+        // honest source count — derived from the registry so adding a source
+        // never breaks CI (v1.2.0 lesson: hardcoded "18" failed after BotCidr)
+        $resp->assertSee(count(\App\Modules\Osint\OsintCheckService::SOURCES) . ' keyless sources');
     }
 
     public function test_api_check_accepts_five_hex_password_prefix(): void
