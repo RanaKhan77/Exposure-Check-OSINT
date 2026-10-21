@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Exposure Check</h1>
-<p class="sub">Check if an email, username, phone number, password or IP is exposed — breaches, stealer logs, linked accounts, public data. Read-only lookups against 18 keyless sources. Identifiers you are authorized to check only.</p>
+<p class="sub">Check if an email, username, phone number, password or IP is exposed — breaches, stealer logs, linked accounts, public data. Read-only lookups against 19 keyless sources. Identifiers you are authorized to check only.</p>
 
 <div class="card" style="padding:22px">
     <form id="ox-form" autocomplete="off">

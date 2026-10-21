@@ -1,5 +1,19 @@
 # Changelog
 
+
+## [1.2.0] — 2026-10-21
+
+### Added
+- **19th source: Bot CIDR Attribution** (offline, zero requests) — IP checks now
+  say whether the IP belongs to an operator-published crawler network range
+  (Googlebot, Bingbot, Meta crawler, Applebot). In-range traffic is verifiable
+  crawler traffic; OUT-of-range traffic claiming those user-agents is spoofed.
+  Includes the operator-documented reverse-DNS verification hint per range.
+  Inspired by CrawlerScope research (S32).
+
+### Changed
+- Source count 18 → 19 across README, dashboard copy, Docker label and FAQ.
+
 All notable changes to Exposure-Check-OSINT are documented here.
 
 ## [1.1.0] — 2026-10-21
