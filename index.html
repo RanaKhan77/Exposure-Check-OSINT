@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exposure-Check-OSINT — Is your email, username or password leaked? Self-hosted, 18 keyless sources</title>
+<meta name="description" content="Self-hosted personal exposure checker: breaches, infostealer logs, COMB 11B+ credentials, HIBP k-anonymity and a 150-platform username grid. One Docker command, no API keys, no AI, Apache-2.0.">
+<meta property="og:title" content="Exposure-Check-OSINT — know what attackers already know about you">
+<meta property="og:description" content="18 keyless OSINT sources. Breaches, stealer logs, COMB 11B+ credentials, 150-platform username grid. Self-hosted, one Docker command, zero AI.">
+<meta property="og:image" content="og-image.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+<style>
+:root{
+  --bg:#0B1220; --bg2:#0F172A; --card:#141E32; --card2:#1B2740; --line:#26334D;
+  --text:#E7EDF7; --dim:#94A6C8; --green:#34D399; --red:#F87171; --amber:#FBBF24; --cyan:#22D3EE; --blue:#7EB3FF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.65 "Segoe UI",system-ui,-apple-system,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+header{padding:64px 0 34px;text-align:center;background:
+ radial-gradient(1200px 500px at 50% -10%,rgba(34,211,238,.12),transparent 65%),
+ radial-gradient(900px 420px at 85% 8%,rgba(52,211,153,.10),transparent 60%),
+ linear-gradient(180deg,#0B1220 0%,#0D1526 100%)}
+header .logo{font-size:44px}
+header h1{font-size:clamp(28px,5vw,44px);letter-spacing:-.5px;margin:10px 0 8px;font-weight:800}
+header h1 .grad{background:linear-gradient(90deg,#22D3EE,#34D399);-webkit-background-clip:text;background-clip:text;color:transparent}
+header p.sub{color:var(--dim);font-size:18px;max-width:760px;margin:0 auto 22px}
+.pill{display:inline-block;background:rgba(52,211,153,.12);color:var(--green);border:1px solid rgba(52,211,153,.3);padding:5px 14px;border-radius:999px;font-size:13px;font-weight:700;margin:4px}
+.pill.b{background:rgba(59,130,246,.14);color:var(--blue);border-color:rgba(59,130,246,.32)}
+.pill.c{background:rgba(34,211,238,.12);color:var(--cyan);border-color:rgba(34,211,238,.3)}
+.btns{margin-top:26px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 26px;border-radius:12px;font-weight:800;font-size:16px;transition:transform .12s ease, filter .12s ease}
+.btn:hover{text-decoration:none;transform:translateY(-2px);filter:brightness(1.1)}
+.btn-primary{background:linear-gradient(135deg,#22D3EE,#34D399);color:#06251D}
+.btn-ghost{background:var(--card);color:var(--text);border:1px solid var(--line)}
+section{padding:52px 0}
+h2{font-size:28px;letter-spacing:-.3px;margin-bottom:8px;font-weight:800}
+h2 .accent{color:var(--cyan)}
+.lead{color:var(--dim);max-width:760px;margin-bottom:26px}
+.shots{display:grid;gap:18px}
+.shot{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.shot img{width:100%;border-radius:10px;display:block}
+.shot .cap{padding:10px 6px 2px;color:var(--dim);font-size:14px}
+.shot .cap b{color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{color:var(--dim);font-size:14.5px}
+.card .ico{font-size:26px;display:block;margin-bottom:8px}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.check{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+.check .ico{font-size:30px}
+.check h3{font-size:16px;margin:8px 0 6px}
+.check p{color:var(--dim);font-size:13.5px}
+pre{background:#0A101E;border:1px solid var(--line);border-radius:12px;padding:18px 20px;overflow-x:auto;font-size:14px;line-height:1.7;color:#C9E3FF}
+pre .c{color:#5B7099}
+.sources{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.src{display:flex;justify-content:space-between;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14px}
+.src .tag{font-size:11px;font-weight:800;padding:2px 9px;border-radius:999px}
+.tag.stealer{background:rgba(248,113,113,.14);color:var(--red)}
+.tag.breach{background:rgba(251,191,36,.14);color:var(--amber)}
+.tag.profile{background:rgba(52,211,153,.14);color:var(--green)}
+.tag.reputation{background:rgba(59,130,246,.14);color:var(--blue)}
+.tag.infra{background:rgba(34,211,238,.14);color:var(--cyan)}
+.verdicts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+.v{border-radius:14px;padding:18px;border:1px solid var(--line);background:var(--card)}
+.v h3{font-size:15px;margin-bottom:6px}
+.v p{color:var(--dim);font-size:13.5px}
+.v.exposed{border-color:rgba(248,113,113,.4)} .v.exposed h3{color:var(--red)}
+.v.clear{border-color:rgba(52,211,153,.4)} .v.clear h3{color:var(--green)}
+.v.unavail{border-color:rgba(148,166,200,.35)} .v.unavail h3{color:var(--dim)}
+footer{border-top:1px solid var(--line);padding:36px 0 46px;color:var(--dim);font-size:14px;text-align:center}
+footer .fam{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0}
+footer .fam a{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 16px;font-size:13.5px;color:var(--text)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">🛡️</div>
+    <h1>Exposure-<span class="grad">Check-OSINT</span></h1>
+    <p class="sub"><b>Is your email, username, phone or password already leaked?</b><br>
+    A self-hosted exposure checker that answers with evidence from 18 keyless sources —
+    no API keys, no AI, no data leaving your machine.</p>
+    <span class="pill">18 keyless sources</span>
+    <span class="pill b">11B+ leaked credentials indexed</span>
+    <span class="pill c">deterministic · zero AI</span>
+    <span class="pill">Apache-2.0</span>
+    <span class="pill b">one Docker command</span>
+    <div class="btns">
+      <a class="btn btn-primary" href="https://github.com/RanaKhan77/Exposure-Check-OSINT">★ Get it on GitHub</a>
+      <a class="btn btn-ghost" href="#quickstart">Quick Start</a>
+      <a class="btn btn-ghost" href="https://2mny.com">2MNY Security Platform</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The product, <span class="accent">not mockups</span></h2>
+    <p class="lead">Every screenshot below is captured from a real running install — live sources, live verdicts, real exposure.</p>
+    <div class="shots">
+      <div class="shot">
+        <img src="dashboard-preview.png" alt="Exposure Check dashboard — one input, five identifier types, live corpus stats">
+        <div class="cap"><b>The dashboard.</b> Paste any identifier — the type is auto-detected and the corpus stats are computed from the actual local indexes.</div>
+      </div>
+      <div class="shot">
+        <img src="results-preview.png" alt="Live results — exposure score gauge, CRITICAL EXPOSURE verdict, source cards">
+        <div class="cap"><b>Live results.</b> Parallel fan-out to every supporting source; every card carries severity, evidence and an honest three-state verdict.</div>
+      </div>
+      <div class="shot">
+        <img src="report-preview.png" alt="Printable exposure report — masked identifier, 0/100 score, per-source table">
+        <div class="cap"><b>The report.</b> Self-contained, generated locally, identifier masked by design — one click to PDF.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg2)">
+  <div class="wrap">
+    <h2>Five checks, <span class="accent">one box</span></h2>
+    <p class="lead">Personal identifiers, not domain scanning — that's the scanner CE's job. This tool answers one question: <i>what do attackers already know about <b>you</b>?</i></p>
+    <div class="checks">
+      <div class="check"><span class="ico">📧</span><h3>Email</h3><p>Breach collections, stealer-log infections, disposable flags, public-code associations</p></div>
+      <div class="check"><span class="ico">👤</span><h3>Username</h3><p>Which of 150 platforms carry this name — logo grid, Bluesky, Hacker News, GitHub</p></div>
+      <div class="check"><span class="ico">📱</span><h3>Phone</h3><p>Validity, country, line type, COMB leak association</p></div>
+      <div class="check"><span class="ico">🔑</span><h3>Password</h3><p>HIBP Pwned Passwords with k-anonymity — only a 5-char hash prefix ever leaves your browser</p></div>
+      <div class="check"><span class="ico">🌐</span><h3>IP</h3><p>Open ports (Shodan InternetDB), VPN / proxy / hosting classification</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The <span class="accent">18 sources</span> — all keyless</h2>
+    <p class="lead">No API keys to buy, no accounts to create, no rate-limit roulette. If a source is down it says so — it never fakes a "clear".</p>
+    <div class="sources">
+      <div class="src"><span>Hudson Rock stealer logs</span><span class="tag stealer">STEALER</span></div>
+      <div class="src"><span>COMB credential dataset</span><span class="tag breach">BREACH</span></div>
+      <div class="src"><span>XposedOrNot breach analytics</span><span class="tag breach">BREACH</span></div>
+      <div class="src"><span>HIBP Pwned Passwords</span><span class="tag breach">K-ANON</span></div>
+      <div class="src"><span>Maigret — 150 sites</span><span class="tag profile">PROFILE</span></div>
+      <div class="src"><span>WhatsMyName DB</span><span class="tag profile">PROFILE</span></div>
+      <div class="src"><span>GitHub public activity</span><span class="tag profile">PROFILE</span></div>
+      <div class="src"><span>Gravatar profile &amp; photo</span><span class="tag profile">PROFILE</span></div>
+      <div class="src"><span>Bluesky account existence</span><span class="tag profile">PROFILE</span></div>
+      <div class="src"><span>Hacker News accounts</span><span class="tag profile">PROFILE</span></div>
+      <div class="src"><span>Disposable email detection</span><span class="tag reputation">REPUTATION</span></div>
+      <div class="src"><span>Disify email intelligence</span><span class="tag reputation">REPUTATION</span></div>
+      <div class="src"><span>libphonenumber validation</span><span class="tag reputation">PHONE</span></div>
+      <div class="src"><span>Shodan InternetDB</span><span class="tag infra">INFRA</span></div>
+      <div class="src"><span>IP reputation &amp; classification</span><span class="tag infra">INFRA</span></div>
+      <div class="src"><span>+3 more in the attribution PDF</span><span class="tag infra">DOCS</span></div>
+    </div>
+    <div class="verdicts">
+      <div class="v exposed"><h3>● EXPOSED</h3><p>Evidence found — the source returns real matches, masked in the UI and stripped of credential material before storage.</p></div>
+      <div class="v clear"><h3>● CLEAR</h3><p>The source answered and found nothing. A real answer, not a guess.</p></div>
+      <div class="v unavail"><h3>● UNAVAILABLE</h3><p>The source is down or blocked. It never counts as "clear" — honesty over cosmetics.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg2)" id="quickstart">
+  <div class="wrap">
+    <h2>Run it in <span class="accent">one command</span></h2>
+    <p class="lead">Docker pulls a single container (Apache + PHP 8.3 + SQLite). Nothing else. Your data stays on your disk.</p>
+    <pre><span class="c"># 1. clone &amp; launch — http://localhost:8090</span>
+git clone https://github.com/RanaKhan77/Exposure-Check-OSINT.git
+cd Exposure-Check-OSINT &amp;&amp; docker compose -f docker/docker-compose.yml up -d
+
+<span class="c"># 2. sign in (password set on first boot) and check yourself</span>
+<span class="c"># 3. that's it — no keys, no accounts, no telemetry</span></pre>
+    <div class="grid" style="margin-top:22px">
+      <div class="card"><span class="ico">🔐</span><h3>Privacy by design</h3><p>Identifiers stored as salted hashes + masked forms only. Password checks store nothing — matching happens in your browser.</p></div>
+      <div class="card"><span class="ico">🧠</span><h3>Zero AI, on purpose</h3><p>Every verdict is a deterministic, reproducible HTTP lookup. No model, no bill, no hallucinated findings.</p></div>
+      <div class="card"><span class="ico">🧾</span><h3>Honest scoring</h3><p>Exposure score 0–100 (100 = clean). Dead sources degrade honestly and never fake a pass.</p></div>
+      <div class="card"><span class="ico">📄</span><h3>Full docs set</h3><p>Overview, install, privacy design, source attribution and FAQ — as PDFs on the <a href="https://github.com/RanaKhan77/Exposure-Check-OSINT/releases">releases page</a>.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Exposure-Check-OSINT</b> — part of the 2MNY open-source protection family.</p>
+    <div class="fam">
+      <a href="https://github.com/RanaKhan77/Website-Vulnerability-Scanner">🛡️ Website Vulnerability Scanner CE — 200 modules</a>
+      <a href="https://github.com/RanaKhan77/awesome-cyber-security-heaven">☁️ Awesome Cyber Security Heaven — 459 tools</a>
+      <a href="https://2mny.com">🌐 2mny.com — managed protection platform</a>
+    </div>
+    <p>Read-only lookups against public sources · identifiers you are authorized to check only · Apache-2.0</p>
+  </div>
+</footer>
+
+</body>
+</html>
