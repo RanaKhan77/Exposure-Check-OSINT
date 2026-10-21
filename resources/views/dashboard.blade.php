@@ -57,6 +57,8 @@
             </div>
         </div>
         <a id="ox-report-link" class="btn btn-ghost" href="#" target="_blank" rel="noopener" hidden>📄 Open report</a>
+        <a id="ox-export-json" class="btn btn-ghost" href="#" hidden>⬇ JSON</a>
+        <a id="ox-export-csv" class="btn btn-ghost" href="#" hidden>⬇ CSV</a>
     </div>
 
     <div id="ox-password-result" class="card" hidden style="margin-top:14px"></div>
@@ -223,16 +225,22 @@
             html += '<div class="ox-accounts">';
             accounts.slice(0, 60).forEach(function (a) {
                 var key = encodeURIComponent(String(a.site).toLowerCase().replace(/[^a-z0-9]+/g, '_'));
+                var conf = a.confidence === 'confirmed' ? '<i class="ox-conf conf-c" title="confirmed: page content verified">&#10003;</i>'
+                         : (a.confidence === 'probable' ? '<i class="ox-conf conf-p" title="probable: status code only">~</i>' : '');
                 html += '<a class="ox-acct" href="' + esc(a.url || '#') + '" target="_blank" rel="noopener" title="' + esc(a.site) + '">' +
                         '<img class="lg" data-src="/osint-logo/' + key + '" alt="" data-site="' + esc(a.site) + '">' +
+                        conf +
                         '<span>' + esc(a.site) + '</span></a>';
             });
             if (accounts.length > 60) html += '<span class="ox-acct more">+' + (accounts.length - 60) + ' more</span>';
             html += '</div>';
+            if (d.found_confirmed !== undefined || d.found_probable !== undefined) {
+                html += '<div class="ox-conf-line">' + (d.found_confirmed || 0) + ' confirmed (page content verified) &middot; ' + (d.found_probable || 0) + ' probable (status code only)</div>';
+            }
         }
 
         // data fields (skip the big grid/binary ones)
-        var skip = { accounts: 1, found_accounts: 1, profile_urls: 1, suffixes: 1, credential_lines: 1, unavailable_examples: 1 };
+        var skip = { accounts: 1, found_accounts: 1, profile_urls: 1, suffixes: 1, credential_lines: 1, unavailable_examples: 1, found_confirmed: 1, found_probable: 1 };
         var kv = '';
         Object.keys(d).forEach(function (k) { if (!skip[k]) kv += fieldRow(k, d[k]); });
         if (kv) html += '<div class="ox-body">' + kv + '</div>';
@@ -258,7 +266,12 @@
         document.getElementById('ox-pill-sources').textContent = (s.sources_assessed || 0) + ' sources checked';
 
         var link = document.getElementById('ox-report-link');
-        if (check.check_id) { link.hidden = false; link.href = '/report/' + check.check_id; } else { link.hidden = true; }
+        var ej = document.getElementById('ox-export-json'), ec = document.getElementById('ox-export-csv');
+        if (check.check_id) {
+            link.hidden = false; link.href = '/report/' + check.check_id;
+            ej.hidden = false; ej.href = '/report/' + check.check_id + '/export/json';
+            ec.hidden = false; ec.href = '/report/' + check.check_id + '/export/csv';
+        } else { link.hidden = true; ej.hidden = true; ec.hidden = true; }
 
         // category sections
         var groups = {}, order = [];
@@ -372,5 +385,10 @@
     .ox-acct img, .ox-tile { width:30px; height:30px; object-fit:contain; border-radius:7px; background:#0F172A; }
     .ox-acct span { max-width:70px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .ox-acct.more { justify-content:center; font-size:11px; }
+    .ox-acct { position:relative; }
+    .ox-conf { position:absolute; top:4px; right:6px; font-style:normal; font-size:10px; font-weight:800; line-height:1; pointer-events:none; }
+    .ox-conf.conf-c { color:#34D399; }
+    .ox-conf.conf-p { color:#FBBF24; }
+    .ox-conf-line { color:#64748B; font-size:11px; margin-top:8px; }
 </style>
 @endpush

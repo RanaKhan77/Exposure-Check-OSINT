@@ -23,3 +23,4 @@ yarn-error.log
 database/database.sqlite
 /storage/app/database.sqlite
 /storage/app/env/
+storage/framework/testing/

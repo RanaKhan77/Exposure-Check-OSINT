@@ -66,8 +66,16 @@ That is the whole install: one Docker container (Apache + PHP + SQLite — no My
 Redis, no API keys), a generated admin password, and `http://localhost:8080` ready.
 Details and non-Docker paths: [docs/SELF-HOSTING.md](docs/SELF-HOSTING.md).
 
+Self-test the whole stack any time (18-source reachability, storage, database,
+site database — seconds, no real check performed):
+
+```bash
+docker compose exec app php artisan ec:doctor     # add --json for machine-readable output
+```
+
 ```
 Sign in → paste an email → watch 18 sources answer in parallel → open the printable report.
+Export any stored check as JSON or CSV — report page, history table, or right after a live check.
 ```
 
 ## 🔎 The 5 Checks
@@ -75,7 +83,7 @@ Sign in → paste an email → watch 18 sources answer in parallel → open the 
 | Check | Input | What it answers |
 |-------|-------|-----------------|
 | 📧 Email exposure | any email | Which breaches / stealer logs / COMB corpora contain it · disposable? · Gravatar? · which of ~120 platforms hold an account |
-| 👤 Username exposure | one username | Which of 150 platforms have it registered (logo grid) · Bluesky · Hacker News |
+| 👤 Username exposure | one username | Which of 150 platforms have it registered (logo grid, confidence tiers: confirmed vs probable) · Bluesky · Hacker News |
 | 📱 Phone exposure | E.164 number | Valid, country, line type, carrier class · COMB leak association |
 | 🔑 Password exposure | a password | How many times it appears in breach corpora — **hashed in your browser, 5-char prefix only** |
 | 🌐 IP exposure | IPv4/IPv6 | Open ports + services · VPN/proxy/hosting classification |

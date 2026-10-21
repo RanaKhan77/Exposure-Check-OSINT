@@ -35,6 +35,8 @@
                     <td style="color:var(--muted);font-size:12px">{{ $c->created_at?->format('M j, Y H:i') }}</td>
                     <td style="white-space:nowrap">
                         <a class="btn btn-ghost" style="padding:5px 11px;font-size:11.5px" href="{{ route('report', $c) }}" target="_blank" rel="noopener">Report</a>
+                        <a class="btn btn-ghost" style="padding:5px 11px;font-size:11.5px" href="{{ route('report.export', [$c, 'json']) }}">JSON</a>
+                        <a class="btn btn-ghost" style="padding:5px 11px;font-size:11.5px" href="{{ route('report.export', [$c, 'csv']) }}">CSV</a>
                         <form method="POST" action="{{ route('history.destroy', $c) }}" style="display:inline" onsubmit="return confirm('Delete this check?')">
                             @csrf @method('DELETE')
                             <button class="btn btn-ghost" type="submit" style="padding:5px 11px;font-size:11.5px;color:var(--red)">Delete</button>

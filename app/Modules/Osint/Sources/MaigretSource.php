@@ -158,6 +158,8 @@ class MaigretSource implements OsintSource
         }
 
         $found = [];
+        $confirmed = 0;
+        $probable = 0;
         $free = 0;
         $assessed = 0;
         $unavailable = [];
@@ -176,7 +178,15 @@ class MaigretSource implements OsintSource
             }
             if ($verdict['state'] === 'claimed') {
                 $assessed++;
-                $found[] = ['site' => (string) ($site['name'] ?? $name), 'url' => str_replace('{username}', rawurlencode($identifier), (string) $site['url'])];
+                // Confidence tier (v1.1): body- or redirect-verified hits are
+                // 'confirmed'; bare 2xx status-code matches are 'probable'.
+                $confidence = (($site['checkType'] ?? 'status_code') === 'status_code') ? 'probable' : 'confirmed';
+                if ($confidence === 'confirmed') {
+                    $confirmed++;
+                } else {
+                    $probable++;
+                }
+                $found[] = ['site' => (string) ($site['name'] ?? $name), 'url' => str_replace('{username}', rawurlencode($identifier), (string) $site['url']), 'confidence' => $confidence];
             } elseif ($verdict['state'] === 'free') {
                 $assessed++;
                 $free++;
@@ -207,7 +217,7 @@ class MaigretSource implements OsintSource
                 if ($domain !== null) {
                     $logos->registerSite($key, $domain);
                 }
-                $accounts[] = ['site' => (string) $f['site'], 'url' => (string) $f['url'], 'status' => 'found'];
+                $accounts[] = ['site' => (string) $f['site'], 'url' => (string) $f['url'], 'status' => 'found', 'confidence' => (string) ($f['confidence'] ?? 'probable')];
             }
         } catch (\Throwable $e) {
             // logo registration is display sugar — never affects verdicts
@@ -219,6 +229,8 @@ class MaigretSource implements OsintSource
             'sites_in_db' => count($sites),
             'sites_checked' => $assessed,
             'sites_found' => $n,
+            'found_confirmed' => $confirmed,
+            'found_probable' => $probable,
             'sites_unavailable' => count($unavailable),
         ];
         if ($accounts !== []) {
@@ -238,8 +250,8 @@ class MaigretSource implements OsintSource
                 'status' => 'hit',
                 'severity' => $n >= 10 ? 'medium' : 'low',
                 'summary' => sprintf(
-                    'This username is registered on %d of %d assessed popular sites, including %s%s — each public account widens the identity footprint.',
-                    $n, $assessed, $list, $more
+                    'This username is registered on %d of %d assessed popular sites — %d confirmed by page content, %d probable by status code alone — including %s%s. Each public account widens the identity footprint.',
+                    $n, $assessed, $confirmed, $probable, $list, $more
                 ),
                 'data' => $data,
             ];
