@@ -2,6 +2,34 @@
 
 All notable changes to Exposure-Check-OSINT are documented here.
 
+## [1.0.1] — 2026-10-21
+
+### Fixed
+- Report page: the exposure score now shows its scale (`X / 100`, 100 = clean)
+  and a prominent risk label (`CRITICAL EXPOSURE` / `ELEVATED` / `MINOR` /
+  `LOW` / `NO EXPOSURE FOUND`). Previously a bare `0` was ambiguous — readers
+  could mistake maximum exposure for "no exposure".
+- Dashboard: the daily-quota chip no longer renders as a stray empty pill
+  before the first check of the day (`[hidden]` display guard added).
+- Logout now fully destroys the session record (`invalidate()` +
+  `regenerateToken()`); `regenerate()` alone kept the old session alive
+  until expiry.
+- Privacy contract: IP addresses are now masked in stored reports
+  (`103.***.***.12`, IPv6 first+last group) — previously the raw IP was
+  stored, violating the "identifiers never stored raw" promise.
+
+### Changed
+- README screenshots replaced with REAL live-product captures (dashboard,
+  live results view with score gauge, printable report) — no mockups.
+
+### Verified
+- Full AI-assisted security review (seed-2-0-pro): 2 real findings fixed
+  (both above); 4 other reported findings verified false and documented
+  (Laravel 11 auto-CSRF; identical rate-limiter keys; registry-whitelisted
+  logo proxy; quota consumed only on success).
+- CI green: PHP 8.2 / 8.3 / 8.4 matrix, lint + contract tests + Docker
+  build-context verification.
+
 ## [1.0.0] — 2026-10-21
 
 ### Added
