@@ -1,0 +1,5 @@
+# Default owner for everything in this repository
+* @RanaKhan77
+
+# OSINT source classes are the trust-critical surface
+/app/Modules/Osint/Sources/ @RanaKhan77
