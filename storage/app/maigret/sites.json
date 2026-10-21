@@ -1,0 +1,1498 @@
+{
+ "_meta": {
+  "source": "maigret (https://github.com/soxoj/maigret) MIT License + WhatsMyName (https://github.com/WebBreacher/WhatsMyName) CC BY-SA 4.0",
+  "license_note": "Curated subset of maigret v0.6.6 data.json (MIT, 43 sites, verified 2026-10-16) PLUS differential-verified WhatsMyName wmn-data.json sites (CC BY-SA 4.0 \u2014 attribution: Micah Hoffman & WhatsMyName contributors, https://creativecommons.org/licenses/by-sa/4.0/). All sites differential-self-checked (claimed vs unclaimed username) from the production egress IP on 2026-10-20; blocked/flaky/catch-all sites removed.",
+  "curated_at": "2026-10-20",
+  "site_count": 150,
+  "selfcheck": "WMN: 293/505 candidates passed differential verification; top 107 selected by mapping robustness (status_code first) and category priority; 43 maigret sites retained unchanged."
+ },
+ "sites": {
+  "YouTube": {
+   "name": "YouTube",
+   "url": "https://www.youtube.com/@{username}/about",
+   "urlProbe": "https://www.youtube.com/@{username}/about",
+   "checkType": "message",
+   "rank": 3,
+   "presenseStrs": [
+    "visitorData",
+    "userAgent"
+   ],
+   "absenceStrs": [
+    "404 Not Found"
+   ],
+   "headers": {
+    "User-Agent": "curl/8.6.0",
+    "Accept": "*/*"
+   },
+   "regexCheck": "^[^\\/]+$",
+   "usernameUnclaimed": "noonewouldeverusethis777",
+   "usernameClaimed": "test"
+  },
+  "LinkedIn": {
+   "name": "LinkedIn",
+   "url": "https://linkedin.com/in/{username}",
+   "urlProbe": "https://linkedin.com/in/{username}",
+   "checkType": "status_code",
+   "rank": 6,
+   "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"
+   },
+   "regexCheck": "^[a-zA-Z0-9_-]{3,100}$",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "paulpfeister"
+  },
+  "GitHub": {
+   "name": "GitHub",
+   "url": "https://github.com/{username}",
+   "urlProbe": "https://github.com/{username}",
+   "checkType": "status_code",
+   "rank": 10,
+   "regexCheck": "^[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,38}$",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "WordPressOrg": {
+   "name": "WordPressOrg",
+   "url": "https://profiles.wordpress.org/{username}/",
+   "urlProbe": "https://profiles.wordpress.org/{username}/",
+   "checkType": "response_url",
+   "rank": 12,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "Wikipedia": {
+   "name": "Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/User:{username}",
+   "urlProbe": "https://en.wikipedia.org/w/api.php?action=query&format=json&list=users&ususers={username}&usprop=cancreate&formatversion=2",
+   "checkType": "message",
+   "rank": 15,
+   "presenseStrs": [
+    "\"userid\""
+   ],
+   "absenceStrs": [
+    "\"missing\""
+   ],
+   "usernameUnclaimed": "Neverreg2847xyzq",
+   "usernameClaimed": "Jimbo_Wales"
+  },
+  "Telegram": {
+   "name": "Telegram",
+   "url": "https://t.me/{username}",
+   "urlProbe": "https://t.me/{username}",
+   "checkType": "message",
+   "rank": 42,
+   "absenceStrs": [
+    "<meta name=\"robots\" content=\"noindex, nofollow\">",
+    "<meta property=\"twitter:title\" content=\"Telegram: Contact"
+   ],
+   "regexCheck": "^[a-zA-Z][a-zA-Z0-9_]{4,}$",
+   "usernameUnclaimed": "noonewouldevereverusethis9",
+   "usernameClaimed": "BotFather"
+  },
+  "Tumblr": {
+   "name": "Tumblr",
+   "url": "https://www.tumblr.com/{username}",
+   "urlProbe": "https://www.tumblr.com/{username}",
+   "checkType": "message",
+   "rank": 56,
+   "presenseStrs": [
+    "profile",
+    " title="
+   ],
+   "absenceStrs": [
+    "Not found.",
+    ":404,",
+    "userAgent"
+   ],
+   "regexCheck": "^[^\\.]+$",
+   "usernameUnclaimed": "zdbimdoqyt",
+   "usernameClaimed": "soxoj"
+  },
+  "Spotify": {
+   "name": "Spotify",
+   "url": "https://open.spotify.com/user/{username}",
+   "urlProbe": "https://api.stats.fm/api/v1/users/{username}",
+   "checkType": "status_code",
+   "rank": 60,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "alex"
+  },
+  "Medium": {
+   "name": "Medium",
+   "url": "https://medium.com/@{username}",
+   "urlProbe": "https://medium.com/feed/@{username}",
+   "checkType": "status_code",
+   "rank": 66,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "VK": {
+   "name": "VK",
+   "url": "https://vk.com/{username}",
+   "urlProbe": "https://vk.com/{username}",
+   "checkType": "status_code",
+   "rank": 91,
+   "regexCheck": "^(?!id\\d)[a-zA-Z0-9_]*$",
+   "usernameUnclaimed": "blah62831",
+   "usernameClaimed": "smith"
+  },
+  "Launchpad": {
+   "name": "Launchpad",
+   "url": "https://launchpad.net/~{username}",
+   "urlProbe": "https://launchpad.net/~{username}",
+   "checkType": "status_code",
+   "rank": 93,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "Issuu": {
+   "name": "Issuu",
+   "url": "https://issuu.com/{username}",
+   "urlProbe": "https://issuu.com/{username}",
+   "checkType": "message",
+   "rank": 110,
+   "presenseStrs": [
+    "\"displayName\":\""
+   ],
+   "absenceStrs": [
+    "NEXT_HTTP_ERROR_FALLBACK;404"
+   ],
+   "headers": {
+    "RSC": "1"
+   },
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "jenny"
+  },
+  "linktr.ee": {
+   "name": "linktr.ee",
+   "url": "https://linktr.ee/{username}",
+   "urlProbe": "https://linktr.ee/{username}",
+   "checkType": "status_code",
+   "rank": 120,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "Blisscartoos"
+  },
+  "GitLab": {
+   "name": "GitLab",
+   "url": "https://gitlab.com/{username}",
+   "urlProbe": "https://gitlab.com/api/v4/users?username={username}",
+   "checkType": "message",
+   "rank": 155,
+   "absenceStrs": [
+    "[]"
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "Twitch": {
+   "name": "Twitch",
+   "url": "https://twitchtracker.com/{username}",
+   "urlProbe": "https://twitchtracker.com/{username}",
+   "checkType": "status_code",
+   "rank": 163,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "adam"
+  },
+  "StackOverflow": {
+   "name": "StackOverflow",
+   "url": "https://stackoverflow.com/users/filter?search={username}",
+   "urlProbe": "https://api.stackexchange.com/2.3/users?order=desc&sort=name&inname={username}&site=stackoverflow",
+   "checkType": "message",
+   "rank": 178,
+   "presenseStrs": [
+    "\"items\":[{"
+   ],
+   "absenceStrs": [
+    "\"items\":[]"
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "maigret"
+  },
+  "Bluesky": {
+   "name": "Bluesky",
+   "url": "https://bsky.app/profile/{username}.bsky.social",
+   "urlProbe": "https://public.api.bsky.app/xrpc/app.bsky.actor.getProfile?actor={username}.bsky.social",
+   "checkType": "message",
+   "rank": 184,
+   "presenseStrs": [
+    "\"did\""
+   ],
+   "absenceStrs": [
+    "Profile not found"
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "shamerli",
+   "treat400Free": true
+  },
+  "Substack": {
+   "name": "Substack",
+   "url": "https://substack.com/@{username}",
+   "urlProbe": "https://substack.com/api/v1/user/{username}/public_profile",
+   "checkType": "status_code",
+   "rank": 190,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "user23"
+  },
+  "Blogger": {
+   "name": "Blogger",
+   "url": "https://{username}.blogspot.com",
+   "urlProbe": "https://{username}.blogspot.com",
+   "checkType": "status_code",
+   "rank": 197,
+   "regexCheck": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "Wix": {
+   "name": "Wix",
+   "url": "https://{username}.wix.com",
+   "urlProbe": "https://{username}.wix.com",
+   "checkType": "status_code",
+   "rank": 222,
+   "regexCheck": "^[^\\.]+$",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "support"
+  },
+  "DailyMotion": {
+   "name": "DailyMotion",
+   "url": "https://www.dailymotion.com/{username}",
+   "urlProbe": "https://api.dailymotion.com/user/{username}?fields=id,username,screenname,description,avatar_720_url,cover_250_url,followers_total,following_total,videos_total,country,created_time,verified,url",
+   "checkType": "status_code",
+   "rank": 229,
+   "usernameUnclaimed": "rstnodkwzr",
+   "usernameClaimed": "blue"
+  },
+  "Imgur": {
+   "name": "Imgur",
+   "url": "https://imgur.com/user/{username}",
+   "urlProbe": "https://api.imgur.com/account/v1/accounts/{username}?client_id=546c25a59c58ad7&include=trophies%2Cmedallions",
+   "checkType": "response_url",
+   "rank": 243,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "adam"
+  },
+  "Myspace": {
+   "name": "Myspace",
+   "url": "https://myspace.com/{username}",
+   "urlProbe": "https://myspace.com/{username}",
+   "checkType": "status_code",
+   "rank": 247,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "GoodReads": {
+   "name": "GoodReads",
+   "url": "https://www.goodreads.com/{username}",
+   "urlProbe": "https://www.goodreads.com/{username}",
+   "checkType": "message",
+   "rank": 259,
+   "presenseStrs": [
+    "og:type\" content=\"profile\""
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "OpenStreetMap": {
+   "name": "OpenStreetMap",
+   "url": "https://www.openstreetmap.org/user/{username}",
+   "urlProbe": "https://www.openstreetmap.org/user/{username}",
+   "checkType": "status_code",
+   "rank": 296,
+   "regexCheck": "^[^\\.]+$",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "Giphy": {
+   "name": "Giphy",
+   "url": "https://giphy.com/channel/{username}",
+   "urlProbe": "https://giphy.com/channel/{username}",
+   "checkType": "message",
+   "rank": 412,
+   "presenseStrs": [
+    "Giphy",
+    "al:ios:app_name"
+   ],
+   "absenceStrs": [
+    "404 Not Found"
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "theabbie"
+  },
+  "Disqus": {
+   "name": "Disqus",
+   "url": "https://disqus.com/{username}",
+   "urlProbe": "https://disqus.com/api/3.0/users/details?user=username%3A{username}&attach=userFlaggedUser&api_key=E8Uh5l5fHZ6gD8U3KycjAIAk46f68Zw7C6eW8WSjZvCLXebZ7p0r1yrYDrLilk2F",
+   "checkType": "status_code",
+   "rank": 485,
+   "presenseStrs": [
+    "https://disqus.com/api/users/"
+   ],
+   "absenceStrs": [
+    "User matching query does not exist"
+   ],
+   "errors": {
+    "Invalid API key": "New API key needed"
+   },
+   "regexCheck": "^[^/]+$",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "Snapchat": {
+   "name": "Snapchat",
+   "url": "https://www.snapchat.com/add/{username}",
+   "urlProbe": "https://www.snapchat.com/add/{username}",
+   "checkType": "status_code",
+   "rank": 525,
+   "regexCheck": "^[a-z][a-z-_.]{3,15}",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "teamsnapchat"
+  },
+  "Trello": {
+   "name": "Trello",
+   "url": "https://trello.com/{username}",
+   "urlProbe": "https://trello.com/1/Members/{username}",
+   "checkType": "message",
+   "rank": 535,
+   "absenceStrs": [
+    "model not found"
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "NPM": {
+   "name": "NPM",
+   "url": "https://www.npmjs.com/~{username}",
+   "urlProbe": "https://registry.npmjs.org/-/v1/search?text=maintainer:{username}&size=1",
+   "checkType": "message",
+   "rank": 590,
+   "presenseStrs": [
+    "\"objects\":[{"
+   ],
+   "absenceStrs": [
+    "\"total\":0"
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "sindresorhus"
+  },
+  "Steam": {
+   "name": "Steam",
+   "url": "https://steamcommunity.com/id/{username}",
+   "urlProbe": "https://steamcommunity.com/id/{username}",
+   "checkType": "message",
+   "rank": 650,
+   "absenceStrs": [
+    "The specified profile could not be found"
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "DigitalOcean": {
+   "name": "DigitalOcean",
+   "url": "https://www.digitalocean.com/community/users/{username}",
+   "urlProbe": "https://www.digitalocean.com/community/users/{username}",
+   "checkType": "status_code",
+   "rank": 659,
+   "regexCheck": "^[^\\.]+$",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "red"
+  },
+  "About.me": {
+   "name": "About.me",
+   "url": "https://about.me/{username}",
+   "urlProbe": "https://about.me/{username}",
+   "checkType": "status_code",
+   "rank": 685,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "jeff"
+  },
+  "Instructables": {
+   "name": "Instructables",
+   "url": "https://www.instructables.com/member/{username}",
+   "urlProbe": "https://www.instructables.com/member/{username}",
+   "checkType": "message",
+   "rank": 700,
+   "absenceStrs": [
+    "404: We're sorry, things break sometimes"
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "HuggingFace": {
+   "name": "HuggingFace",
+   "url": "https://huggingface.co/{username}",
+   "urlProbe": "https://huggingface.co/api/users/{username}/overview",
+   "checkType": "status_code",
+   "rank": 706,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "Paypal": {
+   "name": "Paypal",
+   "url": "https://www.paypal.com/paypalme/{username}",
+   "urlProbe": "https://www.paypal.com/paypalme/{username}",
+   "checkType": "message",
+   "rank": 775,
+   "presenseStrs": [
+    "displayName",
+    "displayEmail"
+   ],
+   "absenceStrs": [
+    "<title>PayPal.Me</title><meta name=\"twitt",
+    "<div class=\"row error404\""
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "adam"
+  },
+  "BitBucket": {
+   "name": "BitBucket",
+   "url": "https://bitbucket.org/{username}/",
+   "urlProbe": "https://api.bitbucket.org/2.0/workspaces/{username}",
+   "checkType": "status_code",
+   "rank": 801,
+   "regexCheck": "^[a-zA-Z0-9-_]{1,30}$",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "atlassian"
+  },
+  "Pastebin": {
+   "name": "Pastebin",
+   "url": "https://pastebin.com/u/{username}",
+   "urlProbe": "https://pastebin.com/u/{username}",
+   "checkType": "response_url",
+   "rank": 932,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "500px": {
+   "name": "500px",
+   "url": "https://500px.com/p/{username}",
+   "urlProbe": "https://api.500px.com/graphql?query=query%28%24username%3AString%21%29%7BuserByUsername%28username%3A%24username%29%7Bid%20legacyId%20username%20displayName%20firstName%20lastName%20registeredAt%20userProfile%7Bfirstname%20lastname%20about%20country%20city%20state%7DsocialMedia%7Bwebsite%20twitter%20facebook%20instagram%7D%7D%7D&variables=%7B%22username%22%3A%22{username}%22%7D",
+   "checkType": "message",
+   "rank": 938,
+   "presenseStrs": [
+    "\"legacyId\":\""
+   ],
+   "absenceStrs": [
+    "\"userByUsername\":null"
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "iansobolev"
+  },
+  "TradingView": {
+   "name": "TradingView",
+   "url": "https://www.tradingview.com/u/{username}",
+   "urlProbe": "https://www.tradingview.com/u/{username}",
+   "checkType": "status_code",
+   "rank": 999,
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "DEV Community": {
+   "name": "DEV Community",
+   "url": "https://dev.to/{username}",
+   "urlProbe": "https://dev.to/{username}",
+   "checkType": "status_code",
+   "rank": 1119,
+   "regexCheck": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue"
+  },
+  "Duolingo": {
+   "name": "Duolingo",
+   "url": "https://www.duolingo.com/profile/{username}",
+   "urlProbe": "https://www.duolingo.com/2017-06-30/users?username={username}",
+   "checkType": "message",
+   "rank": 1126,
+   "absenceStrs": [
+    "{\"users\":[]}"
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "duolingo"
+  },
+  "Gravatar": {
+   "name": "Gravatar",
+   "url": "http://en.gravatar.com/{username}",
+   "urlProbe": "http://en.gravatar.com/{username}.json",
+   "checkType": "message",
+   "rank": 999999,
+   "presenseStrs": [
+    "requestHash"
+   ],
+   "absenceStrs": [
+    "User not found"
+   ],
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "automattic"
+  },
+  "7dach": {
+   "name": "7dach",
+   "url": "https://7dach.ru/profile/{username}",
+   "urlProbe": "https://7dach.ru/profile/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "lana",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "alik": {
+   "name": "alik",
+   "url": "https://www.alik.cz/u/{username}",
+   "urlProbe": "https://www.alik.cz/u/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "igor",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Bio Site": {
+   "name": "Bio Site",
+   "url": "https://bio.site/{username}",
+   "urlProbe": "https://bio.site/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "leticiabufoni",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Boosty": {
+   "name": "Boosty",
+   "url": "https://boosty.to/{username}",
+   "urlProbe": "https://api.boosty.to/v1/blog/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "evdokia",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Bunpro": {
+   "name": "Bunpro",
+   "url": "https://community.bunpro.jp/u/{username}.json",
+   "urlProbe": "https://community.bunpro.jp/u/{username}.json",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "blacktide",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Choko.Link": {
+   "name": "Choko.Link",
+   "url": "https://choko.link/{username}",
+   "urlProbe": "https://choko.link/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "ForgedSteelTools",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Clubhouse": {
+   "name": "Clubhouse",
+   "url": "https://www.clubhouse.com/@{username}",
+   "urlProbe": "https://www.clubhouse.com/@{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "kirbyplessas",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Coub": {
+   "name": "Coub",
+   "url": "https://coub.com/{username}/",
+   "urlProbe": "https://coub.com/api/v2/channels/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "djantidog",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "DOU": {
+   "name": "DOU",
+   "url": "https://dou.ua/users/{username}/",
+   "urlProbe": "https://dou.ua/users/{username}/",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "doucommunity",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "flowcode": {
+   "name": "flowcode",
+   "url": "https://www.flow.page/{username}",
+   "urlProbe": "https://www.flow.page/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "slotrhouse",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Fosstodon.org (Mastodon Instance)": {
+   "name": "Fosstodon.org (Mastodon Instance)",
+   "url": "https://fosstodon.org/@{username}",
+   "urlProbe": "https://fosstodon.org/api/v1/accounts/lookup?acct={username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "linux",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Freelance.ua": {
+   "name": "Freelance.ua",
+   "url": "https://freelance.ua/user/{username}/",
+   "urlProbe": "https://freelance.ua/user/{username}/",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "tkachenkoalex",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Geocaching": {
+   "name": "Geocaching",
+   "url": "https://www.geocaching.com/p/?u={username}",
+   "urlProbe": "https://www.geocaching.com/p/?u={username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "moun10bike",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Habr (User)": {
+   "name": "Habr (User)",
+   "url": "https://habr.com/ru/users/{username}/",
+   "urlProbe": "https://habr.com/ru/users/{username}/",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "Bo0oM",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "hoo.be": {
+   "name": "hoo.be",
+   "url": "https://hoo.be/{username}",
+   "urlProbe": "https://hoo.be/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "chrishemsworth",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "icq-chat": {
+   "name": "icq-chat",
+   "url": "https://icq.icqchat.co/members/{username}/",
+   "urlProbe": "https://icq.icqchat.co/members/{username}/",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "brookenora.54",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "JapanDict": {
+   "name": "JapanDict",
+   "url": "https://forum.japandict.com/u/{username}",
+   "urlProbe": "https://forum.japandict.com/u/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "Yan",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "komi": {
+   "name": "komi",
+   "url": "https://{username}.komi.io",
+   "urlProbe": "https://api.komi.io/api/talent/usernames/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "abbysage",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Lemon8": {
+   "name": "Lemon8",
+   "url": "https://www.lemon8-app.com/{username}?region=us",
+   "urlProbe": "https://www.lemon8-app.com/{username}?region=us",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "dateandtravell",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "LINE": {
+   "name": "LINE",
+   "url": "https://line.me/R/ti/p/@{username}?from=page",
+   "urlProbe": "https://line.me/R/ti/p/@{username}?from=page",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "roseareal",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Mastodon.online": {
+   "name": "Mastodon.online",
+   "url": "https://mastodon.online/@{username}",
+   "urlProbe": "https://mastodon.online/@{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "Gargron",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "mssg.me": {
+   "name": "mssg.me",
+   "url": "https://{username}.mssg.me/",
+   "urlProbe": "https://{username}.mssg.me/",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "drrry",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "MyAnimeList": {
+   "name": "MyAnimeList",
+   "url": "https://myanimelist.net/profile/{username}",
+   "urlProbe": "https://myanimelist.net/profile/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "test",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "MyLot": {
+   "name": "MyLot",
+   "url": "https://www.mylot.com/{username}",
+   "urlProbe": "https://www.mylot.com/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "Tampa_girl7",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Neocities": {
+   "name": "Neocities",
+   "url": "https://neocities.org/site/{username}",
+   "urlProbe": "https://neocities.org/site/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "fauux",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Nightbot": {
+   "name": "Nightbot",
+   "url": "https://nightbot.tv/t/{username}/commands",
+   "urlProbe": "https://api.nightbot.tv/1/channels/t/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "saevid",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Nih Buat Jajan": {
+   "name": "Nih Buat Jajan",
+   "url": "https://www.nihbuatjajan.com/{username}",
+   "urlProbe": "https://www.nihbuatjajan.com/manifest/{username}.json",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "banyusadewa",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Note": {
+   "name": "Note",
+   "url": "https://note.com/{username}",
+   "urlProbe": "https://note.com/api/v2/creators/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "honey",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "ok.ru": {
+   "name": "ok.ru",
+   "url": "https://ok.ru/{username}",
+   "urlProbe": "https://ok.ru/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "john",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Pillowfort": {
+   "name": "Pillowfort",
+   "url": "https://www.pillowfort.social/{username}",
+   "urlProbe": "https://www.pillowfort.social/{username}/json/?p=1",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "MissMoonified",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Pokec": {
+   "name": "Pokec",
+   "url": "https://pokec.azet.sk/{username}",
+   "urlProbe": "https://pokec.azet.sk/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "frantisekraj",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Shikimori": {
+   "name": "Shikimori",
+   "url": "https://shikimori.io/{username}",
+   "urlProbe": "https://shikimori.io/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "STARHun",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "slides": {
+   "name": "slides",
+   "url": "https://slides.com/{username}",
+   "urlProbe": "https://slides.com/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "arunthomas",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "social.bund.de": {
+   "name": "social.bund.de",
+   "url": "https://social.bund.de/@{username}",
+   "urlProbe": "https://social.bund.de/@{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "bfdi",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Speaker Deck": {
+   "name": "Speaker Deck",
+   "url": "https://speakerdeck.com/{username}/",
+   "urlProbe": "https://speakerdeck.com/{username}/",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "petecheslock",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Twitcast": {
+   "name": "Twitcast",
+   "url": "https://twitcasting.tv/{username}",
+   "urlProbe": "https://frontendapi.twitcasting.tv/users/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "yuno___nico",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "twpro": {
+   "name": "twpro",
+   "url": "https://twpro.jp/{username}",
+   "urlProbe": "https://twpro.jp/{username}/q-data.json",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "kipuron_ghibli",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Wykop": {
+   "name": "Wykop",
+   "url": "https://wykop.pl/ludzie/{username}",
+   "urlProbe": "https://wykop.pl/ludzie/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "test",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Xing": {
+   "name": "Xing",
+   "url": "https://www.xing.com/profile/{username}",
+   "urlProbe": "https://www.xing.com/profile/{username}",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "Andy_Hausmann",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "zhihu": {
+   "name": "zhihu",
+   "url": "https://www.zhihu.com/people/{username}",
+   "urlProbe": "https://api.zhihu.com/books/people/{username}/publications?offset=0&limit=5",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "usernameClaimed": "lushnis",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Zomato": {
+   "name": "Zomato",
+   "url": "https://www.zomato.com/{username}/reviews",
+   "urlProbe": "https://www.zomato.com/{username}/reviews",
+   "checkType": "status_code",
+   "rank": 1000009,
+   "headers": {
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:133.0) Gecko/20100101 Firefox/133.0"
+   },
+   "usernameClaimed": "john",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "ACF": {
+   "name": "ACF",
+   "url": "https://support.advancedcustomfields.com/forums/users/{username}/",
+   "urlProbe": "https://support.advancedcustomfields.com/forums/users/{username}/",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "mike",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "asciinema": {
+   "name": "asciinema",
+   "url": "https://asciinema.org/~{username}",
+   "urlProbe": "https://asciinema.org/~{username}",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "john",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "AtCoder": {
+   "name": "AtCoder",
+   "url": "https://atcoder.jp/users/{username}",
+   "urlProbe": "https://atcoder.jp/users/{username}",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "apiad",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Coderwall": {
+   "name": "Coderwall",
+   "url": "https://coderwall.com/{username}/",
+   "urlProbe": "https://coderwall.com/{username}/",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "john",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Codewars": {
+   "name": "Codewars",
+   "url": "https://www.codewars.com/users/{username}",
+   "urlProbe": "https://www.codewars.com/api/v1/users/{username}",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "john",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Docker Hub (Organization)": {
+   "name": "Docker Hub (Organization)",
+   "url": "https://hub.docker.com/u/{username}",
+   "urlProbe": "https://hub.docker.com/v2/orgs/{username}/",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "bitnami",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Gitea": {
+   "name": "Gitea",
+   "url": "https://gitea.com/{username}",
+   "urlProbe": "https://gitea.com/api/v1/users/{username}",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "xin",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Gitee": {
+   "name": "Gitee",
+   "url": "https://gitee.com/{username}",
+   "urlProbe": "https://gitee.com/{username}",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "maxim",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "GitHub (Gists)": {
+   "name": "GitHub (Gists)",
+   "url": "https://gist.github.com/{username}",
+   "urlProbe": "https://api.github.com/users/{username}/gists",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "headers": {
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:147.0) Gecko/20100101 Firefox/147.0"
+   },
+   "usernameClaimed": "teymurgahramanov",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "GNOME (Shell Extensions)": {
+   "name": "GNOME (Shell Extensions)",
+   "url": "https://extensions.gnome.org/accounts/profile/{username}",
+   "urlProbe": "https://extensions.gnome.org/accounts/profile/{username}",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "johnny",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Habr (Q&A)": {
+   "name": "Habr (Q&A)",
+   "url": "https://qna.habr.com/user/{username}",
+   "urlProbe": "https://qna.habr.com/user/{username}",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "Masthead",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Hackster": {
+   "name": "Hackster",
+   "url": "https://www.hackster.io/{username}",
+   "urlProbe": "https://www.hackster.io/{username}",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "hendra",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Monkeytype": {
+   "name": "Monkeytype",
+   "url": "https://monkeytype.com/profile/{username}",
+   "urlProbe": "https://api.monkeytype.com/users/{username}/profile",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "rocket",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Replit": {
+   "name": "Replit",
+   "url": "https://replit.com/@{username}",
+   "urlProbe": "https://replit.com/@{username}",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "wuweijie",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "RubyGems.org": {
+   "name": "RubyGems.org",
+   "url": "https://rubygems.org/profiles/{username}",
+   "urlProbe": "https://rubygems.org/api/v1/profiles/{username}.json",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "awscloud",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Wakatime": {
+   "name": "Wakatime",
+   "url": "https://wakatime.com/@{username}",
+   "urlProbe": "https://wakatime.com/api/v1/users/{username}",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "jake",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Zenn": {
+   "name": "Zenn",
+   "url": "https://zenn.dev/{username}",
+   "urlProbe": "https://zenn.dev/{username}",
+   "checkType": "status_code",
+   "rank": 1000059,
+   "usernameClaimed": "john",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "cfx.re": {
+   "name": "cfx.re",
+   "url": "https://forum.cfx.re/u/{username}/summary",
+   "urlProbe": "https://forum.cfx.re/u/{username}.json",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "masiball",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Cytoid": {
+   "name": "Cytoid",
+   "url": "https://cytoid.io/profile/{username}",
+   "urlProbe": "https://cytoid.io/profile/{username}",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "nyala",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Diablo": {
+   "name": "Diablo",
+   "url": "https://diablo2.io/member/{username}/",
+   "urlProbe": "https://diablo2.io/member/{username}/",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "Mike01",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Game Jolt": {
+   "name": "Game Jolt",
+   "url": "https://gamejolt.com/@{username}",
+   "urlProbe": "https://gamejolt.com/site-api/web/profile/@{username}/",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "nilllzz",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "GTAinside.com": {
+   "name": "GTAinside.com",
+   "url": "https://www.gtainside.com/profile/{username}",
+   "urlProbe": "https://www.gtainside.com/profile/{username}",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "yessin0624",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Habbo.com": {
+   "name": "Habbo.com",
+   "url": "https://www.habbo.com/profile/{username}",
+   "urlProbe": "https://www.habbo.com/api/public/users?name={username}",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "john",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Habtium": {
+   "name": "Habtium",
+   "url": "https://habtium.es/{username}",
+   "urlProbe": "https://habtium.es/{username}",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "diegjeremy",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "itch.io": {
+   "name": "itch.io",
+   "url": "https://itch.io/profile/{username}",
+   "urlProbe": "https://itch.io/profile/{username}",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "obliviist",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Kongregate": {
+   "name": "Kongregate",
+   "url": "https://www.kongregate.com/accounts/{username}",
+   "urlProbe": "https://www.kongregate.com/accounts/{username}",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "test",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Plink": {
+   "name": "Plink",
+   "url": "https://plink.gg/user/{username}",
+   "urlProbe": "https://plink.gg/user/{username}",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "CryptonianTV",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Roberts Space Industries": {
+   "name": "Roberts Space Industries",
+   "url": "https://robertsspaceindustries.com/community-hub/user/{username}",
+   "urlProbe": "https://robertsspaceindustries.com/community-hub/user/{username}",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "BASXIII",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "TETR.IO": {
+   "name": "TETR.IO",
+   "url": "https://ch.tetr.io/u/{username}",
+   "urlProbe": "https://ch.tetr.io/api/users/{username}",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "icly",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "TruckersMP.Ru": {
+   "name": "TruckersMP.Ru",
+   "url": "https://truckersmp.ru/{username}",
+   "urlProbe": "https://truckersmp.ru/{username}",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "ramanbardashevich",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Warmerise": {
+   "name": "Warmerise",
+   "url": "https://warmerise.com/profile/{username}",
+   "urlProbe": "https://warmerise.com/profile/{username}",
+   "checkType": "status_code",
+   "rank": 1000109,
+   "usernameClaimed": "alfrevid",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Alura": {
+   "name": "Alura",
+   "url": "https://cursos.alura.com.br/user/{username}",
+   "urlProbe": "https://cursos.alura.com.br/user/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "edmilson",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Arduino (Forum)": {
+   "name": "Arduino (Forum)",
+   "url": "https://forum.arduino.cc/u/{username}/summary",
+   "urlProbe": "https://forum.arduino.cc/u/{username}.json",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "martinhouse",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Bugcrowd": {
+   "name": "Bugcrowd",
+   "url": "https://bugcrowd.com/h/{username}",
+   "urlProbe": "https://bugcrowd.com/profile-service/v1/profiles/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "BlackMist",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Chocolatey": {
+   "name": "Chocolatey",
+   "url": "https://community.chocolatey.org/profiles/{username}",
+   "urlProbe": "https://community.chocolatey.org/profiles/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "daronmcintosh",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Commudle": {
+   "name": "Commudle",
+   "url": "https://www.commudle.com/users/{username}",
+   "urlProbe": "https://json.commudle.com/api/v2/users?username={username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "akaashtripathi",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "discuss.elastic.co": {
+   "name": "discuss.elastic.co",
+   "url": "https://discuss.elastic.co/u/{username}",
+   "urlProbe": "https://discuss.elastic.co/u/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "whoami",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Figma": {
+   "name": "Figma",
+   "url": "https://www.figma.com/@{username}",
+   "urlProbe": "https://www.figma.com/api/profile/handle/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "bob",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Flipboard": {
+   "name": "Flipboard",
+   "url": "https://flipboard.com/@{username}",
+   "urlProbe": "https://flipboard.com/@{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "cosmopolitan",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "HackAdvisor": {
+   "name": "HackAdvisor",
+   "url": "https://hackadvisor.io/hacker/{username}",
+   "urlProbe": "https://hackadvisor.io/api/v2/profile/{username}/",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "WorstWurst",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "HackerRank": {
+   "name": "HackerRank",
+   "url": "https://www.hackerrank.com/profile/{username}",
+   "urlProbe": "https://www.hackerrank.com/rest/contests/master/hackers/{username}/profile",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "FMota",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Intigriti": {
+   "name": "Intigriti",
+   "url": "https://app.intigriti.com/profile/{username}",
+   "urlProbe": "https://app.intigriti.com/api/user/public/profile/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "vampire01",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "linux.org.ru": {
+   "name": "linux.org.ru",
+   "url": "https://www.linux.org.ru/people/{username}/profile",
+   "urlProbe": "https://www.linux.org.ru/people/{username}/profile",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "john",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "lobste.rs": {
+   "name": "lobste.rs",
+   "url": "https://lobste.rs/u/{username}",
+   "urlProbe": "https://lobste.rs/u/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "john",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Malpedia Actors": {
+   "name": "Malpedia Actors",
+   "url": "https://malpedia.caad.fkie.fraunhofer.de/actor/{username}",
+   "urlProbe": "https://malpedia.caad.fkie.fraunhofer.de/actor/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "USDoD",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Microsoft Learn": {
+   "name": "Microsoft Learn",
+   "url": "https://learn.microsoft.com/en-us/users/{username}/",
+   "urlProbe": "https://learn.microsoft.com/api/profiles/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "nityan",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "OpenSource": {
+   "name": "OpenSource",
+   "url": "https://opensource.com/users/{username}",
+   "urlProbe": "https://opensource.com/users/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "wuweijie",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Privacy Guides": {
+   "name": "Privacy Guides",
+   "url": "https://discuss.privacyguides.net/u/{username}/summary",
+   "urlProbe": "https://discuss.privacyguides.net/u/{username}.json",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "jonah",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "VseTop": {
+   "name": "VseTop",
+   "url": "https://vsetop.org/user/{username}/",
+   "urlProbe": "https://vsetop.org/user/{username}/",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "pyau",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "W3Schools": {
+   "name": "W3Schools",
+   "url": "https://pathfinder-api.kai.w3spaces.com/public-profile-api/{username}",
+   "urlProbe": "https://pathfinder-api.kai.w3spaces.com/public-profile-api/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "test",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Xakep.ru": {
+   "name": "Xakep.ru",
+   "url": "https://xakep.ru/author/{username}/",
+   "urlProbe": "https://xakep.ru/author/{username}/",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "tr3harder",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "YesWeHack": {
+   "name": "YesWeHack",
+   "url": "https://yeswehack.com/hunters/{username}",
+   "urlProbe": "https://api.yeswehack.com/hunters/{username}",
+   "checkType": "status_code",
+   "rank": 1000159,
+   "usernameClaimed": "xel",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Behance": {
+   "name": "Behance",
+   "url": "https://www.behance.net/{username}",
+   "urlProbe": "https://www.behance.net/{username}",
+   "checkType": "status_code",
+   "rank": 1000209,
+   "usernameClaimed": "mangarawma",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Career.habr": {
+   "name": "Career.habr",
+   "url": "https://career.habr.com/{username}",
+   "urlProbe": "https://career.habr.com/{username}",
+   "checkType": "status_code",
+   "rank": 1000209,
+   "usernameClaimed": "sergey-kobets3",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "DIBIZ": {
+   "name": "DIBIZ",
+   "url": "https://www.dibiz.com/{username}",
+   "urlProbe": "https://www.dibiz.com/{username}",
+   "checkType": "status_code",
+   "rank": 1000209,
+   "usernameClaimed": "fractalhue",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Freelance.RU": {
+   "name": "Freelance.RU",
+   "url": "https://freelance.ru/{username}",
+   "urlProbe": "https://freelance.ru/{username}",
+   "checkType": "status_code",
+   "rank": 1000209,
+   "usernameClaimed": "sunsey",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "HiHello": {
+   "name": "HiHello",
+   "url": "https://www.hihello.com/author/{username}",
+   "urlProbe": "https://www.hihello.com/author/{username}",
+   "checkType": "status_code",
+   "rank": 1000209,
+   "usernameClaimed": "pascal-theriault",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Suzuri": {
+   "name": "Suzuri",
+   "url": "https://suzuri.jp/{username}",
+   "urlProbe": "https://suzuri.jp/{username}",
+   "checkType": "status_code",
+   "rank": 1000209,
+   "usernameClaimed": "itochanxxx",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "UEF CONNECT": {
+   "name": "UEF CONNECT",
+   "url": "https://uefconnect.uef.fi/en/{username}/",
+   "urlProbe": "https://uefconnect.uef.fi/en/{username}/",
+   "checkType": "status_code",
+   "rank": 1000209,
+   "usernameClaimed": "heli.mutanen",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Uwumarket": {
+   "name": "Uwumarket",
+   "url": "https://uwumarket.us/collections/{username}",
+   "urlProbe": "https://uwumarket.us/collections/{username}",
+   "checkType": "status_code",
+   "rank": 1000209,
+   "usernameClaimed": "saki",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Aparat": {
+   "name": "Aparat",
+   "url": "https://www.aparat.com/{username}",
+   "urlProbe": "https://www.aparat.com/api/fa/v1/user/user/information/username/{username}",
+   "checkType": "status_code",
+   "rank": 1000259,
+   "usernameClaimed": "unni_gilda",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Vimeo": {
+   "name": "Vimeo",
+   "url": "https://vimeo.com/{username}",
+   "urlProbe": "https://vimeo.com/{username}",
+   "checkType": "status_code",
+   "rank": 1000259,
+   "usernameClaimed": "john",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Vine": {
+   "name": "Vine",
+   "url": "https://vine.co/{username}",
+   "urlProbe": "https://vine.co/api/users/profiles/vanity/{username}",
+   "checkType": "status_code",
+   "rank": 1000259,
+   "usernameClaimed": "TomHarlock",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Audiojungle": {
+   "name": "Audiojungle",
+   "url": "https://audiojungle.net/user/{username}",
+   "urlProbe": "https://audiojungle.net/user/{username}",
+   "checkType": "status_code",
+   "rank": 1000309,
+   "usernameClaimed": "john",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Bandlab": {
+   "name": "Bandlab",
+   "url": "https://www.bandlab.com/{username}",
+   "urlProbe": "https://www.bandlab.com/api/v1.3/users/{username}",
+   "checkType": "status_code",
+   "rank": 1000309,
+   "usernameClaimed": "rave_flawless",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Discogs": {
+   "name": "Discogs",
+   "url": "https://www.discogs.com/user/{username}",
+   "urlProbe": "https://api.discogs.com/users/{username}",
+   "checkType": "status_code",
+   "rank": 1000309,
+   "usernameClaimed": "damiano84",
+   "usernameUnclaimed": "noonewouldeverusethis777"
+  }
+ }
+}

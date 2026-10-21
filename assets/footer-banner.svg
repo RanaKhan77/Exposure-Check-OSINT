@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="230" viewBox="0 0 1520 230" role="img" aria-label="Exposure-Check-OSINT footer banner — the 2MNY open-source family">
+  <defs>
+    <linearGradient id="fbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="0.55" stop-color="#0D1B33"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+    <linearGradient id="fshine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="0.5" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+      <animate attributeName="x1" values="-1;0.6;-1" dur="9s" repeatCount="indefinite"/>
+    </linearGradient>
+    <radialGradient id="fglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="fblur"><feGaussianBlur stdDeviation="30"/></filter>
+  </defs>
+
+  <rect width="1520" height="230" fill="url(#fbg)"/>
+
+  <!-- ambient glows -->
+  <circle cx="180" cy="115" r="150" fill="url(#fglow)">
+    <animate attributeName="r" values="140;165;140" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="1340" cy="115" r="150" fill="url(#fglow)">
+    <animate attributeName="r" values="165;140;165" dur="7s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="760" cy="-40" r="130" fill="#3B82F6" opacity="0.08" filter="url(#fblur)">
+    <animate attributeName="cx" values="700;820;700" dur="12s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- faint grid -->
+  <g stroke="#1E2E4D" stroke-width="1" opacity="0.3">
+    <path d="M0 58 H1520 M0 115 H1520 M0 172 H1520"/>
+    <path d="M240 0 V230 M520 0 V230 M1000 0 V230 M1280 0 V230"/>
+  </g>
+
+  <!-- left mini-radar -->
+  <g transform="translate(120,115)" fill="none">
+    <circle r="52" stroke="#22405F" stroke-width="1.6"/>
+    <circle r="34" stroke="#22405F" stroke-width="1.2"/>
+    <circle r="16" stroke="#22405F" stroke-width="1"/>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="5s" repeatCount="indefinite"/>
+      <line x1="0" y1="0" x2="52" y2="0" stroke="#22D3EE" stroke-width="2"/>
+    </g>
+    <circle r="4" fill="#22D3EE">
+      <animate attributeName="r" values="3.2;5;3.2" dur="2.4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- right mini-shield -->
+  <g transform="translate(1400,115)">
+    <path d="M0,-46 L34,-32 L34,6 C34,30 16,46 0,52 C-16,46 -34,30 -34,6 L-34,-32 Z"
+          fill="#12213D" stroke="#22D3EE" stroke-opacity="0.65" stroke-width="2"/>
+    <path d="M-13,2 L-3,13 L16,-11" fill="none" stroke="#34D399" stroke-width="4.5"
+          stroke-linecap="round" stroke-linejoin="round">
+      <animate attributeName="stroke-opacity" values="1;0.55;1" dur="3s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- center text block -->
+  <g font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" text-anchor="middle">
+    <text x="760" y="58" font-size="15" font-weight="300" fill="#94A6C8" letter-spacing="6">CHECK YOURSELF — THEN CHECK YOUR SITE</text>
+
+    <text x="760" y="102" font-size="40" font-weight="800" fill="#E5EDFF">Exposure-Check-OSINT</text>
+    <text x="760" y="102" font-size="40" font-weight="800" fill="url(#fshine)" opacity="0.22">Exposure-Check-OSINT
+      <animate attributeName="opacity" values="0.12;0.75;0.12" dur="6s" repeatCount="indefinite"/>
+    </text>
+
+    <text x="760" y="132" font-size="16.5" font-weight="400" fill="#7EB3FF">Free forever · Apache-2.0 · self-hosted · no API keys · no AI · no tracking</text>
+
+    <!-- family links -->
+    <g font-size="15" font-weight="700">
+      <rect x="196" y="152" rx="14" width="250" height="30" fill="#12213D" stroke="#22D3EE" stroke-opacity="0.5"/>
+      <text x="321" y="172" fill="#22D3EE">🛡️ Website-Vulnerability-Scanner</text>
+
+      <rect x="462" y="152" rx="14" width="256" height="30" fill="#12213D" stroke="#3B82F6" stroke-opacity="0.5"/>
+      <text x="590" y="172" fill="#7EB3FF">☁️ awesome-cyber-security-heaven</text>
+
+      <rect x="734" y="152" rx="14" width="150" height="30" fill="#12213D" stroke="#A78BFA" stroke-opacity="0.5"/>
+      <text x="809" y="172" fill="#C4B5FD">🔑 Community key</text>
+
+      <rect x="900" y="152" rx="14" width="120" height="30" fill="#12213D" stroke="#FBBF24" stroke-opacity="0.5"/>
+      <text x="960" y="172" fill="#FBBF24">💖 Donate</text>
+
+      <rect x="1034" y="152" rx="14" width="290" height="30" fill="#0E1930" stroke="#34D399" stroke-opacity="0.5"/>
+      <text x="1179" y="172" fill="#34D399">🌐 2mny.com — hosted security platform</text>
+    </g>
+
+    <text x="760" y="212" font-size="13.5" font-weight="600" fill="#64748B">github.com/RanaKhan77 · Rana Khan · built with the honest-verdict discipline: evidence first, no theater</text>
+  </g>
+
+  <!-- sweeping scan line -->
+  <rect x="0" y="0" width="1520" height="2.5" fill="url(#fshine)" opacity="0.5">
+    <animate attributeName="y" values="4;224;4" dur="8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.1;0.55;0.1" dur="8s" repeatCount="indefinite"/>
+  </rect>
+</svg>

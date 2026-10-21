@@ -1,0 +1,35 @@
+# Exposure-Check-OSINT — one-command self-hosted stack.
+# The whole product is ONE container (Apache + PHP + SQLite). ALL state
+# (sqlite DB, .env, logs, logo cache, install identity) persists in the
+# single ec-storage volume; database/ stays image-only (code + migrations),
+# so upgrades never shadow schema changes.
+#
+#   ./install.sh        (or: docker compose -f docker/docker-compose.yml up -d --build)
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: exposure-check-osint:latest
+    container_name: exposure-check-osint
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8080}:80"
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_URL: "${APP_URL:-http://localhost:8080}"
+      LOG_CHANNEL: stderr
+      # ADMIN_PASSWORD: set it in the root .env (install.sh generates one)
+    volumes:
+      - ec-storage:/var/www/html/storage
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost/up"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  ec-storage:

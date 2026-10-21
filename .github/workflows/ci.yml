@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.2, 8.3, 8.4]
+    name: PHP ${{ matrix.php }} — lint + contract tests
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_sqlite, sqlite3, intl
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Lint every PHP file
+        run: |
+          FAIL=0
+          while IFS= read -r f; do
+            php -l "$f" >/dev/null || { echo "lint FAIL: $f"; FAIL=1; }
+          done < <(find app config database routes tests -name '*.php')
+          exit $FAIL
+
+      - name: Run tests
+        run: vendor/bin/phpunit --colors=always
+
+      - name: Verify the Docker build context is complete
+        run: |
+          test -f docker/Dockerfile
+          test -f docker/docker-compose.yml
+          test -f docker/entrypoint.sh
+          test -x docker/entrypoint.sh
+          test -f install.sh
+          test -f storage/app/maigret/sites.json
+          php -r 'json_decode(file_get_contents("storage/app/maigret/sites.json"), true, 512, JSON_THROW_ON_ERROR); echo "sites.json valid\n";'

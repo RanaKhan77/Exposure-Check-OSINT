@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="420" viewBox="0 0 1520 420" role="img" aria-label="Exposure-Check-OSINT banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="0.55" stop-color="#0D1B33"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="0.5" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+      <animate attributeName="x1" values="-1;0.6;-1" dur="9s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="radarSweep" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blurBig"><feGaussianBlur stdDeviation="42"/></filter>
+  </defs>
+
+  <rect width="1520" height="420" fill="url(#bg)"/>
+  <circle cx="240" cy="215" r="230" fill="url(#glow)">
+    <animate attributeName="r" values="215;250;215" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="1180" cy="120" r="190" fill="#3B82F6" opacity="0.10" filter="url(#blurBig)">
+    <animate attributeName="cy" values="120;95;120" dur="11s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="1400" cy="320" r="150" fill="#A78BFA" opacity="0.08" filter="url(#blurBig)">
+    <animate attributeName="cx" values="1400;1370;1400" dur="13s" repeatCount="indefinite"/>
+  </circle>
+
+  <g stroke="#1E2E4D" stroke-width="1" opacity="0.35">
+    <path d="M0 60 H1520 M0 130 H1520 M0 200 H1520 M0 270 H1520 M0 340 H1520"/>
+    <path d="M120 0 V420 M300 0 V420 M480 0 V420 M1150 0 V420 M1330 0 V420"/>
+  </g>
+
+  <g transform="translate(150,215)">
+    <g fill="none" stroke="#22405F" stroke-width="2">
+      <circle r="118"/>
+      <circle r="82"/>
+      <circle r="46"/>
+    </g>
+    <path d="M0,-118 V118 M-118,0 H118" stroke="#22405F" stroke-width="1.6"/>
+    <circle r="46" fill="none" stroke="#22D3EE" stroke-width="2.4" opacity="0.85">
+      <animate attributeName="r" values="20;118" dur="3.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.9;0" dur="3.2s" repeatCount="indefinite"/>
+    </circle>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="4.5s" repeatCount="indefinite"/>
+      <path d="M0,0 L118,0 A118,118 0 0,0 83,-83 Z" fill="url(#radarSweep)"/>
+      <line x1="0" y1="0" x2="118" y2="0" stroke="#22D3EE" stroke-width="2.6"/>
+    </g>
+    <g>
+      <circle cx="62" cy="-40" r="5" fill="#F87171">
+        <animate attributeName="opacity" values="0;1;1;0" dur="4.5s" repeatCount="indefinite" begin="0.8s"/>
+      </circle>
+      <circle cx="-52" cy="30" r="4.4" fill="#FBBF24">
+        <animate attributeName="opacity" values="0;1;1;0" dur="4.5s" repeatCount="indefinite" begin="1.7s"/>
+      </circle>
+      <circle cx="24" cy="76" r="4" fill="#F87171">
+        <animate attributeName="opacity" values="0;1;1;0" dur="4.5s" repeatCount="indefinite" begin="2.9s"/>
+      </circle>
+      <circle cx="-70" cy="-58" r="3.6" fill="#FBBF24">
+        <animate attributeName="opacity" values="0;1;1;0" dur="4.5s" repeatCount="indefinite" begin="3.6s"/>
+      </circle>
+    </g>
+    <circle r="6.5" fill="#22D3EE">
+      <animate attributeName="r" values="5.5;7.5;5.5" dur="2.4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <g font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+    <text x="330" y="140" font-size="30" font-weight="300" fill="#94A6C8" letter-spacing="7">SELF-HOSTED OSINT · KEYLESS · NO AI</text>
+
+    <text x="326" y="205" font-size="62" font-weight="800" fill="#E5EDFF" letter-spacing="0.5">Exposure-Check-OSINT</text>
+    <text x="326" y="205" font-size="62" font-weight="800" fill="url(#shine)" letter-spacing="0.5" opacity="0.25">Exposure-Check-OSINT
+      <animate attributeName="opacity" values="0.15;0.85;0.15" dur="6s" repeatCount="indefinite"/>
+    </text>
+
+    <text x="330" y="252" font-size="21" font-weight="400" fill="#7EB3FF">Is your email, username, phone or password leaked? Find out — on your own server.</text>
+
+    <g font-size="16.5" font-weight="700">
+      <rect x="330" y="285" rx="15" width="150" height="32" fill="#12213D" stroke="#22D3EE" stroke-opacity="0.55"/>
+      <text x="405" y="306" text-anchor="middle" fill="#22D3EE">📧 Email</text>
+      <rect x="492" y="285" rx="15" width="160" height="32" fill="#12213D" stroke="#3B82F6" stroke-opacity="0.55"/>
+      <text x="572" y="306" text-anchor="middle" fill="#7EB3FF">👤 Username</text>
+      <rect x="664" y="285" rx="15" width="145" height="32" fill="#12213D" stroke="#A78BFA" stroke-opacity="0.55"/>
+      <text x="736" y="306" text-anchor="middle" fill="#C4B5FD">📱 Phone</text>
+      <rect x="821" y="285" rx="15" width="160" height="32" fill="#12213D" stroke="#FBBF24" stroke-opacity="0.5"/>
+      <text x="901" y="306" text-anchor="middle" fill="#FBBF24">🔑 Password</text>
+      <rect x="993" y="285" rx="15" width="105" height="32" fill="#12213D" stroke="#34D399" stroke-opacity="0.55"/>
+      <text x="1045" y="306" text-anchor="middle" fill="#34D399">🌐 IP</text>
+    </g>
+
+    <text x="330" y="365" font-size="17.5" fill="#64748B" font-weight="600">18 keyless OSINT sources · 11B+ leaked credentials · 150+ platform footprint · HIBP k-anonymity · Apache-2.0</text>
+  </g>
+
+  <g font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="700">
+    <g opacity="0.92">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-13; 0,0" dur="5.2s" repeatCount="indefinite"/>
+      <rect x="1160" y="90" rx="14" width="72" height="72" fill="#12213D" stroke="#22D3EE" stroke-opacity="0.5"/>
+      <text x="1196" y="138" text-anchor="middle" font-size="36" fill="#22D3EE">@</text>
+    </g>
+    <g opacity="0.92">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,12; 0,0" dur="6.1s" repeatCount="indefinite"/>
+      <rect x="1262" y="160" rx="14" width="72" height="72" fill="#12213D" stroke="#FBBF24" stroke-opacity="0.5"/>
+      <text x="1298" y="210" text-anchor="middle" font-size="34" fill="#FBBF24">🔑</text>
+    </g>
+    <g opacity="0.92">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-11; 0,0" dur="4.7s" repeatCount="indefinite"/>
+      <rect x="1160" y="252" rx="14" width="72" height="72" fill="#12213D" stroke="#A78BFA" stroke-opacity="0.5"/>
+      <text x="1196" y="300" text-anchor="middle" font-size="32" fill="#C4B5FD">👤</text>
+    </g>
+    <g opacity="0.92">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,14; 0,0" dur="5.7s" repeatCount="indefinite"/>
+      <rect x="1262" y="322" rx="14" width="72" height="72" fill="#12213D" stroke="#34D399" stroke-opacity="0.5"/>
+      <text x="1298" y="370" text-anchor="middle" font-size="32" fill="#34D399">🌐</text>
+    </g>
+  </g>
+
+  <rect x="0" y="0" width="1520" height="3" fill="#22D3EE" opacity="0.5">
+    <animate attributeName="y" values="0;417;0" dur="7s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;0.55;0" dur="7s" repeatCount="indefinite"/>
+  </rect>
+
+  <g font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700">
+    <rect x="1252" y="30" rx="13" width="228" height="34" fill="#0E1930" stroke="#22D3EE" stroke-opacity="0.6"/>
+    <text x="1366" y="53" text-anchor="middle" fill="#E5EDFF">2mny.com/exposure-check</text>
+  </g>
+</svg>
