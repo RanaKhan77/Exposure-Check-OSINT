@@ -259,7 +259,8 @@ class GitHubPublicSource implements OsintSource
     {
         $h = [
             'Accept' => 'application/vnd.github+json',
-                    ];
+            'User-Agent' => '2mny-trace/1.0 (+https://2mny.com/exposure-check)',
+        ];
         $token = $this->token();
         if ($token !== '') {
             $h['Authorization'] = 'Bearer ' . $token;
