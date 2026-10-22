@@ -66,7 +66,7 @@ That is the whole install: one Docker container (Apache + PHP + SQLite — no My
 Redis, no API keys), a generated admin password, and `http://localhost:8080` ready.
 Details and non-Docker paths: [docs/SELF-HOSTING.md](docs/SELF-HOSTING.md).
 
-Self-test the whole stack any time (18-source reachability, storage, database,
+Self-test the whole stack any time (21-source reachability, storage, database,
 site database — seconds, no real check performed):
 
 ```bash

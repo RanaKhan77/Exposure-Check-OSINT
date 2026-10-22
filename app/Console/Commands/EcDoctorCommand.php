@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
  *   1. environment   — PHP version, required extensions, app key, admin password
  *   2. storage       — writability, maigret site database validity
  *   3. database      — reachable, migrations applied, audit table present
- *   4. source health — all 18 adapter classes instantiate and resolve
+ *   4. source health — every registered adapter class instantiates and resolves
  *   5. reachability  — ONE lightweight probe per source (the first request
  *      spec for a synthetic identifier), fired in parallel with a short
  *      timeout, so the whole doctor run finishes in seconds.
