@@ -1,4 +1,4 @@
-# Data Sources — all 18, all keyless
+# Data Sources — all 19, all keyless
 
 Every source below is **free, keyless (no API key, no account), read-only, and queried over HTTPS**.
 Per-source enable/disable lives on the Settings page. Attribution and limits are listed honestly —
@@ -24,6 +24,7 @@ if a source is down, its card shows `unavailable` and the check continues (per-s
 | 16 | PhoneValidity | infra | phone | E.164 parsing (libphonenumber semantics, in-process) | Country, line type, validity — no external call |
 | 17 | Shodan InternetDB | infra | ip | `internetdb.shodan.io` (keyless) | Open ports + services on the IP |
 | 18 | ipapi.is | infra | ip | `api.ipapi.is` (keyless) | VPN/proxy/hosting classification |
+| 19 | Bot-CIDR attribution | infra | ip | offline crawler-network ranges (CrawlerScope-inspired) | Is the IP a known crawler/bot network — offline, no external call |
 
 ## Display images
 
@@ -36,7 +37,11 @@ letter tile — never blocks a result.
 
 - **GrayHatWarfare** — bucket search (the hosted 2mny.com version uses an owner API key; the CE stays 100% keyless)
 - **Domain / website checks** — that is the job of the
-  [Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) (200 modules)
+  [Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) (200 modules).
+  The hosted version's domain checks (crt.sh, RDAP, and the **LeakLens documented-breach
+  registry** — [leaklens.org](https://leaklens.org), free for non-commercial use, attribution
+  required and given) stay hosted-side to keep the CE boundary clean: the CE checks
+  personal identifiers, the scanner CE checks websites.
 - **holehe binary** — the hosted product runs it internally (GPLv3, run-not-redistributed); the CE stays license-clean without it
 - **The ~120-platform linked-account probe** — v1.1 roadmap: it needs a companion headless-browser microservice (the same one the hosted product runs); ships as an optional Docker add-on, never as a hard dependency
 - **Telegram / WhatsApp lookups** — require bot keys and risk account bans (fail the keyless + safe-to-operate bar)
