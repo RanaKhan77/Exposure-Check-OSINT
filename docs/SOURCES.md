@@ -38,10 +38,10 @@ letter tile — never blocks a result.
 - **GrayHatWarfare** — bucket search (the hosted 2mny.com version uses an owner API key; the CE stays 100% keyless)
 - **Domain / website checks** — that is the job of the
   [Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) (200 modules).
-  The hosted version's domain checks (crt.sh, RDAP, and the **LeakLens documented-breach
-  registry** — [leaklens.org](https://leaklens.org), free for non-commercial use, attribution
-  required and given) stay hosted-side to keep the CE boundary clean: the CE checks
-  personal identifiers, the scanner CE checks websites.
+  Domain intelligence lives in the main scanner engine instead: the hosted platform's
+  `org_breach_history` module reports an organization's documented data-breach history from
+  the **LeakLens registry** — [leaklens.org](https://leaklens.org), free for non-commercial
+  use, attribution required and given. The CE stays personal-identifiers-only.
 - **holehe binary** — the hosted product runs it internally (GPLv3, run-not-redistributed); the CE stays license-clean without it
 - **The ~120-platform linked-account probe** — v1.1 roadmap: it needs a companion headless-browser microservice (the same one the hosted product runs); ships as an optional Docker add-on, never as a hard dependency
 - **Telegram / WhatsApp lookups** — require bot keys and risk account bans (fail the keyless + safe-to-operate bar)
