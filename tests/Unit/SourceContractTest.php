@@ -61,11 +61,12 @@ class SourceContractTest extends TestCase
         }
     }
 
-    public function test_check_types_do_not_include_domain(): void
+    public function test_check_types_include_domain_infra(): void
     {
-        // Scope rule: domain/website checks belong to the scanner CE.
-        $this->assertNotContains('domain', OsintCheckService::TYPES);
-        $this->assertSame(['email', 'username', 'phone', 'password', 'ip'], OsintCheckService::TYPES);
+        // v1.3.0: the domain type surfaces a domain's public infrastructure
+        // footprint (CT-log history, registry data) — the fraud/trust signal.
+        // Website vulnerability scanning stays in the scanner CE.
+        $this->assertSame(['email', 'username', 'phone', 'password', 'domain', 'ip'], OsintCheckService::TYPES);
     }
 
     public function test_support_matrix_has_coverage_for_every_type(): void

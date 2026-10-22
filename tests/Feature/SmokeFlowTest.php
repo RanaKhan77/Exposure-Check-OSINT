@@ -79,8 +79,12 @@ class SmokeFlowTest extends TestCase
         $this->post('/login', ['password' => 'test-password-123']);
         $this->postJson('/api/check', ['type' => 'email', 'q' => 'not-an-email'])
             ->assertStatus(422);
-        $this->postJson('/api/check', ['type' => 'domain', 'q' => 'example.com'])
-            ->assertStatus(422); // scope rule: domains belong to the scanner CE
+        // v1.3.0: the domain type is accepted (public infra footprint:
+        // CT-log history + registry data). A malformed domain still 422s.
+        $this->postJson('/api/check', ['type' => 'domain', 'q' => 'not a domain'])
+            ->assertStatus(422);
+        $resp = $this->postJson('/api/check', ['type' => 'domain', 'q' => 'example.com']);
+        $this->assertContains($resp->status(), [200, 429], 'domain check failed: ' . $resp->status());
     }
 
     public function test_settings_page_renders_real_checked_attributes(): void

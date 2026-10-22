@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Exposure Check</h1>
-<p class="sub">Check if an email, username, phone number, password or IP is exposed — breaches, stealer logs, linked accounts, public data. Read-only lookups against {{ count($sources) }} keyless sources. Identifiers you are authorized to check only.</p>
+<p class="sub">Check if an email, username, phone number, password, domain or IP is exposed — breaches, stealer logs, linked accounts, public data. Read-only lookups against {{ count($sources) }} keyless sources. Identifiers you are authorized to check only.</p>
 
 <div class="card" style="padding:22px">
     <form id="ox-form" autocomplete="off">
@@ -11,6 +11,7 @@
             <button type="button" class="ox-tab" data-type="username">👤 Username</button>
             <button type="button" class="ox-tab" data-type="phone">📱 Phone</button>
             <button type="button" class="ox-tab" data-type="password">🔑 Password</button>
+            <button type="button" class="ox-tab" data-type="domain">🗺️ Domain</button>
             <button type="button" class="ox-tab" data-type="ip">🌐 IP</button>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
@@ -111,6 +112,8 @@
         // IPv6 literal (contains : and hex groups) — sources support it
         if (q.includes(':') && /^[0-9a-fA-F:]+$/.test(q) && (q.match(/:/g) || []).length >= 2) return 'ip';
         if (/^\+?\d[\d\s().-]{6,20}$/.test(q)) return 'phone';
+        var d = q.replace(/^https?:\/\//i, '').replace(/\/.*$/, '').toLowerCase();
+        if (d.indexOf('.') !== -1 && /^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(d)) return 'domain';
         return 'username';
     }
 
@@ -121,6 +124,7 @@
         username: 'username (e.g. johndoe)',
         phone: '+880 1712-345678',
         password: 'type a password — hashed in your browser, never sent',
+        domain: 'example.com — public TLS & registry footprint',
         ip: '8.8.8.8 or 2606:4700::1111'
     };
     function setTab(t) {
