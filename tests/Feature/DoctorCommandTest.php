@@ -13,7 +13,7 @@ use Tests\TestCase;
 /**
  * v1.1 ec:doctor — the install self-test command.
  * Pins: command registers + runs, JSON shape, exit code semantics, and the
- * 18-source reachability matrix (with faked network so CI stays hermetic).
+ * source reachability matrix (registry-derived count) (with faked network so CI stays hermetic).
  */
 class DoctorCommandTest extends TestCase
 {
