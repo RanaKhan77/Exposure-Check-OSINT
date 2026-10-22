@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ranakhan77.github.io/Exposure-Check-OSINT/sitemap.xml
