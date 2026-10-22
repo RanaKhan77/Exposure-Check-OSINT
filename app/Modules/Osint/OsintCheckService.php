@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Osint;
 
 use App\Modules\Osint\Sources\BlueskySource;
+use App\Modules\Osint\Sources\CrtShSource;
 use App\Modules\Osint\Sources\DisifySource;
 use App\Modules\Osint\Sources\DisposableEmailSource;
 use App\Modules\Osint\Sources\FachaTempSource;
@@ -21,6 +22,7 @@ use App\Modules\Osint\Sources\PhoneValiditySource;
 use App\Modules\Osint\Sources\PresendSource;
 use App\Modules\Osint\Sources\PwnedPasswordsSource;
 use App\Modules\Osint\Sources\ProxyNovaCombSource;
+use App\Modules\Osint\Sources\RdapSource;
 use App\Modules\Osint\Sources\ShodanInternetDbSource;
 use App\Modules\Osint\Sources\BotCidrSource;
 use App\Modules\Osint\Sources\XposedOrNotSource;
@@ -33,11 +35,13 @@ use Illuminate\Support\Facades\Http;
  * Exposure Check orchestrator (Community Edition).
  *
  * Extracted from the 2MNY production engine (2026-10-21) with the CE deltas:
- *   - Check types: email | username | phone | password | ip.
- *     The 'domain' type is intentionally absent — that is the Website
- *     Vulnerability Scanner CE's job (see README, "Scope").
- *   - Keyless sources only. The owner-keyed source and the two domain/CT
- *     sources of the hosted product are NOT shipped here.
+ *   - Check types: email | username | phone | password | domain | ip.
+ *     The 'domain' type (added v1.3.0) surfaces a domain's public
+ *     infrastructure footprint only — CT-log subdomain history and
+ *     registry data. Website vulnerability scanning stays in the
+ *     Website Vulnerability Scanner CE.
+ *   - Keyless sources only (21). The owner-keyed source of the hosted
+ *     product is NOT shipped here.
  *   - No Trace-Pro / billing logic anywhere in the CE.
  *
  * Fans out every supporting source in ONE Http::pool (single wall-clock
@@ -79,9 +83,12 @@ class OsintCheckService
         GitHubPublicSource::class,
         // v1.2.0 (2026-10-21, S32): offline bot-CIDR attribution (CrawlerScope-inspired)
         BotCidrSource::class,
+        // v1.3.0 (2026-10-22, gap-analysis D1): domain-infra sources, keyless
+        CrtShSource::class,
+        RdapSource::class,
     ];
 
-    public const TYPES = ['email', 'username', 'phone', 'password', 'ip'];
+    public const TYPES = ['email', 'username', 'phone', 'password', 'domain', 'ip'];
 
     /** 30-min result cache per (type + normalized identifier). */
     private const CACHE_TTL = 1800;
@@ -368,6 +375,18 @@ class OsintCheckService
                 // queries the HIBP range with it and the browser matches the
                 // full hash client-side. (Test-enforced: SourceContractTest.)
                 return preg_match('/^[0-9A-Fa-f]{5}$/', $identifier) ? strtoupper($identifier) : '';
+            case 'domain':
+                // Public infrastructure identifier: strip scheme, path and
+                // port, lowercase, and require a hostname shape (dot-joined
+                // labels). FILTER_VALIDATE_DOMAIN alone accepts spaces and
+                // underscores, so the shape check is the real gate.
+                $identifier = strtolower((string) preg_replace('/^https?:\/\//', '', $identifier));
+                $identifier = (string) preg_replace('/\/.*$/', '', $identifier);
+                $identifier = (string) preg_replace('/:\d+$/', '', $identifier);
+
+                return preg_match('/^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/', $identifier)
+                    ? $identifier
+                    : '';
             case 'ip':
                 return filter_var($identifier, FILTER_VALIDATE_IP) ? $identifier : '';
         }
@@ -393,6 +412,10 @@ class OsintCheckService
                 return '+' . substr($identifier, 0, 3) . ' *** ***' . substr($identifier, -3);
             case 'password':
                 return 'SHA-1 ' . substr($identifier, 0, 5) . '***** (k-anonymity)';
+            case 'domain':
+                // A domain is public infrastructure data, not a personal
+                // identifier — shown as entered (matches the hosted product).
+                return $identifier;
             case 'ip':
                 // Privacy contract: never store a raw identifier. IPv4 keeps
                 // first + last octet; IPv6 keeps first + last group; anything

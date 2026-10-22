@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.3.1] — 2026-10-23
+
+### Fixed
+
+- **v1.3.0 follow-up — the two new sources were shipped but not wired.** v1.3.0 added
+  `CrtShSource` and `RdapSource` as files and updated every count claim to 21, but the
+  `OsintCheckService::SOURCES` registry still listed 19, so the dashboard rendered
+  "19 keyless sources" while the README said 21, and the new sources never ran. Both
+  are now registered, the `domain` check type is live (mirroring the hosted product),
+  and every count is registry-derived again. The domain check surfaces a domain's
+  public infrastructure footprint only (CT-log subdomain history via crt.sh, registry
+  records via RDAP) — website vulnerability scanning stays in the scanner CE.
+- Domain normalization is stricter than the hosted product: `FILTER_VALIDATE_DOMAIN`
+  alone accepts spaces and underscores, so the CE requires a dot-joined hostname
+  shape (and strips scheme, path and port). "not a domain" now 422s honestly.
+- The scope-rule test (`test_check_types_do_not_include_domain`) became
+  `test_check_types_include_domain_infra`: the 5-check identity is now 6 checks
+  (email, username, phone, password, domain, ip). README, docs/CHECKS.md and the
+  dashboard tabs/placeholder/auto-detect updated in the same commit.
+
 ## [1.3.0] — 2026-10-23
 
 ### Sources

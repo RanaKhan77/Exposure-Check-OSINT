@@ -83,6 +83,11 @@ class DashboardController extends Controller
         if (preg_match('/^\+?\d[\d\s().-]{6,20}$/', $q)) {
             return 'phone';
         }
+        $stripped = strtolower((string) preg_replace('/^https?:\/\//', '', $q));
+        $stripped = (string) preg_replace('/\/.*$/', '', $stripped);
+        if (str_contains($stripped, '.') && filter_var($stripped, FILTER_VALIDATE_DOMAIN)) {
+            return 'domain';
+        }
 
         return 'username';
     }

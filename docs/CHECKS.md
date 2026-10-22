@@ -1,4 +1,4 @@
-# The 5 Check Types
+# The 6 Check Types
 
 ## 1. Email exposure 📧
 
@@ -34,7 +34,24 @@ suffixes for that prefix from HIBP and returns them; **your browser matches the 
 hash locally** and shows how many times the password appears in known breach corpora.
 The full hash — and the password — never reach the server, the database, or any logs.
 
-## 5. IP exposure 🌐
+## 5. Domain infrastructure 🗺️
+
+Paste a domain (a bare hostname or a URL — the scheme, path and port are stripped).
+The domain type answers one question: **what does this domain's public infrastructure
+footprint look like, and how old is it?** It is a fraud/trust signal, not a website
+scan — vulnerability scanning is the [Website Vulnerability Scanner](https://github.com/RanaKhan77/Website-Vulnerability-Scanner)'s job.
+
+- **crt.sh — Certificate Transparency:** every subdomain that ever obtained a TLS
+  certificate (counts + first 40 names). A freshly-registered domain with dozens of
+  wildcard subdomains tells a different story than a ten-year-old corporate domain.
+- **RDAP — registry records:** registrar, creation and expiry dates, status flags.
+  Registration age is the classic fraud/trust heuristic: a payment domain registered
+  last week deserves more scrutiny than one registered a decade ago.
+
+Both sources are keyless, read-only and free. Nothing is stored about the check
+beyond what the privacy contract already allows.
+
+## 6. IP exposure 🌐
 
 An IPv4/IPv6 → open ports and exposed services (Shodan InternetDB, keyless),
 VPN/proxy/hosting classification (ipapi.is). For auditing your own servers and egress IPs.

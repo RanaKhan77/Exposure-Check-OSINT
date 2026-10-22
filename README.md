@@ -19,7 +19,7 @@ from your own server, with your own eyes.
 
 **The companion OSINT tool to the [200-scanner Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner).**
 
-[Quick Start](#-quick-start) · [The 5 Checks](#-the-5-checks) · [Sources](#%EF%B8%8F-the-21-sources) · [Why](#-why-this-exists) · [Privacy](#-privacy-by-design) · [FAQ](docs/FAQ.md) · [Donate](#-support-the-project)
+[Quick Start](#-quick-start) · [The 6 Checks](#-the-6-checks) · [Sources](#%EF%B8%8F-the-21-sources) · [Why](#-why-this-exists) · [Privacy](#-privacy-by-design) · [FAQ](docs/FAQ.md) · [Donate](#-support-the-project)
 
 </div>
 
@@ -27,7 +27,7 @@ from your own server, with your own eyes.
 
 ## 📸 What you get — real screenshots, live product
 
-<img src="assets/dashboard-preview.png" width="880" alt="Exposure Check dashboard — one input, 5 identifier types, 21 keyless sources, live corpus stats"/>
+<img src="assets/dashboard-preview.png" width="880" alt="Exposure Check dashboard — one input, 6 identifier types, 21 keyless sources, live corpus stats"/>
 
 **The dashboard.** Paste any identifier — the type is auto-detected, the corpus stats
 (1,047+ breaches, 17.8B+ leaked records, 37M stealer infections) are computed from the
@@ -78,7 +78,7 @@ Sign in → paste an email → watch 21 sources answer in parallel → open the 
 Export any stored check as JSON or CSV — report page, history table, or right after a live check.
 ```
 
-## 🔎 The 5 Checks
+## 🔎 The 6 Checks
 
 | Check | Input | What it answers |
 |-------|-------|-----------------|
@@ -86,6 +86,7 @@ Export any stored check as JSON or CSV — report page, history table, or right 
 | 👤 Username exposure | one username | Which of 150 platforms have it registered (logo grid, confidence tiers: confirmed vs probable) · Bluesky · Hacker News |
 | 📱 Phone exposure | E.164 number | Valid, country, line type, carrier class · COMB leak association |
 | 🔑 Password exposure | a password | How many times it appears in breach corpora — **hashed in your browser, 5-char prefix only** |
+| 🗺️ Domain infrastructure | a domain | CT-log subdomain history (every hostname that ever got a TLS certificate) · RDAP registrar, dates and statuses — registration age as a fraud/trust signal |
 | 🌐 IP exposure | IPv4/IPv6 | Open ports + services · VPN/proxy/hosting classification |
 
 Full explanations with screenshots-level detail: [docs/CHECKS.md](docs/CHECKS.md).
@@ -111,7 +112,7 @@ Presend · disposable-domain blocklist · GitHub public search
 Per-source endpoints, attribution and license notes: **[docs/SOURCES.md](docs/SOURCES.md)**.
 
 Prefer reading offline? Every documentation section also ships as a print-ready PDF in
-**[pdfs/](pdfs/)** — overview guide, the 5 checks, the 21 sources, self-hosting,
+**[pdfs/](pdfs/)** — overview guide, the 6 checks, the 21 sources, self-hosting,
 privacy and FAQ.
 
 ## 🧠 Why "no AI" is a feature
