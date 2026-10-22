@@ -10,16 +10,16 @@
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![PHP 8.2+](https://img.shields.io/badge/PHP-8.2%20%7C%208.3%20%7C%208.4-777BB4.svg)](composer.json)
 [![No AI](https://img.shields.io/badge/verdicts-deterministic%20%C2%B7%20zero%20AI-22D3EE.svg)](#-why-no-ai-is-a-feature)
-[![Keyless](https://img.shields.io/badge/sources-19%20%C2%B7%20all%20keyless-34D399.svg)](#%EF%B8%8F-the-19-sources)
+[![Keyless](https://img.shields.io/badge/sources-21%20%C2%B7%20all%20keyless-34D399.svg)](#%EF%B8%8F-the-21-sources)
 [![Docker](https://img.shields.io/badge/install-one%20command-2496ED.svg)](#-quick-start)
 
-Check your personal identifiers against **19 free OSINT sources** — breach databases,
+Check your personal identifiers against **21 free OSINT sources** — breach databases,
 infostealer corpora, 11B+ leaked credential pairs, 150+ platform username registries —
 from your own server, with your own eyes.
 
 **The companion OSINT tool to the [200-scanner Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner).**
 
-[Quick Start](#-quick-start) · [The 5 Checks](#-the-5-checks) · [Sources](#%EF%B8%8F-the-19-sources) · [Why](#-why-this-exists) · [Privacy](#-privacy-by-design) · [FAQ](docs/FAQ.md) · [Donate](#-support-the-project)
+[Quick Start](#-quick-start) · [The 5 Checks](#-the-5-checks) · [Sources](#%EF%B8%8F-the-21-sources) · [Why](#-why-this-exists) · [Privacy](#-privacy-by-design) · [FAQ](docs/FAQ.md) · [Donate](#-support-the-project)
 
 </div>
 
@@ -27,7 +27,7 @@ from your own server, with your own eyes.
 
 ## 📸 What you get — real screenshots, live product
 
-<img src="assets/dashboard-preview.png" width="880" alt="Exposure Check dashboard — one input, 5 identifier types, 19 keyless sources, live corpus stats"/>
+<img src="assets/dashboard-preview.png" width="880" alt="Exposure Check dashboard — one input, 5 identifier types, 21 keyless sources, live corpus stats"/>
 
 **The dashboard.** Paste any identifier — the type is auto-detected, the corpus stats
 (1,047+ breaches, 17.8B+ leaked records, 37M stealer infections) are computed from the
@@ -74,7 +74,7 @@ docker compose exec app php artisan ec:doctor     # add --json for machine-reada
 ```
 
 ```
-Sign in → paste an email → watch 19 sources answer in parallel → open the printable report.
+Sign in → paste an email → watch 21 sources answer in parallel → open the printable report.
 Export any stored check as JSON or CSV — report page, history table, or right after a live check.
 ```
 
@@ -90,7 +90,7 @@ Export any stored check as JSON or CSV — report page, history table, or right 
 
 Full explanations with screenshots-level detail: [docs/CHECKS.md](docs/CHECKS.md).
 
-## 🛰️ The 19 Sources
+## 🛰️ The 21 Sources
 
 All **keyless** (no API key, no account, no cost), all read-only HTTPS lookups, all
 toggleable on the Settings page:
@@ -106,10 +106,12 @@ Presend · disposable-domain blocklist · GitHub public search
 
 **Phone & IP (4):** PhoneValidity (E.164) · Shodan InternetDB · ipapi.is · Bot-CIDR crawler attribution
 
+**Domain & registry (2):** crt.sh — certificate-transparency subdomain history · RDAP domain registration records
+
 Per-source endpoints, attribution and license notes: **[docs/SOURCES.md](docs/SOURCES.md)**.
 
 Prefer reading offline? Every documentation section also ships as a print-ready PDF in
-**[pdfs/](pdfs/)** — overview guide, the 5 checks, the 19 sources, self-hosting,
+**[pdfs/](pdfs/)** — overview guide, the 5 checks, the 21 sources, self-hosting,
 privacy and FAQ.
 
 ## 🧠 Why "no AI" is a feature

@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.0] — 2026-10-23
+
+### Sources
+- **Sources 20–21: crt.sh certificate transparency + RDAP domain registration records** — both keyless, both free public services; 19 → 21 keyless sources across README, badge, docs and composer description. CI continues to derive the count from the source registry.
+
 ## [1.2.1] — 2026-10-22
 
 ### Security
