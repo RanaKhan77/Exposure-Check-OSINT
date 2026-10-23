@@ -82,7 +82,7 @@ footer .fam a{display:inline-block;background:var(--card);border:1px solid var(-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Exposure-Check-OSINT — Is your email, username or password leaked? Self-hosted, 21 keyless sources">
   <meta name="twitter:description" content="Self-hosted personal exposure checker: breaches, infostealer logs, COMB 11B+ credentials, HIBP k-anonymity and a 150-platform username grid.">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Exposure-Check-OSINT","applicationCategory":"SecurityApplication","operatingSystem":"Linux, Docker","url":"https://ranakhan77.github.io/Exposure-Check-OSINT/","sameAs":"https://github.com/RanaKhan77/Exposure-Check-OSINT","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Self-hosted personal exposure checker: breaches, infostealer logs, COMB 11B+ credentials, HIBP k-anonymity and a 150-platform username grid."}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Exposure-Check-OSINT", "alternateName": "Exposure Check OSINT", "applicationCategory": "SecurityApplication", "operatingSystem": "Linux, Docker", "url": "https://ranakhan77.github.io/Exposure-Check-OSINT/", "sameAs": "https://github.com/RanaKhan77/Exposure-Check-OSINT", "license": "https://opensource.org/licenses/Apache-2.0", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Self-hosted personal exposure checker: breaches, infostealer logs, COMB 11B+ credentials, HIBP k-anonymity and a 150-platform username grid.", "featureList": ["21 keyless OSINT sources", "Email breach check", "Username search across 150+ platforms", "Phone number exposure check", "Password check via k-anonymity", "IP intelligence lookup", "Self-hosted Docker deployment", "Zero AI, zero API keys"]}</script>
 </head>
 <body>
 
@@ -190,11 +190,33 @@ cd Exposure-Check-OSINT &amp;&amp; docker compose -f docker/docker-compose.yml u
   </div>
 </section>
 
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Exposure checks — questions people ask</h2>
+    <p class="lead">How a self-hosted, keyless exposure checker works, and what it does with your data.</p>
+    <div class="grid">
+      <div class="card"><span class="ico">🔄</span><h3>Is this a Have I Been Pwned alternative?</h3>
+        <p>They complement each other. HIBP is a hosted service; Exposure-Check is a tool you run yourself — adding infostealer-log lookups, a 150-platform username grid, phone-number checks and IP intelligence, with no accounts and no data leaving your machine.</p></div>
+      <div class="card"><span class="ico">🔐</span><h3>Is my data sent anywhere?</h3>
+        <p>No. The whole stack runs on your hardware with Docker. Lookups are read-only against public sources, identifiers are stored as salted hashes with masked display, and password matching happens browser-side.</p></div>
+      <div class="card"><span class="ico">📇</span><h3>What identifiers can I check?</h3>
+        <p>Five checks: email addresses, usernames, phone numbers, passwords (k-anonymity — the password itself never leaves your browser) and IP addresses — across 21 keyless sources including breach databases, infostealer logs and COMB 11B+ credentials.</p></div>
+      <div class="card"><span class="ico">🔑</span><h3>What does "keyless" mean?</h3>
+        <p>All 21 sources work without API keys, accounts or paid tiers — public endpoints, open protocols and donated datasets. Clone, launch, check. Nothing to configure and nothing to buy.</p></div>
+      <div class="card"><span class="ico">⚖️</span><h3>Is it legal to check exposures?</h3>
+        <p>The tool performs only read-only lookups against public sources. Use it for identifiers you are authorized to check — your own, or with permission. It is an awareness tool, not a targeting tool.</p></div>
+      <div class="card"><span class="ico">🤖</span><h3>Why zero AI?</h3>
+        <p>Every verdict is a deterministic HTTP lookup you can reproduce. No model bills, no hallucinated exposures, no scoring theater — dead sources degrade honestly instead of faking a clean pass.</p></div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <p><b>Exposure-Check-OSINT</b> — part of the 2MNY open-source protection family.</p>
     <div class="fam">
-      <a href="https://github.com/RanaKhan77/Website-Vulnerability-Scanner">🛡️ Website Vulnerability Scanner CE — 200 modules</a>
+      <a href="https://github.com/RanaKhan77/Website-Vulnerability-Scanner">🛡️ Website Vulnerability Scanner CE — 201 modules</a>
       <a href="https://github.com/RanaKhan77/awesome-cyber-security-heaven">☁️ Awesome Cyber Security Heaven — 496 tools</a>
       <a href="https://2mny.com">🌐 2mny.com — managed protection platform</a>
     </div>
