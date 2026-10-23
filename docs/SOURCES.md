@@ -1,4 +1,4 @@
-# Data Sources — all 21, all keyless
+# Data Sources — all 22, all keyless
 
 Every source below is **free, keyless (no API key, no account), read-only, and queried over HTTPS**.
 Per-source enable/disable lives on the Settings page. Attribution and limits are listed honestly —
@@ -27,6 +27,7 @@ if a source is down, its card shows `unavailable` and the check continues (per-s
 | 19 | Bot-CIDR attribution | infra | ip | offline crawler-network ranges (CrawlerScope-inspired) | Is the IP a known crawler/bot network — offline, no external call |
 | 20 | crt.sh — Certificate Transparency | infra | domain | `crt.sh/?q=%.{domain}` (keyless) | Historical subdomains that ever obtained a TLS certificate — counts + first 40 names |
 | 21 | RDAP — Domain Registration Records | infra | domain | `rdap.org/domain/{domain}` (keyless) | Registrar, registration/expiry dates, status — registration age as a fraud/trust signal |
+| 22 | LeakLens | breach | phone, username | `leaklens.org/api/mcp` (keyless JSON-RPC tools/call) | Breach-registry search for phone numbers and usernames; honest `unavailable` when upstreams degrade |
 
 ## Display images
 

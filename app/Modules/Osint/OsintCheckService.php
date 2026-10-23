@@ -25,6 +25,7 @@ use App\Modules\Osint\Sources\ProxyNovaCombSource;
 use App\Modules\Osint\Sources\RdapSource;
 use App\Modules\Osint\Sources\ShodanInternetDbSource;
 use App\Modules\Osint\Sources\BotCidrSource;
+use App\Modules\Osint\Sources\LeakLensSource;
 use App\Modules\Osint\Sources\XposedOrNotSource;
 use App\Services\SettingsService;
 use Illuminate\Http\Client\Pool;
@@ -86,6 +87,10 @@ class OsintCheckService
         // v1.3.0 (2026-10-22, gap-analysis D1): domain-infra sources, keyless
         CrtShSource::class,
         RdapSource::class,
+        // v1.4.0 (2026-10-23, s33 P0): LeakLens breach-registry search
+        // (phone/username via keyless MCP; email/password/domain deliberately
+        // not here - see the source class docblock for the scope reasoning)
+        LeakLensSource::class,
     ];
 
     public const TYPES = ['email', 'username', 'phone', 'password', 'domain', 'ip'];

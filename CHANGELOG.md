@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.4.0] — 2026-10-23
+
+### Sources
+
+- **Source 22: LeakLens breach-registry search (phone + username)** — keyless
+  MCP endpoint (`leaklens.org/api/mcp`, stateless JSON-RPC `tools/call`).
+  First **phone breach-exposure** source (PhoneValidity only checks E.164
+  validity) and a breach-flavored complement to the Maigret platform-presence
+  grid for usernames. 21 → 22 keyless sources across README, badge, docs and
+  composer description; the dashboard count stays registry-derived.
+- **Deliberate scope**: no email (XposedOrNot already queries the same upstream
+  corpus directly), no password (the LeakLens audit endpoint is an HIBP range
+  proxy; PwnedPasswordsSource queries HIBP directly and the browser-side
+  k-anonymity matcher is keyed to it), no domain (EC surfaces domain
+  infrastructure only — crt.sh + RDAP; website scanning stays in the scanner CE).
+- **Honest degradation** (their semantics meet ours): `isExposed:false` with
+  `degraded:true` maps to `unavailable`, never a fake clean; hits record which
+  upstreams did not answer. Result items are reduced to aggregates (breach
+  name, date, record count) — credential-like and third-party-identity fields
+  are dropped before anything reaches the client.
+- License note: leaklens.org registry data is free for non-commercial, civic
+  and human-rights use — fine for this self-hosted personal checker; not
+  licensed for the commercial platform (this source ships CE-only, by design).
+- New dedicated unit test (`LeakLensSourceTest`, 10 cases, mocked MCP
+  envelopes — hit/clean/degraded/isError/transport/malformed/cap/ethics).
+
 ## [1.3.1] — 2026-10-23
 
 ### Fixed
