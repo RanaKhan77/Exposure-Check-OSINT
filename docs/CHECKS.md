@@ -62,7 +62,7 @@ VPN/proxy/hosting classification (ipapi.is). For auditing your own servers and e
 
 - **Not for domains/websites** — use the
   [Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner)
-  (200 modules) for that job.
+  (202 modules) for that job.
 - **Not for checking people you have no authorization to assess.** This is a
   self-audit tool: your own identifiers, or identifiers you are explicitly
   authorized to assess (your organization's, with permission).
