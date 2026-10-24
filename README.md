@@ -17,7 +17,7 @@ Check your personal identifiers against **22 free OSINT sources** — breach dat
 infostealer corpora, 11B+ leaked credential pairs, 150+ platform username registries —
 from your own server, with your own eyes.
 
-**The companion OSINT tool to the [200-scanner Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner).**
+**The companion OSINT tool to the [201-scanner Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner).**
 
 [Quick Start](#-quick-start) · [The 6 Checks](#-the-6-checks) · [Sources](#%EF%B8%8F-the-22-sources) · [Why](#-why-this-exists) · [Privacy](#-privacy-by-design) · [FAQ](docs/FAQ.md) · [Donate](#-support-the-project)
 
@@ -153,7 +153,7 @@ discipline of a commercial scanner company, and zero AI cost forever.
 | If you need… | Use |
 |---|---|
 | Personal identifier exposure (email/username/phone/password/IP) | **This repo** |
-| Domain & website vulnerability scanning (200 modules) | [Website-Vulnerability-Scanner](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) |
+| Domain & website vulnerability scanning (201 modules) | [Website-Vulnerability-Scanner](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) |
 | A curated map of 519 free security tools | [awesome-cyber-security-heaven](https://github.com/RanaKhan77/awesome-cyber-security-heaven) |
 
 ## 🤝 Contributing
@@ -183,7 +183,7 @@ pass the contract tests (`vendor/bin/phpunit`).
 
 | Repo | What it does |
 |------|--------------|
-| [Website-Vulnerability-Scanner](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) | The 200-module self-hosted domain/website vulnerability scanner (the natural next step after you check yourself) |
+| [Website-Vulnerability-Scanner](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) | The 201-module self-hosted domain/website vulnerability scanner (the natural next step after you check yourself) |
 | [awesome-cyber-security-heaven](https://github.com/RanaKhan77/awesome-cyber-security-heaven) | The 519-tool curated map of the best free security tools, license-verified |
 | [2mny.com](https://2mny.com) | The hosted commercial platform both CAs are extracted from |
 
