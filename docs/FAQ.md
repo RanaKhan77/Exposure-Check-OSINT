@@ -20,7 +20,7 @@ and public-record signals, not ammunition.
 Scope discipline. Domain/website vulnerability scanning is a different job with a
 different engine — ours ships as the
 [Website Vulnerability Scanner Community Edition](https://github.com/RanaKhan77/Website-Vulnerability-Scanner)
-(200 scanner modules, same license philosophy). The two repos cross-link each other.
+(202 scanner modules, same license philosophy). The two repos cross-link each other.
 
 ## Is this an AI tool?
 
@@ -36,7 +36,7 @@ rest of the check (per-source isolation). Re-run the check to retry.
 
 ## Where does the data come from?
 
-21 keyless public sources — breach databases (XposedOrNot, HIBP Pwned Passwords),
+22 keyless public sources — breach databases (XposedOrNot, HIBP Pwned Passwords),
 infostealer corpus (HudsonRock), the COMB credential corpus (ProxyNova), disposable-email
 databases, the Maigret/WhatsMyName 150-site username corpus, Bluesky, Hacker News, GitHub
 public search, Shodan InternetDB, ipapi.is and more. Full table with attribution:

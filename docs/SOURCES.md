@@ -40,7 +40,7 @@ letter tile — never blocks a result.
 
 - **GrayHatWarfare** — bucket search (the hosted 2mny.com version uses an owner API key; the CE stays 100% keyless)
 - **Domain / website checks** — that is the job of the
-  [Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) (200 modules).
+  [Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) (202 modules).
   Domain intelligence lives in the main scanner engine instead: the hosted platform's
   `org_breach_history` module reports an organization's documented data-breach history from
   the **LeakLens registry** — [leaklens.org](https://leaklens.org), free for non-commercial
