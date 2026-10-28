@@ -174,7 +174,7 @@ pass the contract tests (`vendor/bin/phpunit`).
 | | |
 |---|---|
 | 💵 **USDT (TRC-20)** | `TVsfHEzwb9zRz9nMpGVkdL7ABTTvmUcPii` |
-| 💳 **PayPal / card** | [2m[2mny.com/support](https://2mny.com/support) |
+| 💳 **PayPal / card** | [2m[2m[2mny.com/support](https://2mny.com/support) |
 
 > Donation addresses are also pinned in the [2m[2mny.com](https://2mny.com) footer —
 > beware lookalikes; this repo's only official links are 2mny.com and this GitHub org.
