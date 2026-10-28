@@ -174,9 +174,9 @@ pass the contract tests (`vendor/bin/phpunit`).
 | | |
 |---|---|
 | 💵 **USDT (TRC-20)** | `TVsfHEzwb9zRz9nMpGVkdL7ABTTvmUcPii` |
-| 💳 **PayPal / card** | [2m[2mny.com/support](https://2mny.com/support) |
+| 💳 **PayPal / card** | [2mny.com/support](https://2mny.com/support) |
 
-> Donation addresses are also pinned in the [2m[2mny.com](https://2mny.com) footer —
+> Donation addresses are also pinned in the [2mny.com](https://2mny.com) footer —
 > beware lookalikes; this repo's only official links are 2mny.com and this GitHub org.
 
 **More from the same team** (same discipline: honest verdicts, evidence first):
@@ -185,7 +185,7 @@ pass the contract tests (`vendor/bin/phpunit`).
 |------|--------------|
 | [Website-Vulnerability-Scanner](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) | The 202-module self-hosted domain/website vulnerability scanner (the natural next step after you check yourself) |
 | [awesome-cyber-security-heaven](https://github.com/RanaKhan77/awesome-cyber-security-heaven) | The 519-tool curated map of the best free security tools, license-verified |
-| [2m[2mny.com](https://2mny.com) | The hosted commercial platform both CAs are extracted from |
+| [2mny.com](https://2mny.com) | The hosted commercial platform both CAs are extracted from |
 
 ## 📄 License
 
