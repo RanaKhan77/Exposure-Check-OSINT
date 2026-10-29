@@ -49,8 +49,10 @@ Yes — Settings page → per-source toggles. Disabled sources are never contact
 ## Is it really self-hosted with no API keys?
 
 Yes. Every source in the Community Edition is keyless. Clone, `./install.sh`, sign in,
-check. The only optional outbound call beyond the lookups is the free community license
-heartbeat (see [PRIVACY.md](PRIVACY.md)) — and the license code is short and auditable.
+check. There are **no license gates and no scheduled phone-home** (v2): the optional free
+community key only powers update notifications, and the license client only talks to the
+server when you explicitly activate/refresh/deactivate a key (see [PRIVACY.md](PRIVACY.md))
+— the code is short and auditable.
 
 ## How is this different from holehe / mosint / sherlock?
 

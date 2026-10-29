@@ -127,20 +127,33 @@ guessing. The same discipline as the scanner CE: **honest results, evidence firs
 - **Password checks store nothing** — the match happens in your browser
 - **No analytics, no third-party JS, no tracking** — the dashboard is self-contained
 - **Your data, your disk** — SQLite on your machine; delete any record or purge everything in one click
-- The only optional outbound call beyond the lookups is the auditable license heartbeat
+- **Zero unsolicited network calls** — the only optional outbound call beyond the lookups happens
+  when you explicitly activate/refresh a key, and the license heartbeat is opt-in (`LICENSE_HEARTBEAT=on`)
 
 Full honest breakdown of every byte that leaves the server: **[docs/PRIVACY.md](docs/PRIVACY.md)**.
 
-## 📜 Licensing (the honest kind)
+## 📜 Licensing — Free Forever, No Wall
 
-First boot starts a **14-day full-feature trial**. After that, new checks ask for a
-**free Community key** from [2mny.com/community-license](https://2mny.com/community-license)
-(30 seconds, no email confirmation loops). Licensed installs re-validate weekly with a
-7-day offline grace; history and every page keep working regardless.
+This project is open source (Apache-2.0). **There is no license wall** (v2, Oct 2026 — same
+policy as the scanner CE):
 
-This is **not DRM** — the client is ~300 readable lines, exists for install tracking and
-free premium update notifications, and is trivially auditable or removable (this is open
-source). Code: `app/Services/CommunityLicenseService.php`.
+1. **Everything works forever without a key.** All 22 sources, all 6 checks, reports,
+   history and exports — no trial countdown, no feature held back, no "activate to
+   continue" screens. (v1 had a 14-day trial after which new checks paused; that wall
+   was removed — it contradicted the "free forever" promise.)
+2. **An optional free key** — issued instantly at
+   [2mny.com/community-license](https://2mny.com/community-license), no account required —
+   powers exactly two things: the project's aggregate install counter (which drives the
+   roadmap) and free premium update announcements. That's all it does.
+3. **Zero telemetry by default.** No heartbeat, no scheduled phone-home, no analytics. The
+   only network calls the license client ever makes happen when *you* explicitly activate,
+   refresh or deactivate a key on the license page (payload: key, random install ID,
+   domain, version — nothing else). Operators who *want* to appear on the public install
+   map can opt in with `LICENSE_HEARTBEAT=on`; it is off unless you turn it on.
+4. **Fully offline-friendly.** An install with no key, a dead key, or no internet access
+   checks exactly the same as an activated one.
+5. **It's open source.** The client is ~300 auditable lines and trivially removable — we
+   prefer honest optional telemetry over fake DRM. Code: `app/Services/CommunityLicenseService.php`.
 
 ## 🧭 Why this exists
 
@@ -169,7 +182,7 @@ pass the contract tests (`vendor/bin/phpunit`).
 - ⭐ **Star this repo** — stars are how free software gets found; it genuinely helps.
 - 🔁 **Share it** with the one friend who still reuses `Summer2019!` everywhere.
 - ☕ **Fuel the maintainers** — every donation goes straight into keeping the sources
-  verified, the corpus fresh, and the license keys free:
+  verified, the corpus fresh, and the free-forever promise real:
 
 | | |
 |---|---|
