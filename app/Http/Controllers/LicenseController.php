@@ -23,7 +23,6 @@ class LicenseController extends Controller
             'status' => $this->license->status(),
             'serverUrl' => $this->license->serverUrl(),
             'installId' => $this->license->installId(),
-            'trialDaysLeft' => $row->trialDaysLeft(),
         ]);
     }
 

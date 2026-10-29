@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.5.0] — 2026-10-29
+
+### Licensing — v2 "No Wall" (same policy as the scanner CE)
+
+- **The 14-day trial wall is GONE.** Every check, source, report and export works
+  forever with no key, no countdown and no phone-home. v1 blocked new checks after a
+  14-day trial unless a free Community key was activated; that wall contradicted the
+  "free forever" promise and was removed across the codebase.
+- `CommunityLicenseService` v2: `status()` is now purely informational
+  (`licensed` / `unlicensed` / `key-revoked` — no `trial`, `grace` or `blocked`
+  states); `checksAllowed()` always returns true (kept for blade/route compatibility).
+  The optional free key powers exactly two things: the aggregate install counter and
+  free premium update notifications.
+- **Zero telemetry by default.** The daily heartbeat and weekly re-validation schedules
+  were removed from `routes/console.php`. The license client only talks to the server
+  when you explicitly activate, refresh or deactivate a key. Opt-in heartbeat for the
+  public install map: `LICENSE_HEARTBEAT=on` (off by default).
+- Key revocation now only stops update notifications — checks keep working.
+- `EnsureCommunityLicensed` middleware never blocks; it shows a once-per-session hint
+  about the optional free key.
+- License page rebuilt for v2 (no trial countdown, no "blocked" chip); README,
+  `docs/PRIVACY.md`, `docs/FAQ.md` and `docs/SELF-HOSTING.md` updated to match.
+
+### Maintenance
+
+- CI: `actions/checkout` v4 → v7 (dependabot #4).
+- Version constant synced (`config/app.php` 1.1.0 → 1.5.0 — it had drifted from the
+  changelog).
+- Note: the print-ready PDFs in `pdfs/` still describe the v1 trial policy for the
+  license sections; they will be regenerated in a follow-up release (the markdown
+  docs are authoritative).
+
 ## [1.4.0] — 2026-10-23
 
 ### Sources

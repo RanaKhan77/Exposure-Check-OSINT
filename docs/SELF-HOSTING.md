@@ -98,8 +98,10 @@ takes a safe hot copy.
 
 ## Scheduling (optional, non-Docker)
 
-The license heartbeat/re-validation is scheduled automatically inside Docker via Laravel's
-scheduler integration. Without Docker, add one cron entry:
+Since the v2 "no wall" license policy (Oct 2026) there are **no scheduled license tasks
+anymore** — the default install makes zero unsolicited network calls. If you run without
+Docker and later add scheduled features (e.g. you opted into `LICENSE_HEARTBEAT=on` for
+the public install map), add one cron entry:
 
 ```
 * * * * * cd /path/to/Exposure-Check-OSINT && php artisan schedule:run >> /dev/null 2>&1
