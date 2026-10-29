@@ -10,16 +10,16 @@
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![PHP 8.2+](https://img.shields.io/badge/PHP-8.2%20%7C%208.3%20%7C%208.4-777BB4.svg)](composer.json)
 [![No AI](https://img.shields.io/badge/verdicts-deterministic%20%C2%B7%20zero%20AI-22D3EE.svg)](#-why-no-ai-is-a-feature)
-[![Keyless](https://img.shields.io/badge/sources-22%20%C2%B7%20all%20keyless-34D399.svg)](#%EF%B8%8F-the-22-sources)
+[![Keyless](https://img.shields.io/badge/sources-23%20%C2%B7%20all%20keyless-34D399.svg)](#%EF%B8%8F-the-23-sources)
 [![Docker](https://img.shields.io/badge/install-one%20command-2496ED.svg)](#-quick-start)
 
-Check your personal identifiers against **22 free OSINT sources** — breach databases,
+Check your personal identifiers against **23 free OSINT sources** — breach databases,
 infostealer corpora, 11B+ leaked credential pairs, 150+ platform username registries —
 from your own server, with your own eyes.
 
 **The companion OSINT tool to the [202-scanner Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner).**
 
-[Quick Start](#-quick-start) · [The 6 Checks](#-the-6-checks) · [Sources](#%EF%B8%8F-the-22-sources) · [Why](#-why-this-exists) · [Privacy](#-privacy-by-design) · [FAQ](docs/FAQ.md) · [Donate](#-support-the-project)
+[Quick Start](#-quick-start) · [The 6 Checks](#-the-6-checks) · [Sources](#%EF%B8%8F-the-23-sources) · [Why](#-why-this-exists) · [Privacy](#-privacy-by-design) · [FAQ](docs/FAQ.md) · [Donate](#-support-the-project)
 
 </div>
 
@@ -27,7 +27,7 @@ from your own server, with your own eyes.
 
 ## 📸 What you get — real screenshots, live product
 
-<img src="assets/dashboard-preview.png" width="880" alt="Exposure Check dashboard — one input, 6 identifier types, 22 keyless sources, live corpus stats"/>
+<img src="assets/dashboard-preview.png" width="880" alt="Exposure Check dashboard — one input, 6 identifier types, 23 keyless sources, live corpus stats"/>
 
 **The dashboard.** Paste any identifier — the type is auto-detected, the corpus stats
 (1,047+ breaches, 17.8B+ leaked records, 37M stealer infections) are computed from the
@@ -66,7 +66,7 @@ That is the whole install: one Docker container (Apache + PHP + SQLite — no My
 Redis, no API keys), a generated admin password, and `http://localhost:8080` ready.
 Details and non-Docker paths: [docs/SELF-HOSTING.md](docs/SELF-HOSTING.md).
 
-Self-test the whole stack any time (22-source reachability, storage, database,
+Self-test the whole stack any time (23-source reachability, storage, database,
 site database — seconds, no real check performed):
 
 ```bash
@@ -74,7 +74,7 @@ docker compose exec app php artisan ec:doctor     # add --json for machine-reada
 ```
 
 ```
-Sign in → paste an email → watch 22 sources answer in parallel → open the printable report.
+Sign in → paste an email → watch 23 sources answer in parallel → open the printable report.
 Export any stored check as JSON or CSV — report page, history table, or right after a live check.
 ```
 
@@ -91,10 +91,10 @@ Export any stored check as JSON or CSV — report page, history table, or right 
 
 Full explanations with screenshots-level detail: [docs/CHECKS.md](docs/CHECKS.md).
 
-## 🛰️ The 22 Sources
+## 🛰️ The 23 Sources
 
-All **keyless** (no API key, no account, no cost), all read-only HTTPS lookups, all
-toggleable on the Settings page:
+All **keyless** (no API key, no account, no cost), all read-only lookups (HTTPS or plain
+DNS), all toggleable on the Settings page:
 
 **Breach & stealer (5):** HudsonRock infostealer corpus · XposedOrNot breach analytics ·
 ProxyNova COMB (11B+ pairs) · HIBP Pwned Passwords (k-anonymity) · LeakLens phone/username breach search
@@ -105,14 +105,16 @@ Bluesky (AT Protocol) · Hacker News
 **Email intelligence (8):** Mailcheck · Gravatar · Disify · Kickbox Open · FachaTemp ·
 Presend · disposable-domain blocklist · GitHub public search
 
-**Phone & IP (4):** PhoneValidity (E.164) · Shodan InternetDB · ipapi.is · Bot-CIDR crawler attribution
+**Phone & IP (5):** PhoneValidity (E.164) · Shodan InternetDB · ipapi.is · Bot-CIDR crawler
+attribution · DNS blocklist reputation (Spamhaus ZEN, SpamCop, Barracuda — pure DNS, honest
+degradation when a zone refuses your resolver)
 
 **Domain & registry (2):** crt.sh — certificate-transparency subdomain history · RDAP domain registration records
 
 Per-source endpoints, attribution and license notes: **[docs/SOURCES.md](docs/SOURCES.md)**.
 
 Prefer reading offline? Every documentation section also ships as a print-ready PDF in
-**[pdfs/](pdfs/)** — overview guide, the 6 checks, the 22 sources, self-hosting,
+**[pdfs/](pdfs/)** — overview guide, the 6 checks, the 23 sources, self-hosting,
 privacy and FAQ.
 
 ## 🧠 Why "no AI" is a feature

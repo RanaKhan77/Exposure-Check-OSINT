@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "2mny/exposure-check-osint",
     "type": "project",
-    "description": "Self-hosted personal exposure checker: email / username / phone / password / IP against 22 keyless OSINT sources. Non-AI, Laravel + Docker, k-anonymity password checks.",
+    "description": "Self-hosted personal exposure checker: email / username / phone / password / IP against 23 keyless OSINT sources. Non-AI, Laravel + Docker, k-anonymity password checks.",
     "keywords": [
         "osint",
         "email-osint",
