@@ -66,6 +66,15 @@ class DnsblSource implements OsintSource
     /** Spamhaus-style ERROR returns (query refused, never "not listed"). */
     private const ERROR_CODES = ['127.255.255.252', '127.255.255.254', '127.255.255.255'];
 
+    /**
+     * Zone-health probe memoization (per PHP process). The test address
+     * never changes, so each FPM/queue worker probes each zone at most ONCE
+     * per process lifetime — protects the resolver IP from DNSBL rate
+     * limits (Ark review: repeated probes can get a resolver banned).
+     * @var array<string, bool>|null key: zone => healthy+answering
+     */
+    private static ?array $probeCache = null;
+
     public function key(): string
     {
         return 'dnsbl';
@@ -115,16 +124,31 @@ class DnsblSource implements OsintSource
         $assessed = 0;
 
         foreach (self::ZONES as $zone => [$label, $explanation]) {
-            // 1. HEALTH PROBE: the permanently-listed test address must
-            //    demonstrably return a listing from this network — otherwise
-            //    the zone is refusing us and any "no A" would be a fake clean.
-            $probeCodes = $this->query(self::TEST_IP, $zone);
-            $probeListed = $this->stripErrors($probeCodes);
-            if ($probeListed === []) {
-                $reason = $probeCodes !== []
-                    ? 'query refused — public/open resolver'
-                    : 'zone not answering from this network (could not verify via the listed test address)';
-                $notAssessed[] = $label . ' (' . $reason . ')';
+            // 1. HEALTH PROBE (memoized per process): the permanently-listed
+            //    test address must demonstrably return a listing from this
+            //    network — otherwise the zone is refusing us and any "no A"
+            //    would be a fake clean.
+            if (self::$probeCache === null) {
+                self::$probeCache = [];
+            }
+            if (!array_key_exists($zone, self::$probeCache)) {
+                $probeCodes = $this->query(self::TEST_IP, $zone);
+                $probeListed = $this->stripErrors($probeCodes);
+                // Guard against broken resolvers that answer 127.0.0.1 (or
+                // anything outside the 127.0.0.x blocklist range) for invalid
+                // domains — only a real 127.0.0.x listing (not .1) proves the
+                // zone is answering (Ark review: test-probe false pass).
+                $valid = false;
+                foreach ($probeListed as $c) {
+                    if (str_starts_with($c, '127.0.0.') && $c !== '127.0.0.1') {
+                        $valid = true;
+                        break;
+                    }
+                }
+                self::$probeCache[$zone] = $valid;
+            }
+            if (!self::$probeCache[$zone]) {
+                $notAssessed[] = $label . ' (zone not verifiably answering from this network — resolver refused, public resolver, or timeout)';
                 continue;
             }
 
@@ -145,19 +169,31 @@ class DnsblSource implements OsintSource
         if ($listings !== []) {
             $names = implode(', ', array_column($listings, 'zone'));
             $details = [];
+            $hasAbuseListing = false;
             foreach ($listings as $l) {
                 $details[$l['zone']] = $l['explanation'] . ' (return code: ' . implode(', ', $l['codes']) . ')';
+                foreach ($l['codes'] as $c) {
+                    // PBL codes = policy listing (normal for residential/dynamic IPs)
+                    if (!in_array($c, ['127.0.0.6', '127.0.0.10', '127.0.0.11'], true)) {
+                        $hasAbuseListing = true;
+                    }
+                }
             }
+            $onlyPolicy = !$hasAbuseListing;
 
             return [
                 'status' => 'hit',
-                'summary' => 'This IP is LISTED on: ' . $names . '.',
+                'summary' => 'This IP is LISTED on: ' . $names . '.'
+                    . ($onlyPolicy ? ' Policy listing only (normal for residential/dynamic IPs).' : ''),
                 'data' => [
                     'Listed on' => $details,
-                    'What it means' => 'A blocklist listing means mail and traffic from this IP is treated as spam or abuse by a large share of the internet. On a personal IP this often indicates a compromised device, a hijacked router, or abuse by a previous holder of the address.',
+                    'What it means' => $onlyPolicy
+                        ? 'PBL policy listings are EXPECTED for residential/dynamic IP addresses (they simply say "this range should not send mail directly") — not an indication of compromise. Abuse listings (SBL/XBL/SpamCop/Barracuda) would indicate spam or exploit activity traced to this IP.'
+                        : 'A blocklist listing means mail and traffic from this IP is treated as spam or abuse by a large share of the internet. On a personal IP this can indicate a compromised device, a hijacked router, or abuse by a previous holder of the address. Policy-only (PBL) listings on residential ranges are normal and benign.',
                     'Zones not assessed' => $notAssessed !== [] ? implode('; ', $notAssessed) : 'none',
                 ],
-                'severity' => 'medium',
+                // PBL-only = low (expected for home IPs); real abuse listing = medium
+                'severity' => $onlyPolicy ? 'low' : 'medium',
             ];
         }
 
