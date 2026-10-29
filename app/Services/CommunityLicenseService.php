@@ -9,19 +9,30 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 /**
- * Community Edition license client (Exposure-Check-OSINT product identity).
+ * Community Edition license client — v2 "NO WALL" (2026-10-29).
  *
- * Same honest pattern as the Website Vulnerability Scanner CE:
- *  - First boot starts a 14-day full-feature trial (LICENSE_TRIAL_DAYS).
- *  - After the trial, NEW checks are blocked until a free key from
- *    https://2mny.com/community-license is activated. Existing history and
- *    every other admin page keep working.
- *  - Activation + weekly re-validation + daily heartbeat talk to
- *    LICENSE_SERVER_URL over HTTPS. If the license server is unreachable
- *    the install keeps working for a 7-day grace window (offline-friendly).
- *  - This is open source: the check is intentionally easy to audit and
- *    easy to remove. It exists for install tracking and free premium
- *    update notifications - not as DRM.
+ * Same owner directive as the Website Vulnerability Scanner CE v2: the
+ * Community Edition must never block anyone. The license key is 100%
+ * OPTIONAL tracking/notification convenience:
+ *
+ *  - Checks (and every other feature) are fully functional forever with
+ *    NO key, NO trial countdown, NO phone-home. There is no "blocked"
+ *    state anymore — status() returns 'licensed' or 'unlicensed' (plus
+ *    'key-revoked'), purely informational (drives a gentle "add a free
+ *    key for update notifications" hint).
+ *  - Telemetry is OFF by default: the daily heartbeat and weekly
+ *    re-validation schedules were REMOVED from routes/console.php. The
+ *    only network calls happen when you explicitly activate, refresh or
+ *    deactivate a key from the license page (LICENSE_SERVER_URL over
+ *    HTTPS; payload: key, random install id, domain, version).
+ *  - A key that the server marks revoked only means "this key no longer
+ *    receives update notifications" — checks keep working. Get a new
+ *    free key if you want the notifications back.
+ *  - Fully offline-friendly: no network call is ever required to run
+ *    checks, and network failures never change any functionality.
+ *  - This is open source (Apache-2.0): the whole client is auditable and
+ *    removable — it exists for voluntary install tracking and free
+ *    update notifications, not as DRM.
  *
  * Product identity: every call carries product=exposure-check so install
  * telemetry stays separate from the scanner CE on the license server.
@@ -29,31 +40,24 @@ use Illuminate\Support\Facades\Log;
 class CommunityLicenseService
 {
     public const PRODUCT = 'exposure-check';
-    public const GRACE_DAYS = 7;
 
     public function serverUrl(): string
     {
         return rtrim((string) config('license.server_url', env('LICENSE_SERVER_URL', 'https://2mny.com')), '/');
     }
 
-    public function trialDays(): int
-    {
-        return max(1, (int) (config('license.trial_days', 14) ?: 14));
-    }
-
     /**
-     * The single license row; creates the trial on first call.
+     * The single license row; creates the (non-expiring) record on first call.
      */
     public function state(): CommunityLicense
     {
         $row = CommunityLicense::query()->orderByDesc('id')->first();
         if ($row === null) {
             $row = CommunityLicense::create([
-                'status' => 'trial',
+                'status' => 'unlicensed',
                 'install_id' => $this->installId(),
                 'product' => self::PRODUCT,
-                'trial_started_at' => now(),
-                'trial_ends_at' => now()->addDays($this->trialDays()),
+                'trial_started_at' => now(), // kept for schema compatibility (install date)
             ]);
         }
         return $row;
@@ -88,46 +92,42 @@ class CommunityLicenseService
     }
 
     /**
-     * Effective license status for gating.
-     *      licensed  -> checks allowed
-     *      trial     -> checks allowed while trial_ends_at is in the future
-     *      grace     -> licensed but the server was unreachable > 7 days
-     *      blocked   -> trial expired (or revoked / grace expired)
+     * Informational status for the optional-key hint. v2: there is NO
+     * blocked state — this only drives UI hints, never gating.
+     *      licensed     -> a key is activated (update notifications on)
+     *      unlicensed   -> no key (everything still works; the license page
+     *                      may suggest getting a free key for notifications)
+     *      key-revoked  -> the activated key was revoked server-side; checks
+     *                      keep working, only notifications stop
      */
     public function status(): string
     {
         $row = $this->state();
 
         if ($row->status === 'revoked') {
-            return 'blocked';
+            return 'key-revoked';
         }
 
-        if ($row->status === 'licensed') {
-            $expires = $row->expiresAt();
-            if ($expires !== null && $expires->isPast()) {
-                return 'blocked';
-            }
-            if ($row->last_validated_at
-                && $row->last_validated_at->copy()->addDays(self::GRACE_DAYS)->isPast()) {
-                return 'grace';
-            }
+        if ($row->status === 'licensed' && $row->license_key) {
             return 'licensed';
         }
 
-        // trial
-        if ($row->trial_ends_at && $row->trial_ends_at->isFuture()) {
-            return 'trial';
-        }
-        return 'blocked';
-    }
-
-    public function checksAllowed(): bool
-    {
-        return in_array($this->status(), ['trial', 'licensed', 'grace'], true);
+        return 'unlicensed';
     }
 
     /**
-     * Activate a free license key against the license server.
+     * v2: ALWAYS true. Checks are never gated — see the class docblock.
+     * (Method kept so older forks/blade guards keep working; it is
+     * intentionally constant now.)
+     */
+    public function checksAllowed(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Activate a free license key against the license server (voluntary —
+     * powers update notifications and the project's install counter).
      * Key format for this product: 2MNY-EC-XXXX-XXXX-XXXX-XXXX.
      */
     public function activate(string $key, ?string $domain = null): array
@@ -195,8 +195,9 @@ class CommunityLicenseService
     }
 
     /**
-     * Weekly re-validation (scheduled). Stores the server answer; network
-     * failures never lock a licensed install inside the grace window.
+     * Manual re-validation (button on the license page — NOT scheduled
+     * anymore; v2 removed the weekly cron). Only talks to the server when
+     * a key is present; any failure leaves functionality untouched.
      */
     public function validate(): string
     {
@@ -218,6 +219,7 @@ class CommunityLicenseService
                     return 'ok';
                 }
                 if (($data['status'] ?? '') === 'revoked') {
+                    // v2: revocation only stops notifications — never checks.
                     $row->update(['status' => 'revoked', 'response_payload' => $data]);
                     return 'revoked';
                 }
@@ -225,20 +227,20 @@ class CommunityLicenseService
         } catch (\Throwable $e) {
             Log::info('license validate unreachable: ' . $e->getMessage());
         }
-        // unreachable or ambiguous: only refresh timestamp if still in grace
-        if (!$row->last_validated_at
-            || $row->last_validated_at->copy()->addDays(self::GRACE_DAYS)->isFuture()) {
-            return 'unreachable-in-grace';
-        }
-        return 'unreachable-grace-expired';
+        return 'unreachable';
     }
 
     /**
-     * Daily heartbeat (scheduled): powers the project's install map and
-     * free premium update notifications. Pure fire-and-forget.
+     * v2: heartbeat is DISABLED BY DEFAULT and no longer scheduled. Kept
+     * only for operators who explicitly opt in with LICENSE_HEARTBEAT=on
+     * (self-hosters who want to appear on the project's public install
+     * map). The default install makes ZERO unsolicited network calls.
      */
     public function heartbeat(): string
     {
+        if (strtolower((string) env('LICENSE_HEARTBEAT', 'off')) !== 'on') {
+            return 'disabled';
+        }
         $row = $this->state();
         try {
             Http::asJson()->timeout(10)->post($this->serverUrl() . '/api/community-license/heartbeat', [
