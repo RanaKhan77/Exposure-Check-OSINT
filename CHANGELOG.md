@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.7.0] — 2026-10-29
+
+### Sources — W58 OSINT repo deep-pass, round 2
+
+- **Source 24: Keybase linked identities** — the identity-graph pivot: one keyless
+  lookup returns the account's deliberately-public verified proofs (Twitter,
+  GitHub, Reddit, HackerNews, DNS domains, PGP fingerprint). A bare account is a
+  low-severity footprint; 3+ verified links is a real deanonymization surface
+  (medium). Documented 205 semantics for missing users; verified proofs
+  (`state=1`) only — unverified claims never count.
+- **Source 25: GitHub commit author-email pivot** — the reverse of the existing
+  github_public email check: given a USERNAME, which real addresses did it author
+  public commits with (e.g. `torvalds@…`)? Addresses are MASKED (`t***s@…`);
+  noreply-only accounts report good hygiene; and the card carries the PROBABLE
+  caveat the adoption review required — git author fields are spoofable, so a
+  match is evidence of exposure, not proof. Zero-match semantics live-verified:
+  qualifier-only author searches 422 on zero matches -> clean, never unavailable.
+- **Maigret corpus 150 -> 200 sites** — 290 fresh WhatsMyName candidates,
+  differential-self-checked (claimed vs unclaimed username) from the production
+  egress IP: 136 passed, top 50 selected by platform recognition and category
+  priority, with platform-family dedup (Mastodon instances capped, adult sites
+  excluded, already-covered platforms skipped). ArtStation, Bandcamp, Dribbble,
+  metacritic, cnet, freesound, Genius, IFTTT and more join the grid.
+
 ## [1.6.0] — 2026-10-29
 
 ### Sources — W58 OSINT adoption research
