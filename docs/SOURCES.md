@@ -1,4 +1,4 @@
-# Data Sources — all 22, all keyless
+# Data Sources — all 23, all keyless
 
 Every source below is **free, keyless (no API key, no account), read-only, and queried over HTTPS**.
 Per-source enable/disable lives on the Settings page. Attribution and limits are listed honestly —
