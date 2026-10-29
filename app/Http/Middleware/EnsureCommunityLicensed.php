@@ -10,9 +10,15 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Blocks NEW exposure checks when the Community license/trial has expired.
- * Everything else (history, reports, settings, license page) stays fully
- * usable - see README "Licensing".
+ * v2 "NO WALL" (2026-10-29): this middleware NEVER blocks anything.
+ *
+ * History: v1 blocked new exposure checks after a 14-day trial unless a
+ * free key was activated. The same owner directive that removed the wall
+ * from the Website Vulnerability Scanner CE applies here: the Community
+ * Edition is fully functional forever, key or no key. The class is kept
+ * (routes still reference it) but its only job now is a once-per-session,
+ * non-blocking reminder that a FREE optional key exists (it powers update
+ * notifications — nothing else).
  */
 class EnsureCommunityLicensed
 {
@@ -20,19 +26,27 @@ class EnsureCommunityLicensed
 
     public function handle(Request $request, Closure $next): Response
     {
-        if ($this->license->checksAllowed()) {
-            return $next($request);
+        // Never gate. Just a gentle, once-per-session hint.
+        if (!$request->session()->get('license_notice_shown')) {
+            $status = $this->license->status();
+            if ($status === 'unlicensed') {
+                $request->session()->flash(
+                    'info',
+                    'Optional: activate a FREE license key to receive update notifications. '
+                    . 'Checks work fully without one — no trial, no countdown, no phone-home. '
+                    . 'Get a key at ' . $this->license->serverUrl() . '/community-license'
+                );
+            } elseif ($status === 'key-revoked') {
+                $request->session()->flash(
+                    'info',
+                    'Your license key was revoked — checks keep working normally. '
+                    . 'Only update notifications stopped; get a fresh free key at '
+                    . $this->license->serverUrl() . '/community-license if you want them back.'
+                );
+            }
+            $request->session()->put('license_notice_shown', true);
         }
 
-        $msg = 'Your Community Edition trial has ended. Activate a FREE license key to keep running checks '
-            . '(takes 30 seconds at ' . $this->license->serverUrl() . '/community-license).';
-
-        if ($request->expectsJson() || $request->is('api/*')) {
-            return response()->json(['error' => $msg, 'license_required' => true], 402);
-        }
-
-        return redirect()
-            ->route('license')
-            ->with('error', $msg);
+        return $next($request);
     }
 }
