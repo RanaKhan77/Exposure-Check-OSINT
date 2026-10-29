@@ -9,8 +9,8 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * MaigretSource — username footprint across 150 differential-verified popular sites
- * (2MNY Trace / Exposure Check; 43 maigret sites 2026-10-16 + 107 WhatsMyName sites 2026-10-20, both differential-verified from production egress).
+ * MaigretSource — username footprint across 200 differential-verified popular sites
+ * (2MNY Trace / Exposure Check; 43 maigret sites 2026-10-16 + 107 WhatsMyName sites 2026-10-20 + 50 more WhatsMyName sites 2026-10-29, all differential-verified from production egress).
  * =============================================================================
  *
  * DATA: curated subset of maigret's MIT-licensed site database

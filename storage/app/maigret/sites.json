@@ -1,10 +1,10 @@
 {
  "_meta": {
   "source": "maigret (https://github.com/soxoj/maigret) MIT License + WhatsMyName (https://github.com/WebBreacher/WhatsMyName) CC BY-SA 4.0",
-  "license_note": "Curated subset of maigret v0.6.6 data.json (MIT, 43 sites, verified 2026-10-16) PLUS differential-verified WhatsMyName wmn-data.json sites (CC BY-SA 4.0 \u2014 attribution: Micah Hoffman & WhatsMyName contributors, https://creativecommons.org/licenses/by-sa/4.0/). All sites differential-self-checked (claimed vs unclaimed username) from the production egress IP on 2026-10-20; blocked/flaky/catch-all sites removed.",
-  "curated_at": "2026-10-20",
-  "site_count": 150,
-  "selfcheck": "WMN: 293/505 candidates passed differential verification; top 107 selected by mapping robustness (status_code first) and category priority; 43 maigret sites retained unchanged."
+  "license_note": "Curated subset of maigret v0.6.6 data.json (MIT, 43 sites, verified 2026-10-16) PLUS differential-verified WhatsMyName wmn-data.json sites (CC BY-SA 4.0 — attribution: Micah Hoffman & WhatsMyName contributors, https://creativecommons.org/licenses/by-sa/4.0/). All sites differential-self-checked (claimed vs unclaimed username) from the production egress IP on 2026-10-20; blocked/flaky/catch-all sites removed.",
+  "curated_at": "2026-10-29",
+  "site_count": 200,
+  "selfcheck": "WMN: 293/505 candidates passed differential verification; top 107 selected by mapping robustness (status_code first) and category priority; 43 maigret sites retained unchanged. | v1.7.0 expansion 2026-10-29: +50 WhatsMyName sites (CC BY-SA 4.0, attribution: Micah Hoffman & WhatsMyName contributors), differential-self-checked (claimed vs unclaimed) from the production egress IP; 136/290 candidates passed, top 50 selected by platform recognition + category priority, platform-family dedup with Mastodon instances capped at 3."
  },
  "sites": {
   "YouTube": {
@@ -1493,6 +1493,809 @@
    "rank": 1000309,
    "usernameClaimed": "damiano84",
    "usernameUnclaimed": "noonewouldeverusethis777"
+  },
+  "Ameblo": {
+   "name": "Ameblo",
+   "url": "https://ameblo.jp/{username}",
+   "urlProbe": "https://ameblo.jp/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "画像一覧"
+   ],
+   "absenceStrs": [
+    "削除された可能性がございます。"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "ereko-blog",
+   "rank": 300
+  },
+  "ArtStation": {
+   "name": "ArtStation",
+   "url": "https://www.artstation.com/api/v2/user_profiles/{username}.json",
+   "urlProbe": "https://www.artstation.com/api/v2/user_profiles/{username}.json",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"id\":"
+   ],
+   "absenceStrs": [
+    "\"message\":\"User with username:"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "kongaxl_design",
+   "rank": 301
+  },
+  "Bandcamp": {
+   "name": "Bandcamp",
+   "url": "https://bandcamp.com/{username}",
+   "urlProbe": "https://bandcamp.com/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "collection | Bandcamp</title>"
+   ],
+   "absenceStrs": [
+    "<h2>Sorry, that something isn’t here.</h2>"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "alice",
+   "rank": 302
+  },
+  "Chomikuj.pl": {
+   "name": "Chomikuj.pl",
+   "url": "https://chomikuj.pl/{username}/",
+   "urlProbe": "https://chomikuj.pl/{username}/",
+   "checkType": "message",
+   "presenseStrs": [
+    "Foldery"
+   ],
+   "absenceStrs": [
+    "Chomik o takiej nazwie nie istnieje"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "test",
+   "rank": 303
+  },
+  "cnet": {
+   "name": "cnet",
+   "url": "https://www.cnet.com/profiles/{username}/",
+   "urlProbe": "https://www.cnet.com/profiles/{username}/",
+   "checkType": "message",
+   "presenseStrs": [
+    "class=\"author-header__stat-label\""
+   ],
+   "absenceStrs": [
+    "<title>Page Not Found - CNET"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "mlong",
+   "rank": 304
+  },
+  "Daily Kos": {
+   "name": "Daily Kos",
+   "url": "https://www.dailykos.com/user/{username}",
+   "urlProbe": "https://www.dailykos.com/user/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"@type\":\"ProfilePage\""
+   ],
+   "absenceStrs": [
+    "Page not found! (404)"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "Hunter",
+   "rank": 305
+  },
+  "dateinasia": {
+   "name": "dateinasia",
+   "url": "https://www.dateinasia.com/{username}",
+   "urlProbe": "https://www.dateinasia.com/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "About me"
+   ],
+   "absenceStrs": [
+    "The page you are looking for does not exist"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "shime",
+   "rank": 306
+  },
+  "Dribbble": {
+   "name": "Dribbble",
+   "url": "https://dribbble.com/{username}",
+   "urlProbe": "https://dribbble.com/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "| Dribbble"
+   ],
+   "absenceStrs": [
+    "(404)</title>"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "UI8",
+   "rank": 307
+  },
+  "Etoro": {
+   "name": "Etoro",
+   "url": "https://www.etoro.com/api/logininfo/v1.1/users/{username}",
+   "urlProbe": "https://www.etoro.com/api/logininfo/v1.1/users/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"gcid\":"
+   ],
+   "absenceStrs": [
+    "\"ErrorCode\":\"NotFound\""
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "jeepsontrading",
+   "rank": 308
+  },
+  "FL.ru": {
+   "name": "FL.ru",
+   "url": "https://www.fl.ru/users/{username}/portfolio/",
+   "urlProbe": "https://www.fl.ru/users/{username}/portfolio/",
+   "checkType": "message",
+   "presenseStrs": [
+    "class=\"page-profile\""
+   ],
+   "absenceStrs": [
+    "content=\"404 Not Found\""
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "makediffdev",
+   "rank": 309
+  },
+  "freesound": {
+   "name": "freesound",
+   "url": "https://freesound.org/people/{username}/section/stats/?ajax=1",
+   "urlProbe": "https://freesound.org/people/{username}/section/stats/?ajax=1",
+   "checkType": "message",
+   "presenseStrs": [
+    "forum posts"
+   ],
+   "absenceStrs": [
+    "<h1>Page not found</h1>"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "Manu593",
+   "rank": 310
+  },
+  "Gab": {
+   "name": "Gab",
+   "url": "https://gab.com/api/v1/account_by_username/{username}",
+   "urlProbe": "https://gab.com/api/v1/account_by_username/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"id\":"
+   ],
+   "absenceStrs": [
+    "\"error\":\"Record not found\""
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "RealMarjorieGreene",
+   "rank": 311
+  },
+  "Genius (Artist)": {
+   "name": "Genius (Artist)",
+   "url": "https://genius.com/artists/{username}",
+   "urlProbe": "https://genius.com/artists/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "class=\"profile_header\""
+   ],
+   "absenceStrs": [
+    "class=\"render_404\""
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "Profjam",
+   "rank": 312
+  },
+  "gloria.tv": {
+   "name": "gloria.tv",
+   "url": "https://gloria.tv/{username}",
+   "urlProbe": "https://gloria.tv/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "Last online"
+   ],
+   "absenceStrs": [
+    "Page unavailable"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "Irapuato",
+   "rank": 313
+  },
+  "gpodder.net": {
+   "name": "gpodder.net",
+   "url": "https://gpodder.net/user/{username}/",
+   "urlProbe": "https://gpodder.net/user/{username}/",
+   "checkType": "message",
+   "presenseStrs": [
+    "mdash; gpodder.net"
+   ],
+   "absenceStrs": [
+    "404 - Not found"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "blue",
+   "rank": 314
+  },
+  "Hackaday.io": {
+   "name": "Hackaday.io",
+   "url": "https://hackaday.io/{username}",
+   "urlProbe": "https://hackaday.io/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "class=\"following-container \""
+   ],
+   "absenceStrs": [
+    "class=\"error-nav\""
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "john",
+   "rank": 315
+  },
+  "IFTTT": {
+   "name": "IFTTT",
+   "url": "https://ifttt.com/p/{username}",
+   "urlProbe": "https://ifttt.com/p/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "Joined"
+   ],
+   "absenceStrs": [
+    "The requested page or file does not exist"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "nr9992",
+   "rank": 316
+  },
+  "metacritic": {
+   "name": "metacritic",
+   "url": "https://www.metacritic.com/user/{username}/",
+   "urlProbe": "https://www.metacritic.com/user/{username}/",
+   "checkType": "message",
+   "presenseStrs": [
+    "data-testid=\"profile-name\">"
+   ],
+   "absenceStrs": [
+    "re looking for. Sorry about that.</p>"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "Joxel",
+   "rank": 317
+  },
+  "AmericanThinker": {
+   "name": "AmericanThinker",
+   "url": "https://www.americanthinker.com/author/{username}/",
+   "urlProbe": "https://www.americanthinker.com/author/{username}/",
+   "checkType": "message",
+   "presenseStrs": [
+    "class=\"author_image\""
+   ],
+   "absenceStrs": [
+    "title>404 Not Found</title>"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "james_g_robertson",
+   "rank": 318
+  },
+  "Arsmate": {
+   "name": "Arsmate",
+   "url": "https://arsmate.com/api/creators/{username}",
+   "urlProbe": "https://arsmate.com/api/creators/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"success\":true"
+   ],
+   "absenceStrs": [
+    "404,\"Server Error"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "Angelic",
+   "rank": 319
+  },
+  "Artbreeder": {
+   "name": "Artbreeder",
+   "url": "https://www.artbreeder.com/{username}",
+   "urlProbe": "https://www.artbreeder.com/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "data-tutorial=\"profile-filter\""
+   ],
+   "absenceStrs": [
+    "error: {message:\"User not found\""
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "dolores",
+   "rank": 320
+  },
+  "au.ru": {
+   "name": "au.ru",
+   "url": "https://au.ru/user/{username}/",
+   "urlProbe": "https://au.ru/user/{username}/",
+   "checkType": "message",
+   "presenseStrs": [
+    "Лоты пользователя"
+   ],
+   "absenceStrs": [
+    "Пользователь не найден"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "Svetlana7",
+   "rank": 321
+  },
+  "CHEEZburger": {
+   "name": "CHEEZburger",
+   "url": "https://cheezburger.com/Editor/{username}",
+   "urlProbe": "https://cheezburger.com/Editor/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "<title>Recent Posts from"
+   ],
+   "absenceStrs": [
+    "<title>404 Not Found</title>"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "BarMorHazut",
+   "rank": 322
+  },
+  "Coda": {
+   "name": "Coda",
+   "url": "https://coda.io/@{username}/",
+   "urlProbe": "https://coda.io/@{username}/",
+   "checkType": "message",
+   "presenseStrs": [
+    "- Coda Profile</title>"
+   ],
+   "absenceStrs": [
+    "<title>Coda | Page not found - Coda</title>"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "huizer",
+   "rank": 323
+  },
+  "Donatello": {
+   "name": "Donatello",
+   "url": "https://donatello.to/{username}",
+   "urlProbe": "https://donatello.to/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "UserPage.init"
+   ],
+   "absenceStrs": [
+    "<title>Сторінку не знайдено (404) - Donatello</title>"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "Metvix",
+   "rank": 324
+  },
+  "Bimpos": {
+   "name": "Bimpos",
+   "url": "https://ask.bimpos.com/user/{username}",
+   "urlProbe": "https://ask.bimpos.com/user/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "<title>User"
+   ],
+   "absenceStrs": [
+    "Page not found"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "john",
+   "rank": 325
+  },
+  "Calendy": {
+   "name": "Calendy",
+   "url": "https://calendly.com/api/booking/profiles/{username}",
+   "urlProbe": "https://calendly.com/api/booking/profiles/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"id\":"
+   ],
+   "absenceStrs": [
+    "\"message\":\"not found\""
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "honey",
+   "rank": 326
+  },
+  "Chamsko": {
+   "name": "Chamsko",
+   "url": "https://www.chamsko.pl/profil/{username}",
+   "urlProbe": "https://www.chamsko.pl/profil/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "W serwisie od"
+   ],
+   "absenceStrs": [
+    "Strona nie istnieje."
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "test",
+   "rank": 327
+  },
+  "Cropty": {
+   "name": "Cropty",
+   "url": "https://api.cropty.io/v1/auth/{username}",
+   "urlProbe": "https://api.cropty.io/v1/auth/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"name\":"
+   ],
+   "absenceStrs": [
+    "\"errors\":"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "mailmal",
+   "rank": 328
+  },
+  "Designspriation": {
+   "name": "Designspriation",
+   "url": "https://www.designspiration.com/{username}/",
+   "urlProbe": "https://www.designspiration.com/{username}/",
+   "checkType": "message",
+   "presenseStrs": [
+    "has discovered on Designspiration"
+   ],
+   "absenceStrs": [
+    "Content Not Found"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "sam",
+   "rank": 329
+  },
+  "Discord (Invite)": {
+   "name": "Discord (Invite)",
+   "url": "https://discord.com/api/v9/invites/{username}?with_counts=true&with_expiration=true",
+   "urlProbe": "https://discord.com/api/v9/invites/{username}?with_counts=true&with_expiration=true",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"channel\":"
+   ],
+   "absenceStrs": [
+    "\"message\": \"Unknown Invite\""
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "test",
+   "rank": 330
+  },
+  "Discourse": {
+   "name": "Discourse",
+   "url": "https://meta.discourse.org/u/{username}/summary.json",
+   "urlProbe": "https://meta.discourse.org/u/{username}/summary.json",
+   "checkType": "message",
+   "presenseStrs": [
+    "topics"
+   ],
+   "absenceStrs": [
+    "The requested URL or resource could not be found."
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "ndalliard",
+   "rank": 331
+  },
+  "Dojoverse": {
+   "name": "Dojoverse",
+   "url": "https://dojoverse.com/members/{username}/",
+   "urlProbe": "https://dojoverse.com/members/{username}/",
+   "checkType": "message",
+   "presenseStrs": [
+    "Joined"
+   ],
+   "absenceStrs": [
+    "Looks like you got lost!."
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "eric",
+   "rank": 332
+  },
+  "DonationPay": {
+   "name": "DonationPay",
+   "url": "https://give.donationpay.org/hopewell-fund/{username}/",
+   "urlProbe": "https://give.donationpay.org/hopewell-fund/{username}/",
+   "checkType": "message",
+   "presenseStrs": [
+    "id=\"dp-payment-form\""
+   ],
+   "absenceStrs": [
+    "<title>404 Not Found</title>"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "rareimpact",
+   "rank": 333
+  },
+  "Expressional.social (Mastodon Instance)": {
+   "name": "Expressional.social (Mastodon Instance)",
+   "url": "https://expressional.social/api/v1/accounts/lookup?acct={username}",
+   "urlProbe": "https://expressional.social/api/v1/accounts/lookup?acct={username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "display_name"
+   ],
+   "absenceStrs": [
+    "Record not found"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "jippi",
+   "rank": 334
+  },
+  "ILGM Growers Forum": {
+   "name": "ILGM Growers Forum",
+   "url": "https://ilgmforum.com/u/{username}/summary.json",
+   "urlProbe": "https://ilgmforum.com/u/{username}/summary.json",
+   "checkType": "message",
+   "presenseStrs": [
+    "user_summary\":{"
+   ],
+   "absenceStrs": [
+    "errors\":[\"The requested URL"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "spc95b00",
+   "rank": 335
+  },
+  "JBZD": {
+   "name": "JBZD",
+   "url": "https://jbzd.com.pl/uzytkownik/{username}",
+   "urlProbe": "https://jbzd.com.pl/uzytkownik/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "Dzidy użytkownika"
+   ],
+   "absenceStrs": [
+    "Błąd 404"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "test",
+   "rank": 336
+  },
+  "kwejk.pl": {
+   "name": "kwejk.pl",
+   "url": "https://kwejk.pl/uzytkownik/{username}#/tablica/",
+   "urlProbe": "https://kwejk.pl/uzytkownik/{username}#/tablica/",
+   "checkType": "message",
+   "presenseStrs": [
+    "Kwejki użytkownika"
+   ],
+   "absenceStrs": [
+    "404 - strona nie została znaleziona - KWEJK.pl"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "test",
+   "rank": 337
+  },
+  "Libretooth.gr (Mastodon Instance)": {
+   "name": "Libretooth.gr (Mastodon Instance)",
+   "url": "https://libretooth.gr/api/v1/accounts/lookup?acct={username}",
+   "urlProbe": "https://libretooth.gr/api/v1/accounts/lookup?acct={username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "display_name"
+   ],
+   "absenceStrs": [
+    "Record not found"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "infolibre",
+   "rank": 338
+  },
+  "Mapstodon.space (Mastodon Instance)": {
+   "name": "Mapstodon.space (Mastodon Instance)",
+   "url": "https://mapstodon.space/api/v1/accounts/lookup?acct={username}",
+   "urlProbe": "https://mapstodon.space/api/v1/accounts/lookup?acct={username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "display_name"
+   ],
+   "absenceStrs": [
+    "Record not found"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "Autumnhussar",
+   "rank": 339
+  },
+  "masto.ai": {
+   "name": "masto.ai",
+   "url": "https://masto.ai/api/v1/accounts/lookup?acct={username}",
+   "urlProbe": "https://masto.ai/api/v1/accounts/lookup?acct={username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"id\":"
+   ],
+   "absenceStrs": [
+    "\"error\":\"Record not found\""
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "rbreich",
+   "rank": 340
+  },
+  "mintme": {
+   "name": "mintme",
+   "url": "https://www.mintme.com/token/{username}",
+   "urlProbe": "https://www.mintme.com/token/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "token | mintMe"
+   ],
+   "absenceStrs": [
+    "Page not found"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "john",
+   "rank": 341
+  },
+  "myWishBoard": {
+   "name": "myWishBoard",
+   "url": "https://mywishboard.com/@{username}",
+   "urlProbe": "https://mywishboard.com/@{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "user.profile\\\",\\\"login\\\":"
+   ],
+   "absenceStrs": [
+    "User not found</span>"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "ilia_komarov",
+   "rank": 343
+  },
+  "oglaszamy24h.pl": {
+   "name": "oglaszamy24h.pl",
+   "url": "https://oglaszamy24h.pl/profil,{username}",
+   "urlProbe": "https://oglaszamy24h.pl/profil,{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "Profil użytkownika:"
+   ],
+   "absenceStrs": [
+    "Nieprawidłowy link, w bazie danych nie istnieje użytkownik o podanym loginie"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "kowal",
+   "rank": 345
+  },
+  "Paragraph": {
+   "name": "Paragraph",
+   "url": "https://paragraph.com/api/blogs/@{username}",
+   "urlProbe": "https://paragraph.com/api/blogs/@{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"user\":{"
+   ],
+   "absenceStrs": [
+    "\"Missing blog\""
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "wibtal",
+   "rank": 347,
+   "headers": {
+    "Accept": "application/json"
+   }
+  },
+  "Patronite": {
+   "name": "Patronite",
+   "url": "https://patronite.pl/{username}",
+   "urlProbe": "https://patronite.pl/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "Zostań Patronem"
+   ],
+   "absenceStrs": [
+    "Nie znaleźliśmy strony której szukasz."
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "radio357",
+   "rank": 348
+  },
+  "Planoly": {
+   "name": "Planoly",
+   "url": "https://planoly.store/{username}",
+   "urlProbe": "https://planoly.store/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"creatorLink\":{"
+   ],
+   "absenceStrs": [
+    "\"statusCode\":404"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "divinemystique",
+   "rank": 349
+  },
+  "Poshmark": {
+   "name": "Poshmark",
+   "url": "https://poshmark.com/closet/{username}",
+   "urlProbe": "https://poshmark.com/closet/{username}",
+   "checkType": "message",
+   "presenseStrs": [
+    "is using Poshmark to sell items from their closet."
+   ],
+   "absenceStrs": [
+    "Page not found - Poshmark"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "alice",
+   "rank": 473
+  },
+  "Pronouns.page": {
+   "name": "Pronouns.page",
+   "url": "https://pronouns.page/api/profile/get/{username}?version=2",
+   "urlProbe": "https://pronouns.page/api/profile/get/{username}?version=2",
+   "checkType": "message",
+   "presenseStrs": [
+    "\"username\":"
+   ],
+   "absenceStrs": [
+    "Page was not found"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "neo",
+   "rank": 351
+  },
+  "Prose": {
+   "name": "Prose",
+   "url": "https://prose.astral.camp/{username}/",
+   "urlProbe": "https://prose.astral.camp/{username}/",
+   "checkType": "message",
+   "presenseStrs": [
+    "blog-title"
+   ],
+   "absenceStrs": [
+    "Are you sure it was ever here?"
+   ],
+   "regexCheck": "",
+   "usernameUnclaimed": "noonewouldeverusethis7",
+   "usernameClaimed": "endeavorance",
+   "rank": 380
   }
  }
 }

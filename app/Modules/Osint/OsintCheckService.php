@@ -10,11 +10,13 @@ use App\Modules\Osint\Sources\DisifySource;
 use App\Modules\Osint\Sources\DisposableEmailSource;
 use App\Modules\Osint\Sources\DnsblSource;
 use App\Modules\Osint\Sources\FachaTempSource;
+use App\Modules\Osint\Sources\GitHubCommitEmailSource;
 use App\Modules\Osint\Sources\GitHubPublicSource;
 use App\Modules\Osint\Sources\GravatarSource;
 use App\Modules\Osint\Sources\HackerNewsSource;
 use App\Modules\Osint\Sources\HudsonRockSource;
 use App\Modules\Osint\Sources\IpapiIsSource;
+use App\Modules\Osint\Sources\KeybaseSource;
 use App\Modules\Osint\Sources\KickboxDisposableSource;
 use App\Modules\Osint\Sources\MailcheckSource;
 use App\Modules\Osint\Sources\MaigretSource;
@@ -42,7 +44,7 @@ use Illuminate\Support\Facades\Http;
  *     infrastructure footprint only — CT-log subdomain history and
  *     registry data. Website vulnerability scanning stays in the
  *     Website Vulnerability Scanner CE.
- *   - Keyless sources only (21). The owner-keyed source of the hosted
+ *   - Keyless sources only (25). The owner-keyed source of the hosted
  *     product is NOT shipped here.
  *   - No Trace-Pro / billing logic anywhere in the CE.
  *
@@ -96,6 +98,10 @@ class OsintCheckService
         // reputation (Spamhaus ZEN + SpamCop + Barracuda, DNS-only, keyless) —
         // the one keyless personal-IP signal the CE was missing
         DnsblSource::class,
+
+        // v1.7.0 (2026-10-29, W58 repo deep-pass adopt): identity-graph pivots
+        KeybaseSource::class,
+        GitHubCommitEmailSource::class,
     ];
 
     public const TYPES = ['email', 'username', 'phone', 'password', 'domain', 'ip'];

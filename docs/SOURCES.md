@@ -1,4 +1,4 @@
-# Data Sources — all 23, all keyless
+# Data Sources — all 25, all keyless
 
 Every source below is **free, keyless (no API key, no account), read-only, and queried over HTTPS**.
 Per-source enable/disable lives on the Settings page. Attribution and limits are listed honestly —
@@ -18,7 +18,7 @@ if a source is down, its card shows `unavailable` and the check continues (per-s
 | 10 | FachaTemp | email | email | `api.facha.dev/v1/temporary-email/` | Temp-provider domain signal |
 | 11 | Presend | email, phone | email, phone | `presend.pages.dev/api/` | Deliverability + phone lookups |
 | 12 | GitHub public search | profile | email, username | `api.github.com` (unauthenticated) | Public code/profile associations |
-| 13 | Maigret corpus (150 sites) | profile | username | Local `storage/app/maigret/sites.json` + live site probes | Username registered on N of 150 popular platforms — rendered as the platform logo grid. Corpus: maigret (MIT) + WhatsMyName (CC BY-SA 4.0), differential-verified |
+| 13 | Maigret corpus (200 sites) | profile | username | Local `storage/app/maigret/sites.json` + live site probes | Username registered on N of 200 popular platforms — rendered as the platform logo grid. Corpus: maigret (MIT) + WhatsMyName (CC BY-SA 4.0), differential-verified |
 | 14 | Bluesky (AT Protocol) | profile | username | `public.api.bsky.app` | Handle/profile existence |
 | 15 | Hacker News (Firebase) | profile | username | `hacker-news.firebaseio.com` | Public HN account existence + karma |
 | 16 | PhoneValidity | infra | phone | E.164 parsing (libphonenumber semantics, in-process) | Country, line type, validity — no external call |
@@ -29,6 +29,9 @@ if a source is down, its card shows `unavailable` and the check continues (per-s
 | 21 | RDAP — Domain Registration Records | infra | domain | `rdap.org/domain/{domain}` (keyless) | Registrar, registration/expiry dates, status — registration age as a fraud/trust signal |
 | 22 | LeakLens | breach | phone, username | `leaklens.org/api/mcp` (keyless JSON-RPC tools/call) | Breach-registry search for phone numbers and usernames; honest `unavailable` when upstreams degrade |
 | 23 | DNS Blocklists (Spamhaus ZEN, SpamCop, Barracuda) | reputation | ip | Plain DNS A-queries `{reversed-ip}.{zone}` (no HTTP) | Is the IP listed for spam/abuse? Each zone is verified answering via its permanently-listed test address (127.0.0.2) before its verdict counts — public/open-resolver refusals and empty answers degrade to `not assessed`, never a fake clean. PBL-only policy listings (normal for residential IPs) report severity `low`; abuse listings `medium`. Zone probes are memoized per worker process + results cached 30 min. **Requires a normal (non-public) resolver**: public resolvers like 8.8.8.8/1.1.1.1 are refused by Spamhaus — run a local/system resolver |
+
+| 24 | Keybase | profile | username | `keybase.io/_/api/1.0/user/lookup.json` (keyless) | Identity-graph pivot: verified public proofs linking the username to Twitter/GitHub/Reddit/HackerNews/DNS domains and PGP keys — 3+ verified links score medium |
+| 25 | GitHub Commit Author Emails | profile | username | `api.github.com/search/commits` `author:{username}` (keyless) | Which real email addresses the account authored public commits with (masked, e.g. `t***s@…`) — probable tier, git author fields are spoofable; noreply-only accounts report good hygiene |
 
 ## Display images
 
