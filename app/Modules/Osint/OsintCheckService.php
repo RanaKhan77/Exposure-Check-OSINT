@@ -8,6 +8,7 @@ use App\Modules\Osint\Sources\BlueskySource;
 use App\Modules\Osint\Sources\CrtShSource;
 use App\Modules\Osint\Sources\DisifySource;
 use App\Modules\Osint\Sources\DisposableEmailSource;
+use App\Modules\Osint\Sources\DnsblSource;
 use App\Modules\Osint\Sources\FachaTempSource;
 use App\Modules\Osint\Sources\GitHubPublicSource;
 use App\Modules\Osint\Sources\GravatarSource;
