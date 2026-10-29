@@ -91,6 +91,10 @@ class OsintCheckService
         // (phone/username via keyless MCP; email/password/domain deliberately
         // not here - see the source class docblock for the scope reasoning)
         LeakLensSource::class,
+        // v1.6.0 (2026-10-29, W58 OSINT adoption research s34): DNS blocklist
+        // reputation (Spamhaus ZEN + SpamCop + Barracuda, DNS-only, keyless) —
+        // the one keyless personal-IP signal the CE was missing
+        DnsblSource::class,
     ];
 
     public const TYPES = ['email', 'username', 'phone', 'password', 'domain', 'ip'];

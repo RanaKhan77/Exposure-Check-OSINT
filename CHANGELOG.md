@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.6.0] — 2026-10-29
+
+### Sources — W58 OSINT adoption research
+
+- **Source 23: DNS blocklist reputation** (Spamhaus ZEN, SpamCop, Barracuda) — the one
+  keyless personal-IP signal the CE was missing: "is MY IP listed as a spam/abuse
+  source?" (compromised device, hijacked router, prior abuse). Pure DNS queries
+  (no HTTP, no keys), same offline-source pattern as Bot-CIDR.
+- **Honest-degradation design (live-verified in production):** DNSBL refusals are
+  ambiguous — Spamhaus sometimes answers open/public-resolver queries with
+  127.255.255.x error codes and sometimes with EMPTY answers. Each zone is therefore
+  probed first with the permanently-listed test address 127.0.0.2; a zone whose test
+  probe does not demonstrably return a listing is reported `not assessed`, never a
+  fake clean. IPv6 and restricted resolvers degrade honestly too.
+- **Adoption research** (dual independent model reviews over omnisint, PublicEye,
+  n1xYosint, osint-toolbox-mcp, Consensus-OSINT, tiktok-scraper + awesome lists):
+  DNSBL (adopt, CE) and selective Maigret-corpus expansion (follow-up) were the two
+  clear keyless + personal + license-safe wins. Crypto-address checks, TikTok,
+  ORCID and Wayback were evaluated and deliberately deferred or rejected (weak
+  exposure semantics, fragility, or keyless-availability risk) — reasoning kept in
+  the W58 research notes.
+
 ## [1.5.0] — 2026-10-29
 
 ### Licensing — v2 "No Wall" (same policy as the scanner CE)

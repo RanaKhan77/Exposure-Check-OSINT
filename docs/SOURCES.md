@@ -28,6 +28,7 @@ if a source is down, its card shows `unavailable` and the check continues (per-s
 | 20 | crt.sh — Certificate Transparency | infra | domain | `crt.sh/?q=%.{domain}` (keyless) | Historical subdomains that ever obtained a TLS certificate — counts + first 40 names |
 | 21 | RDAP — Domain Registration Records | infra | domain | `rdap.org/domain/{domain}` (keyless) | Registrar, registration/expiry dates, status — registration age as a fraud/trust signal |
 | 22 | LeakLens | breach | phone, username | `leaklens.org/api/mcp` (keyless JSON-RPC tools/call) | Breach-registry search for phone numbers and usernames; honest `unavailable` when upstreams degrade |
+| 23 | DNS Blocklists (Spamhaus ZEN, SpamCop, Barracuda) | reputation | ip | Plain DNS A-queries `{reversed-ip}.{zone}` (no HTTP) | Is the IP listed for spam/abuse? Each zone is verified answering via its permanently-listed test address (127.0.0.2) before its verdict counts — public/open-resolver refusals and empty answers degrade to `not assessed`, never a fake clean |
 
 ## Display images
 
