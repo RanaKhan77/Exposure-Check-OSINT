@@ -139,7 +139,7 @@ Full honest breakdown of every byte that leaves the server: **[docs/PRIVACY.md](
 This project is open source (Apache-2.0). **There is no license wall** (v2, Oct 2026 — same
 policy as the scanner CE):
 
-1. **Everything works forever without a key.** All 22 sources, all 6 checks, reports,
+1. **Everything works forever without a key.** All 23 sources, all 6 checks, reports,
    history and exports — no trial countdown, no feature held back, no "activate to
    continue" screens. (v1 had a 14-day trial after which new checks paused; that wall
    was removed — it contradicted the "free forever" promise.)

@@ -36,10 +36,11 @@ rest of the check (per-source isolation). Re-run the check to retry.
 
 ## Where does the data come from?
 
-22 keyless public sources — breach databases (XposedOrNot, HIBP Pwned Passwords),
+23 keyless public sources — breach databases (XposedOrNot, HIBP Pwned Passwords),
 infostealer corpus (HudsonRock), the COMB credential corpus (ProxyNova), disposable-email
 databases, the Maigret/WhatsMyName 150-site username corpus, Bluesky, Hacker News, GitHub
-public search, Shodan InternetDB, ipapi.is and more. Full table with attribution:
+public search, Shodan InternetDB, ipapi.is, DNS blocklists (Spamhaus ZEN, SpamCop,
+Barracuda) and more. Full table with attribution:
 [SOURCES.md](SOURCES.md).
 
 ## Can I turn sources off?
