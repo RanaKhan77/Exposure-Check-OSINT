@@ -16,7 +16,7 @@ GitHub public associations) and answers:
 
 ## 2. Username exposure 👤
 
-One username → which of 150 popular platforms (Maigret + WhatsMyName corpus) have that
+One username → which of 200 popular platforms (Maigret + WhatsMyName corpus) have that
 handle registered, rendered as a platform logo grid. Also Bluesky and Hacker News with
 profile details. Each found account is a public identity footprint.
 
