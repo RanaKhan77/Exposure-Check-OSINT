@@ -40,7 +40,7 @@ one honest card per source — with severity badges, per-source evidence, and an
 score that never fakes a pass (100 = clean, 0 = maximum exposure):
 
 - 📧 **Email** → breaches, stealer-log infections, disposable flags, public-code associations
-- 👤 **Username** → registered on which of 150 platforms (logo grid), Bluesky, Hacker News
+- 👤 **Username** → registered on which of 200 platforms (logo grid), Bluesky, Hacker News
 - 📱 **Phone** → validity, country, line type, COMB leak association
 - 🔑 **Password** → HIBP Pwned Passwords with **k-anonymity** (only a 5-char hash prefix leaves your browser — the password never does)
 - 🌐 **IP** → open ports (Shodan InternetDB), VPN/proxy/hosting classification
@@ -83,7 +83,7 @@ Export any stored check as JSON or CSV — report page, history table, or right 
 | Check | Input | What it answers |
 |-------|-------|-----------------|
 | 📧 Email exposure | any email | Which breaches / stealer logs / COMB corpora contain it · disposable? · Gravatar? · which of ~120 platforms hold an account |
-| 👤 Username exposure | one username | Which of 150 platforms have it registered (logo grid, confidence tiers: confirmed vs probable) · Bluesky · Hacker News |
+| 👤 Username exposure | one username | Which of 200 platforms have it registered (logo grid, confidence tiers: confirmed vs probable) · Bluesky · Hacker News |
 | 📱 Phone exposure | E.164 number | Valid, country, line type, carrier class · COMB leak association |
 | 🔑 Password exposure | a password | How many times it appears in breach corpora — **hashed in your browser, 5-char prefix only** |
 | 🗺️ Domain infrastructure | a domain | CT-log subdomain history (every hostname that ever got a TLS certificate) · RDAP registrar, dates and statuses — registration age as a fraud/trust signal |
@@ -99,8 +99,8 @@ DNS), all toggleable on the Settings page:
 **Breach & stealer (5):** HudsonRock infostealer corpus · XposedOrNot breach analytics ·
 ProxyNova COMB (11B+ pairs) · HIBP Pwned Passwords (k-anonymity) · LeakLens phone/username breach search
 
-**Username & social (3):** Maigret + WhatsMyName corpus (150 sites, logo grid) ·
-Bluesky (AT Protocol) · Hacker News
+**Username & social (5):** Maigret + WhatsMyName corpus (200 sites, logo grid) ·
+Bluesky (AT Protocol) · Hacker News · Keybase linked-identity proofs · GitHub commit-email pivot
 
 **Email intelligence (8):** Mailcheck · Gravatar · Disify · Kickbox Open · FachaTemp ·
 Presend · disposable-domain blocklist · GitHub public search
@@ -139,7 +139,7 @@ Full honest breakdown of every byte that leaves the server: **[docs/PRIVACY.md](
 This project is open source (Apache-2.0). **There is no license wall** (v2, Oct 2026 — same
 policy as the scanner CE):
 
-1. **Everything works forever without a key.** All 23 sources, all 6 checks, reports,
+1. **Everything works forever without a key.** All 25 sources, all 6 checks, reports,
    history and exports — no trial countdown, no feature held back, no "activate to
    continue" screens. (v1 had a 14-day trial after which new checks paused; that wall
    was removed — it contradicted the "free forever" promise.)
