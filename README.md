@@ -14,7 +14,7 @@
 [![Docker](https://img.shields.io/badge/install-one%20command-2496ED.svg)](#-quick-start)
 
 Check your personal identifiers against **25 free OSINT sources** — breach databases,
-infostealer corpora, 11B+ leaked credential pairs, 150+ platform username registries —
+infostealer corpora, 11B+ leaked credential pairs, 200+ platform username registries —
 from your own server, with your own eyes.
 
 **The companion OSINT tool to the [202-scanner Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner).**
