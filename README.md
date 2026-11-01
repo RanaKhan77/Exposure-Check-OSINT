@@ -169,7 +169,7 @@ discipline of a commercial scanner company, and zero AI cost forever.
 |---|---|
 | Personal identifier exposure (email/username/phone/password/IP) | **This repo** |
 | Domain & website vulnerability scanning (202 modules) | [Website-Vulnerability-Scanner](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) |
-| A curated map of 519 free security tools | [awesome-cyber-security-heaven](https://github.com/RanaKhan77/awesome-cyber-security-heaven) |
+| One of the largest curated collections of free security tools | [awesome-cyber-security-heaven](https://github.com/RanaKhan77/awesome-cyber-security-heaven) |
 
 ## 🤝 Contributing
 
@@ -199,7 +199,7 @@ pass the contract tests (`vendor/bin/phpunit`).
 | Repo | What it does |
 |------|--------------|
 | [Website-Vulnerability-Scanner](https://github.com/RanaKhan77/Website-Vulnerability-Scanner) | The 202-module self-hosted domain/website vulnerability scanner (the natural next step after you check yourself) |
-| [awesome-cyber-security-heaven](https://github.com/RanaKhan77/awesome-cyber-security-heaven) | The 519-tool curated map of the best free security tools, license-verified |
+| [awesome-cyber-security-heaven](https://github.com/RanaKhan77/awesome-cyber-security-heaven) | One of the largest curated maps of the best free security tools — hand-picked and license-verified |
 | [2mny.com](https://2mny.com) | The hosted commercial platform both CAs are extracted from |
 
 ## 📄 License
