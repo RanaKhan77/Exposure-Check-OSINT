@@ -54,7 +54,43 @@ class IpapiIsSource implements OsintSource
         }
 
         $j = $resp->json();
-        if (!is_array($j) || !is_array($j['ip'] ?? null)) {
+        if (!is_array($j)) {
+            return ['status' => 'unavailable', 'summary' => 'IP classification returned an unexpected response.', 'data' => []];
+        }
+
+        // W69 (2026-11-01): ipapi.is changed their response shape. Legacy:
+        // {"ip": {object with flags...}, "risk_score": N}. Current free tier:
+        // FLAT {"ip":"8.8.8.8","is_bogon":false,"company":"...","asn":"AS...",
+        // "city":"...","country":"..."} — detection flags (is_datacenter,
+        // is_vpn, is_proxy, risk_score) are key-gated now. Accept both.
+        if (is_array($j['ip'] ?? null)) {
+            $ip = $j['ip'];
+        } elseif (is_string($j['ip'] ?? null)) {
+            // flat shape: geo/company only, honest about missing flags
+            $flat = [
+                'company' => (string) ($j['company'] ?? ''),
+                'country' => (string) ($j['country'] ?? ''),
+                'is_bogon' => (bool) ($j['is_bogon'] ?? false),
+            ];
+            $data = [
+                'company' => $flat['company'],
+                'datacenter' => false,
+                'vpn' => false,
+                'tor' => false,
+                'proxy' => false,
+                'abuser' => false,
+                'risk_score' => 0,
+                'country' => $flat['country'],
+                'asn' => (string) ($j['asn'] ?? ''),
+            ];
+            return [
+                'status' => 'clean',
+                'summary' => 'Geo/company: ' . trim($flat['company'] . ' (' . $flat['country'] . ')')
+                    . '. VPN/proxy/datacenter classification flags require an ipapi.is API key (free tier serves geo/company only).',
+                'severity' => 'info',
+                'data' => $data,
+            ];
+        } else {
             return ['status' => 'unavailable', 'summary' => 'IP classification returned an unexpected response.', 'data' => []];
         }
 
