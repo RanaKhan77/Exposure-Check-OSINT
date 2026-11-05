@@ -18,7 +18,9 @@ GitHub public associations) and answers:
 
 One username → which of 200 popular platforms (Maigret + WhatsMyName corpus) have that
 handle registered, rendered as a platform logo grid. Also Bluesky and Hacker News with
-profile details. Each found account is a public identity footprint.
+profile details. Each found account is a public identity footprint. Platforms assessed
+with a definite "username free" verdict fold into a collapsed "not found on N other
+assessed platforms" line at the end of the card — found accounts stay big and first.
 
 ## 3. Phone exposure 📱
 
