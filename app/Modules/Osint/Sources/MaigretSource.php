@@ -246,9 +246,11 @@ class MaigretSource implements OsintSource
         if ($skipped > 0) {
             $data['sites_skipped_format'] = $skipped;
         }
-        if ($unavailable !== []) {
-            $data['unavailable_examples'] = array_slice($unavailable, 0, 5, true);
-        }
+        // W99 (2026-11-06, owner directive): per-site unavailability detail is
+        // OPERATOR-ONLY information — removed from the client payload entirely
+        // (the "N unavailable / did not answer" numbers must never reach the
+        // public results page). Admin visibility stays via the admin OSINT
+        // monitor and server logs.
 
         if ($n > 0) {
             $list = implode(', ', array_slice(array_column($found, 'site'), 0, 6));
@@ -269,8 +271,8 @@ class MaigretSource implements OsintSource
                 'status' => 'clean',
                 'severity' => 'info',
                 'summary' => sprintf(
-                    'No public account found for this username on any of the %d popular sites that answered (%d did not answer reliably).',
-                    $assessed, count($unavailable)
+                    'No public account found for this username on any of the %d popular sites checked.',
+                    $assessed
                 ),
                 'data' => $data,
             ];
@@ -278,11 +280,8 @@ class MaigretSource implements OsintSource
 
         return [
             'status' => 'unavailable',
-            'summary' => sprintf(
-                'Too few sites answered reliably this run (%d of %d) — result withheld rather than guessed.',
-                $assessed, count($sites)
-            ),
-            'data' => $data,
+            'summary' => 'Username footprint check could not complete reliably this run — result withheld rather than guessed.',
+            'data' => [],
         ];
     }
 
