@@ -163,6 +163,7 @@ class MaigretSource implements OsintSource
         $free = 0;
         $assessed = 0;
         $unavailable = [];
+        $clean = []; // W96 (2026-11-05): sites assessed with a definite "username free" verdict — shown small at the end
         $skipped = count($sites) - count($ordered);
 
         foreach ($ordered as $respName => [$name, $site]) {
@@ -190,6 +191,7 @@ class MaigretSource implements OsintSource
             } elseif ($verdict['state'] === 'free') {
                 $assessed++;
                 $free++;
+                $clean[] = (string) ($site['name'] ?? $name);
             } else {
                 $unavailable[$name] = $verdict['reason'] ?? 'unusable response';
             }
@@ -235,6 +237,11 @@ class MaigretSource implements OsintSource
         ];
         if ($accounts !== []) {
             $data['accounts'] = $accounts;
+        }
+        // W96 (2026-11-05): "not found" summary list (owner directive: found big
+        // first, everything empty collapsed small at the end).
+        if ($clean !== []) {
+            $data['clean_sites'] = array_slice($clean, 0, 160);
         }
         if ($skipped > 0) {
             $data['sites_skipped_format'] = $skipped;
