@@ -243,8 +243,16 @@
             }
         }
 
+        // W96: collapsed "not found" summary — found accounts stay big and first,
+        // the clean platforms collapse small at the end (owner directive)
+        if (Array.isArray(d.clean_sites) && d.clean_sites.length) {
+            html += '<details class="ox-clean"><summary>not found on ' + d.clean_sites.length +
+                    ' other assessed platforms</summary><span class="ox-clean-list">' +
+                    d.clean_sites.slice(0, 160).map(esc).join(' &middot; ') + '</span></details>';
+        }
+
         // data fields (skip the big grid/binary ones)
-        var skip = { accounts: 1, found_accounts: 1, profile_urls: 1, suffixes: 1, credential_lines: 1, unavailable_examples: 1, found_confirmed: 1, found_probable: 1 };
+        var skip = { accounts: 1, found_accounts: 1, profile_urls: 1, suffixes: 1, credential_lines: 1, unavailable_examples: 1, found_confirmed: 1, found_probable: 1, clean_sites: 1 };
         var kv = '';
         Object.keys(d).forEach(function (k) { if (!skip[k]) kv += fieldRow(k, d[k]); });
         if (kv) html += '<div class="ox-body">' + kv + '</div>';
@@ -394,5 +402,9 @@
     .ox-conf.conf-c { color:#34D399; }
     .ox-conf.conf-p { color:#FBBF24; }
     .ox-conf-line { color:#64748B; font-size:11px; margin-top:8px; }
+    .ox-clean { margin-top:8px; font-size:11px; color:#94A6C8; }
+    .ox-clean summary { cursor:pointer; color:#64748B; font-weight:600; }
+    .ox-clean[open] summary { margin-bottom:4px; }
+    .ox-clean-list { color:#94A6C8; word-break:break-word; line-height:1.7; }
 </style>
 @endpush

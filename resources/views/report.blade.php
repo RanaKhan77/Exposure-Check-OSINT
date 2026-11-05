@@ -91,6 +91,13 @@
                             @if (count($src['data']['found_accounts']) > 30)<span class="meta">+{{ count($src['data']['found_accounts']) - 30 }} more</span>@endif
                         </div>
                     @endif
+                    @if (!empty($src['data']['clean_sites']))
+                        <div style="margin-top:4px; font-size:11px; color:#94A6C8">
+                            <details><summary style="cursor:pointer; color:#64748B">not found on {{ count($src['data']['clean_sites']) }} other assessed platforms</summary>
+                                <span style="word-break:break-word">{{ implode(' &middot; ', array_slice($src['data']['clean_sites'], 0, 160)) }}</span>
+                            </details>
+                        </div>
+                    @endif
                 </td>
             </tr>
         @endforeach

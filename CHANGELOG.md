@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.7.1] — 2026-11-05
+
+### UX — Maigret "not found" summary (W96)
+
+- **Maigret clean-sites summary (`clean_sites`)** — platforms assessed with a definite
+  "username free" verdict now ship in the source data and render as a collapsed
+  "not found on N other assessed platforms" line at the END of the results card
+  (dashboard and printable report). Found accounts stay big and first — what matters
+  is where you WERE found; the quiet platforms fold away.
+
 ## [1.7.0] — 2026-10-29
 
 ### Sources — W58 OSINT repo deep-pass, round 2
