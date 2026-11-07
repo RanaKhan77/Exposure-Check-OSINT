@@ -55,7 +55,7 @@ server {
 
 Then set `APP_URL=https://exposure.example.com` in `.env` so generated links are correct.
 
-## Without Docker (PHP 8.3+ on a VPS)
+## Without Docker (PHP 8.4+ on a VPS)
 
 ```bash
 git clone https://github.com/RanaKhan77/Exposure-Check-OSINT.git && cd Exposure-Check-OSINT
@@ -68,7 +68,7 @@ php artisan migrate --force
 php artisan serve --host 127.0.0.1 --port 8080
 ```
 
-Requires: PHP 8.3+ with `pdo_sqlite`, `sqlite3`, `curl`, `mbstring`, `dom`, `openssl`.
+Requires: PHP 8.4+ with `pdo_sqlite`, `sqlite3`, `curl`, `mbstring`, `dom`, `openssl`.
 For a serious non-Docker deployment use php-fpm + your webserver. If you run
 `php artisan config:cache`, remember to re-run it after ANY `.env` change
 (cached config stops reading `.env` — the admin password is read at config
