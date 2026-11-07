@@ -1,5 +1,5 @@
 # =============================================================================
-# Exposure-Check-OSINT — single-container PHP 8.3 Apache image
+# Exposure-Check-OSINT — single-container PHP 8.5 Apache image
 # =============================================================================
 # Own-use Community Edition: Apache + mod_php + SQLite. One container, no
 # nginx/mysql/redis required. Put it behind your own TLS reverse proxy if you
@@ -10,7 +10,7 @@
 #             -v ec-storage:/var/www/html/storage exposure-check-osint
 # =============================================================================
 
-FROM php:8.3-apache
+FROM php:8.5-apache
 
 LABEL org.opencontainers.image.title="Exposure-Check-OSINT"
 LABEL org.opencontainers.image.description="Self-hosted personal exposure checker (email/username/phone/password/IP) — 19 keyless OSINT sources, no AI"
@@ -20,7 +20,7 @@ LABEL org.opencontainers.image.source="https://github.com/RanaKhan77/Exposure-Ch
 
 # ---- PHP extensions ---------------------------------------------------------
 # pdo_sqlite + sqlite3 are compiled into the official php image by default
-# (verified: `docker run --rm php:8.3-apache php -m | grep -i sqlite`).
+# (verified: `docker run --rm php:8.5-apache php -m | grep -i sqlite`).
 # unzip: composer needs zip extraction for dist installs.
 RUN apt-get update && apt-get install -y --no-install-recommends unzip \
     && rm -rf /var/lib/apt/lists/* \

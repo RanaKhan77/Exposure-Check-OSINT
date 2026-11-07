@@ -27,5 +27,5 @@ are usually an upstream hiccup, re-run the check.
 
 ## Code style
 
-PHP 8.2+, `declare(strict_types=1)`, ASCII-only in code, comments explain WHY.
+PHP 8.3+, `declare(strict_types=1)`, ASCII-only in code, comments explain WHY.
 The CI lints every file on three PHP versions — keep it green.

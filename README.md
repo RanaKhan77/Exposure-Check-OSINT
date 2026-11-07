@@ -8,7 +8,7 @@
 
 [![CI](https://github.com/RanaKhan77/Exposure-Check-OSINT/actions/workflows/ci.yml/badge.svg)](https://github.com/RanaKhan77/Exposure-Check-OSINT/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![PHP 8.2+](https://img.shields.io/badge/PHP-8.2%20%7C%208.3%20%7C%208.4-777BB4.svg)](composer.json)
+[![PHP 8.3+](https://img.shields.io/badge/PHP-8.3%20%7C%208.4%20%7C%208.5-777BB4.svg)](composer.json)
 [![No AI](https://img.shields.io/badge/verdicts-deterministic%20%C2%B7%20zero%20AI-22D3EE.svg)](#-why-no-ai-is-a-feature)
 [![Keyless](https://img.shields.io/badge/sources-25%20%C2%B7%20all%20keyless-34D399.svg)](#%EF%B8%8F-the-25-sources)
 [![Docker](https://img.shields.io/badge/install-one%20command-2496ED.svg)](#-quick-start)

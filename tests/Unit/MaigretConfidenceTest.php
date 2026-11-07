@@ -136,6 +136,8 @@ class MaigretConfidenceTest extends TestCase
         $r = $src->parse('username', 'doctor', $responses);
         // only 1 site assessed < MIN_ASSESSED_FOR_CLEAN(10) -> honest unavailable
         $this->assertSame('unavailable', $r['status']);
-        $this->assertSame(0, $r['data']['sites_found']);
+        // W99 (2026-11-06): on 'unavailable' the client payload stays empty —
+        // unavailability detail is operator-only, so no keys must leak here.
+        $this->assertSame([], $r['data']);
     }
 }
