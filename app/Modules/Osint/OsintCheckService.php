@@ -27,6 +27,7 @@ use App\Modules\Osint\Sources\PwnedPasswordsSource;
 use App\Modules\Osint\Sources\ProxyNovaCombSource;
 use App\Modules\Osint\Sources\RdapSource;
 use App\Modules\Osint\Sources\ShodanInternetDbSource;
+use App\Modules\Osint\Sources\SiteProbeSource;
 use App\Modules\Osint\Sources\BotCidrSource;
 use App\Modules\Osint\Sources\LeakLensSource;
 use App\Modules\Osint\Sources\XposedOrNotSource;
@@ -67,6 +68,7 @@ class OsintCheckService
     public const SOURCES = [
         HudsonRockSource::class,
         MaigretSource::class,
+        SiteProbeSource::class,
         XposedOrNotSource::class,
         ProxyNovaCombSource::class,
         PwnedPasswordsSource::class,

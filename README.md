@@ -10,10 +10,10 @@
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![PHP 8.4+](https://img.shields.io/badge/PHP-8.4%20%7C%208.5-777BB4.svg)](composer.json)
 [![No AI](https://img.shields.io/badge/verdicts-deterministic%20%C2%B7%20zero%20AI-22D3EE.svg)](#-why-no-ai-is-a-feature)
-[![Keyless](https://img.shields.io/badge/sources-25%20%C2%B7%20all%20keyless-34D399.svg)](#%EF%B8%8F-the-25-sources)
+[![Keyless](https://img.shields.io/badge/sources-310%20%C2%B7%20all%20keyless-34D399.svg)](#%EF%B8%8F-the-25-sources)
 [![Docker](https://img.shields.io/badge/install-one%20command-2496ED.svg)](#-quick-start)
 
-Check your personal identifiers against **25 free OSINT sources** — breach databases,
+Check your personal identifiers against **310 keyless site checks across 26 source lanes** — breach databases,
 infostealer corpora, 11B+ leaked credential pairs, 200+ platform username registries —
 from your own server, with your own eyes.
 
@@ -27,7 +27,7 @@ from your own server, with your own eyes.
 
 ## 📸 What you get — real screenshots, live product
 
-<img src="assets/dashboard-preview.png" width="880" alt="Exposure Check dashboard — one input, 6 identifier types, 25 keyless sources, live corpus stats"/>
+<img src="assets/dashboard-preview.png" width="880" alt="Exposure Check dashboard — one input, 6 identifier types, 26 keyless source lanes, live corpus stats"/>
 
 **The dashboard.** Paste any identifier — the type is auto-detected, the corpus stats
 (1,047+ breaches, 17.8B+ leaked records, 37M stealer infections) are computed from the
@@ -74,7 +74,7 @@ docker compose exec app php artisan ec:doctor     # add --json for machine-reada
 ```
 
 ```
-Sign in → paste an email → watch 25 sources answer in parallel → open the printable report.
+Sign in → paste an email → watch 26 source lanes answer in parallel → open the printable report.
 Export any stored check as JSON or CSV — report page, history table, or right after a live check.
 ```
 
@@ -91,7 +91,7 @@ Export any stored check as JSON or CSV — report page, history table, or right 
 
 Full explanations with screenshots-level detail: [docs/CHECKS.md](docs/CHECKS.md).
 
-## 🛰️ The 25 Sources
+## 🛰️ The 26 Source Lanes (310 site checks)
 
 All **keyless** (no API key, no account, no cost), all read-only lookups (HTTPS or plain
 DNS), all toggleable on the Settings page:
@@ -99,7 +99,7 @@ DNS), all toggleable on the Settings page:
 **Breach & stealer (5):** HudsonRock infostealer corpus · XposedOrNot breach analytics ·
 ProxyNova COMB (11B+ pairs) · HIBP Pwned Passwords (k-anonymity) · LeakLens phone/username breach search
 
-**Username & social (5):** Maigret + WhatsMyName corpus (200 sites, logo grid) ·
+**Username & social (6):** **Site Probe Registry (85 decoy-gated sites — NEW 1.8.0: independently re-derived & live-verified, 36 hosts deduped against the Maigret lane)** · Maigret + WhatsMyName corpus (200 sites, logo grid) ·
 Bluesky (AT Protocol) · Hacker News · Keybase linked-identity proofs · GitHub commit-email pivot
 
 **Email intelligence (8):** Mailcheck · Gravatar · Disify · Kickbox Open · FachaTemp ·
@@ -114,7 +114,7 @@ degradation when a zone refuses your resolver)
 Per-source endpoints, attribution and license notes: **[docs/SOURCES.md](docs/SOURCES.md)**.
 
 Prefer reading offline? Every documentation section also ships as a print-ready PDF in
-**[pdfs/](pdfs/)** — overview guide, the 6 checks, the 25 sources, self-hosting,
+**[pdfs/](pdfs/)** — overview guide, the 6 checks, the source guide, self-hosting,
 privacy and FAQ.
 
 ## 🧠 Why "no AI" is a feature
@@ -139,7 +139,7 @@ Full honest breakdown of every byte that leaves the server: **[docs/PRIVACY.md](
 This project is open source (Apache-2.0). **There is no license wall** (v2, Oct 2026 — same
 policy as the scanner CE):
 
-1. **Everything works forever without a key.** All 25 sources, all 6 checks, reports,
+1. **Everything works forever without a key.** All 26 source lanes, all 6 checks, reports,
    history and exports — no trial countdown, no feature held back, no "activate to
    continue" screens. (v1 had a 14-day trial after which new checks paused; that wall
    was removed — it contradicted the "free forever" promise.)

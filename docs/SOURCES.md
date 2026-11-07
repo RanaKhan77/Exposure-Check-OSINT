@@ -60,3 +60,31 @@ the class in `OsintCheckService::SOURCES`, add a row here. The contract is docum
 `app/Modules/Osint/Sources/OsintSource.php` — including the non-negotiable ethical rules (never
 return plaintext credentials, never return third-party personal data, always degrade to
 `unavailable` on failure).
+
+## Site Probe Registry (source lane 26 — v1.8.0, W109)
+
+**What:** native username enumeration across 85 sites — dev forges (GNOME/Debian/Arch
+GitLabs, Codeberg, SourceHut…), fediverse instances (mastodon/misskey family), Wikimedia
+sister projects, marketplaces, learning platforms, gaming trackers, publishing hosts.
+
+**How sites earn a registry slot (admission gate, 2026-11-07):**
+
+1. **Decoy gate** — a random nonexistent username must NOT look "found" (kills
+   soft-404/wildcard/login-wall false positives). Failing sites are rejected outright.
+2. **Exemplar check** — where a known account exists, it must look "found"
+   (tier A = both directions proven; tier B = decoy-gated only).
+3. **Dedupe** — hosts already covered by the Maigret lane (200 sites) are excluded.
+
+**Provenance / license firewall:** URL patterns and HTTP status codes are
+uncopyrightable facts, independently re-derived and live-verified from our own egress.
+No third-party registry file was copied; GPL-licensed OSINT registries were consulted
+as concepts only. The registry config header documents this for auditors.
+
+**Runtime honesty:** per-site tristate (hit / clean / unavailable); decoy verdicts are
+cached 7 days (username-independent) and refreshed by the weekly `site:health`
+self-test, which also detects exemplar drift (site redesigns, new login walls).
+Unreliable sites are skipped automatically — they can never fake a clean pass.
+
+**Severity discipline:** a public profile page is public information — 1-9 hits = low,
+10+ = medium (mirrors the Maigret lane). Never presented as a breach.
+

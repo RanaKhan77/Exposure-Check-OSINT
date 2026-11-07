@@ -1,5 +1,32 @@
 # Changelog
 
+## [1.8.0] — 2026-11-07
+
+### Sources — Site Probe Registry (W109): 85 new decoy-gated sites
+
+- **Source lane 26: Site Probe Registry** — native username enumeration across
+  **85 independently re-derived and live-verified sites** (tier A = decoy-gated
+  AND exemplar-proven; tier B = decoy-gated). Every entry passed the DECOY
+  GATE on 2026-11-07: a random nonexistent username must NOT look "found" —
+  the false-positive suppressor for soft-404/wildcard pages. Hosts already
+  covered by the Maigret lane were deduped (36 overlaps removed).
+- **License firewall** — URL patterns and status codes are uncopyrightable
+  facts, re-derived from scratch and verified from our own egress; no
+  third-party registry file was copied (GPL projects consulted conceptually
+  only). Registry provenance header documents this.
+- **Decoy cache** — decoy verdicts are username-independent and cached 7 days
+  (refreshed by `site:health`), so a check pays the decoy cost once per site,
+  never per username.
+- **`site:health` command (weekly, Mon 04:20)** — registry self-test: fresh
+  decoy probe per site + exemplar drift detection; tier-A failures exit 1
+  (CI-friendly). Unreliable sites are skipped by checks automatically.
+- Tristate honesty per site: `hit` | `clean` | `unavailable` — transport
+  errors and ambiguous rules are never counted as clean.
+- Total: **26 source lanes · 310 keyless site checks** (25 API sources +
+  Maigret 200 + Site Probe 85).
+- Tests: SiteProbeSourceTest (registry integrity, unique hosts, rule shapes,
+  parse tristates) — suite 58 tests / 1,183 assertions green on PHP 8.4/8.5.
+
 ## [1.7.1] — 2026-11-05
 
 ### UX — Maigret "not found" summary (W96)

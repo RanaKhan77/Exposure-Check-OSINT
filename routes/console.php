@@ -1,5 +1,12 @@
 <?php
 
+// W109: site-probe registry self-test — decoy gate + exemplar drift
+// detection for every registry entry (config/site-probe-registry.php).
+// Weekly; exit 1 on tier-A failures (CI-friendly).
+use Illuminate\Support\Facades\Schedule;
+
+Schedule::command('site:health')->weeklyOn(1, '04:20')->name('site-health');
+
 // ============================================================================
 // COMMUNITY LICENSE
 // ============================================================================
