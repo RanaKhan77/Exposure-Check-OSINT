@@ -25,7 +25,7 @@ class DoctorCommandTest extends TestCase
         config(['app.admin_password' => 'doctor-test']);
     }
 
-    public function test_doctor_is_registered_and_reports_healthy_install_as_json(): void
+    public function testDoctorIsRegisteredAndReportsHealthyInstallAsJson(): void
     {
         Http::fake(['*' => Http::response('ok', 200)]);
 
@@ -63,7 +63,7 @@ class DoctorCommandTest extends TestCase
         $this->assertSame('PASS', $byName['Maigret site database']['status']);
     }
 
-    public function test_doctor_warns_not_fails_when_a_source_is_unreachable(): void
+    public function testDoctorWarnsNotFailsWhenASourceIsUnreachable(): void
     {
         // Everything times out (transport failure) — that is a WARN, never a FAIL.
         Http::fake(function () {
@@ -81,7 +81,7 @@ class DoctorCommandTest extends TestCase
         }
     }
 
-    public function test_doctor_fails_when_app_key_is_missing(): void
+    public function testDoctorFailsWhenAppKeyIsMissing(): void
     {
         config(['app.key' => null]);
         Http::fake(['*' => Http::response('ok', 200)]);

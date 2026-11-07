@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.8.1] — 2026-11-08
+
+### Quality — static-analysis zero on the v1.8.0 diff
+
+- **PSR-12 cleanup of the v1.8.0 diff** (external analysis had reported 14
+  new findings): multi-line brace style in `SiteProbeSource` accessors,
+  line-length wraps in `SiteProbeSource` / `SiteHealthCommand` /
+  `OsintCheckService` / `SiteProbeSourceTest`, registry config header
+  spacing.
+- **Defensive guard** in `SiteProbeSource::parse()` — the previously unused
+  interface parameter (`$type`) now short-circuits non-username types
+  instead of relying solely on `supports()`.
+- **Test suite renamed to camelCase** (58 methods, 9 files) — PSR-1/PSR-12
+  method naming; removes the whole issue class for future releases.
+- No behavior changes; suite green on PHP 8.4 and 8.5.
+
 ## [1.8.0] — 2026-11-07
 
 ### Sources — Site Probe Registry (W109): 85 new decoy-gated sites

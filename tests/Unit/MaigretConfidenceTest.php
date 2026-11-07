@@ -55,7 +55,7 @@ class MaigretConfidenceTest extends TestCase
         return new Response(new Psr7Response($status, [], $body));
     }
 
-    public function test_hits_are_tiered_confirmed_vs_probable(): void
+    public function testHitsAreTieredConfirmedVsProbable(): void
     {
         $src = new MaigretSource();
         $reqs = $src->requests('username', 'doctor');
@@ -90,7 +90,7 @@ class MaigretConfidenceTest extends TestCase
         $this->assertStringContainsString('1 probable by status code alone', (string) $r['summary']);
     }
 
-    public function test_clean_verdict_has_zero_confidence_counts(): void
+    public function testCleanVerdictHasZeroConfidenceCounts(): void
     {
         // MIN_ASSESSED_FOR_CLEAN is 10 — build 12 sites so 'clean' is honest.
         $sites = [];
@@ -122,7 +122,7 @@ class MaigretConfidenceTest extends TestCase
         $this->assertStringContainsString('No public account found', (string) $r['summary']);
     }
 
-    public function test_unavailable_sites_never_become_hits(): void
+    public function testUnavailableSitesNeverBecomeHits(): void
     {
         $src = new MaigretSource();
         $reqs = $src->requests('username', 'doctor');

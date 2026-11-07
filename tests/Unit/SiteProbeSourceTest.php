@@ -23,7 +23,7 @@ class SiteProbeSourceTest extends TestCase
         return new SiteProbeSource();
     }
 
-    public function test_contract_basics(): void
+    public function testContractBasics(): void
     {
         $s = $this->src();
         $this->assertSame('site_probe', $s->key());
@@ -35,7 +35,7 @@ class SiteProbeSourceTest extends TestCase
         $this->assertFalse($s->supports('phone'));
     }
 
-    public function test_registry_is_present_and_sane(): void
+    public function testRegistryIsPresentAndSane(): void
     {
         // reach into the private loader via requests() (registry-driven)
         $reqs = $this->src()->requests('username', 'probeuser');
@@ -52,7 +52,11 @@ class SiteProbeSourceTest extends TestCase
             $hosts[] = parse_url($r['url'], PHP_URL_HOST);
         }
         $this->assertEquals(count($names), count(array_unique($names)), 'site names must be unique');
-        $this->assertEquals(count($hosts), count(array_unique($hosts)), 'site hosts must be unique (no maigret overlap)');
+        $this->assertEquals(
+            count($hosts),
+            count(array_unique($hosts)),
+            'site hosts must be unique (no maigret overlap)'
+        );
     }
 
     private function resp(int $status, string $body = ''): Response
@@ -60,7 +64,7 @@ class SiteProbeSourceTest extends TestCase
         return new Response(new PsrResponse($status, ['Content-Type' => 'text/html'], $body));
     }
 
-    public function test_parse_reports_hits_and_clean(): void
+    public function testParseReportsHitsAndClean(): void
     {
         // build a mini-registry by slicing requests() output: use the first
         // two probe sites and fake responses for them
@@ -93,7 +97,7 @@ class SiteProbeSourceTest extends TestCase
         }
     }
 
-    public function test_parse_all_unavailable_is_never_a_clean_pass(): void
+    public function testParseAllUnavailableIsNeverACleanPass(): void
     {
         $reqs = $this->src()->requests('username', 'x');
         $responses = [];
@@ -111,7 +115,7 @@ class SiteProbeSourceTest extends TestCase
         $this->assertGreaterThan(0, $out['data']['unavailable']);
     }
 
-    public function test_rejects_non_username_types(): void
+    public function testRejectsNonUsernameTypes(): void
     {
         $this->assertSame([], $this->src()->requests('email', 'a@b.c'));
         $this->assertSame([], $this->src()->requests('domain', 'x.com'));

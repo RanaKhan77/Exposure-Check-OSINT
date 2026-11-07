@@ -170,7 +170,10 @@ class OsintCheckService
         // ---- Phase 2: single parallel pool ----------------------------------
         $responses = [];
         if ($specs !== []) {
-            $ua = (string) $this->settings->get('user_agent', 'Exposure-Check-OSINT/1.0 (+https://github.com/RanaKhan77/Exposure-Check-OSINT)');
+            $ua = (string) $this->settings->get(
+                'user_agent',
+                'Exposure-Check-OSINT/1.0 (+https://github.com/RanaKhan77/Exposure-Check-OSINT)'
+            );
             $responses = Http::pool(function (Pool $pool) use ($specs, $ua) {
                 $pending = [];
                 foreach ($specs as $spec) {

@@ -17,6 +17,7 @@
  * copied (GPL projects were consulted conceptually only).
  * Refresh verdicts with: php artisan site:health
  */
+
 return [
     'sites' => [
         [

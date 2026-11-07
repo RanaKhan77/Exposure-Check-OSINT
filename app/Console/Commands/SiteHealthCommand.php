@@ -114,7 +114,10 @@ class SiteHealthCommand extends Command
         if (!empty($site['nf_string']) && str_contains(strtolower($body), strtolower((string) $site['nf_string']))) {
             return false;
         }
-        if (!empty($site['found_string']) && str_contains(strtolower($body), strtolower((string) $site['found_string']))) {
+        if (
+            !empty($site['found_string'])
+            && str_contains(strtolower($body), strtolower((string) $site['found_string']))
+        ) {
             return true;
         }
         $nfs = $site['not_found_status'] ?? null;

@@ -41,9 +41,20 @@ class SiteProbeSource implements OsintSource
     private const DECOY_CACHE_KEY = 'siteprobe:decoy:';
     private const DECOY_MAX_PER_CHECK = 12;
 
-    public function key(): string { return 'site_probe'; }
-    public function label(): string { return 'Site Probe Registry'; }
-    public function category(): string { return 'profile'; }
+    public function key(): string
+    {
+        return 'site_probe';
+    }
+
+    public function label(): string
+    {
+        return 'Site Probe Registry';
+    }
+
+    public function category(): string
+    {
+        return 'profile';
+    }
 
     public function supports(string $type): bool
     {
@@ -85,6 +96,10 @@ class SiteProbeSource implements OsintSource
      */
     public function parse(string $type, string $identifier, array $responses): array
     {
+        if ($type !== 'username') {
+            return [];
+        }
+
         $hits = [];
         $clean = 0;
         $unavailable = 0;
@@ -130,7 +145,8 @@ class SiteProbeSource implements OsintSource
         if ($n === 0) {
             return [
                 'status' => 'clean',
-                'summary' => "No profiles found for \"{$identifier}\" across " . count($this->registrySites()) . ' probed sites.',
+                'summary' => 'No profiles found for "' . $identifier . '" across '
+                    . count($this->registrySites()) . ' probed sites.',
                 'data' => ['checked' => count($this->registrySites()), 'clean' => $clean,
                            'unavailable' => $unavailable, 'unreliable' => $unreliable, 'hits' => []],
                 'severity' => 'info',
@@ -164,7 +180,10 @@ class SiteProbeSource implements OsintSource
         if (!empty($site['nf_string']) && str_contains(strtolower($body), strtolower((string) $site['nf_string']))) {
             return false;
         }
-        if (!empty($site['found_string']) && str_contains(strtolower($body), strtolower((string) $site['found_string']))) {
+        if (
+            !empty($site['found_string'])
+            && str_contains(strtolower($body), strtolower((string) $site['found_string']))
+        ) {
             return true;
         }
         $nfs = $site['not_found_status'] ?? null;
@@ -197,7 +216,10 @@ class SiteProbeSource implements OsintSource
                     $all = is_array($loaded) ? ($loaded['sites'] ?? null) : null;
                 }
             }
-            $sites = array_values(array_filter(is_array($all) ? $all : [], fn ($s) => is_array($s) && !empty($s['url'])));
+            $sites = array_values(array_filter(
+                is_array($all) ? $all : [],
+                fn ($s) => is_array($s) && !empty($s['url'])
+            ));
         }
         return $sites;
     }

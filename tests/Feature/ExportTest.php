@@ -40,7 +40,8 @@ class ExportTest extends TestCase
                     'data' => [
                         'found_accounts' => [
                             ['site' => 'GitHub', 'url' => 'https://github.com/doctor', 'confidence' => 'confirmed'],
-                            ['site' => 'ExampleSite', 'url' => 'https://example.org/doctor', 'confidence' => 'probable'],
+                            ['site' => 'ExampleSite', 'url' => 'https://example.org/doctor',
+                             'confidence' => 'probable'],
                         ],
                         'found_confirmed' => 1,
                         'found_probable' => 1,
@@ -62,14 +63,14 @@ class ExportTest extends TestCase
         ]);
     }
 
-    public function test_exports_require_admin_session(): void
+    public function testExportsRequireAdminSession(): void
     {
         $check = $this->makeCheck();
         $this->get(route('report.export', [$check, 'json']))->assertRedirect(route('login'));
         $this->get(route('report.export', [$check, 'csv']))->assertRedirect(route('login'));
     }
 
-    public function test_json_export_downloads_full_structure_without_credentials(): void
+    public function testJsonExportDownloadsFullStructureWithoutCredentials(): void
     {
         $check = $this->makeCheck();
         $this->post('/login', ['password' => 'test-password-123']);
@@ -77,7 +78,10 @@ class ExportTest extends TestCase
         $resp = $this->get(route('report.export', [$check, 'json']));
         $resp->assertOk();
         $resp->assertHeader('Content-Type', 'application/json');
-        $this->assertStringContainsString('attachment; filename="exposure-check-1-username.json"', (string) $resp->headers->get('Content-Disposition'));
+        $this->assertStringContainsString(
+            'attachment; filename="exposure-check-1-username.json"',
+            (string) $resp->headers->get('Content-Disposition')
+        );
 
         $json = $resp->json();
         $this->assertSame('Exposure-Check-OSINT', $json['product']);
@@ -93,7 +97,7 @@ class ExportTest extends TestCase
         $this->assertStringNotContainsString('doctor@', $raw);
     }
 
-    public function test_csv_export_is_one_row_per_source_with_bom(): void
+    public function testCsvExportIsOneRowPerSourceWithBom(): void
     {
         $check = $this->makeCheck();
         $this->post('/login', ['password' => 'test-password-123']);
@@ -101,7 +105,10 @@ class ExportTest extends TestCase
         $resp = $this->get(route('report.export', [$check, 'csv']));
         $resp->assertOk();
         $this->assertStringContainsString('text/csv', (string) $resp->headers->get('Content-Type'));
-        $this->assertStringContainsString('attachment; filename=exposure-check-1-username.csv', (string) $resp->headers->get('Content-Disposition'));
+        $this->assertStringContainsString(
+            'attachment; filename=exposure-check-1-username.csv',
+            (string) $resp->headers->get('Content-Disposition')
+        );
 
         $body = $resp->streamedContent();
         $this->assertStringStartsWith("\xEF\xBB\xBF", $body); // UTF-8 BOM for Excel
@@ -113,7 +120,7 @@ class ExportTest extends TestCase
         $this->assertStringNotContainsString('hunter2', $body);
     }
 
-    public function test_password_check_exports_honest_empty_sources(): void
+    public function testPasswordCheckExportsHonestEmptySources(): void
     {
         $check = ExposureCheck::create([
             'type' => 'password',
@@ -135,7 +142,7 @@ class ExportTest extends TestCase
         $this->assertNull($json['check']['exposure_score']);
     }
 
-    public function test_unknown_format_is_404(): void
+    public function testUnknownFormatIs404(): void
     {
         $check = $this->makeCheck();
         $this->post('/login', ['password' => 'test-password-123']);

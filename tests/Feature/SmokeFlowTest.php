@@ -23,14 +23,14 @@ class SmokeFlowTest extends TestCase
         config(['app.admin_password' => 'test-password-123']);
     }
 
-    public function test_login_page_renders(): void
+    public function testLoginPageRenders(): void
     {
         $resp = $this->get('/login');
         $resp->assertOk();
         $resp->assertSee('Admin password', false);
     }
 
-    public function test_login_works_with_configured_password_and_rejects_wrong_one(): void
+    public function testLoginWorksWithConfiguredPasswordAndRejectsWrongOne(): void
     {
         $this->post('/login', ['password' => 'wrong'])
             ->assertSessionHasErrors('password');
@@ -41,7 +41,7 @@ class SmokeFlowTest extends TestCase
         $this->get(route('dashboard'))->assertOk();
     }
 
-    public function test_dashboard_renders_its_script_and_type_tabs(): void
+    public function testDashboardRendersItsScriptAndTypeTabs(): void
     {
         $this->post('/login', ['password' => 'test-password-123']);
         $resp = $this->get(route('dashboard'));
@@ -56,7 +56,7 @@ class SmokeFlowTest extends TestCase
         $resp->assertSee(count(\App\Modules\Osint\OsintCheckService::SOURCES) . ' keyless sources');
     }
 
-    public function test_api_check_accepts_five_hex_password_prefix(): void
+    public function testApiCheckAcceptsFiveHexPasswordPrefix(): void
     {
         $this->post('/login', ['password' => 'test-password-123']);
 
@@ -74,7 +74,7 @@ class SmokeFlowTest extends TestCase
         }
     }
 
-    public function test_api_check_rejects_bad_identifier(): void
+    public function testApiCheckRejectsBadIdentifier(): void
     {
         $this->post('/login', ['password' => 'test-password-123']);
         $this->postJson('/api/check', ['type' => 'email', 'q' => 'not-an-email'])
@@ -87,7 +87,7 @@ class SmokeFlowTest extends TestCase
         $this->assertContains($resp->status(), [200, 429], 'domain check failed: ' . $resp->status());
     }
 
-    public function test_settings_page_renders_real_checked_attributes(): void
+    public function testSettingsPageRendersRealCheckedAttributes(): void
     {
         $this->post('/login', ['password' => 'test-password-123']);
         $resp = $this->get(route('settings'));
@@ -98,7 +98,7 @@ class SmokeFlowTest extends TestCase
         $this->assertStringContainsString('checked', $resp->getContent());
     }
 
-    public function test_license_page_renders_on_fresh_install(): void
+    public function testLicensePageRendersOnFreshInstall(): void
     {
         $this->post('/login', ['password' => 'test-password-123']);
         $this->get(route('license'))

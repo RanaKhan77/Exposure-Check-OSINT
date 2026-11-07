@@ -46,7 +46,7 @@ final class LeakLensSourceTest extends TestCase
         return ['leaklens.main' => $resp];
     }
 
-    public function test_supports_phone_and_username_only(): void
+    public function testSupportsPhoneAndUsernameOnly(): void
     {
         $this->assertTrue($this->src->supports('phone'));
         $this->assertTrue($this->src->supports('username'));
@@ -58,7 +58,7 @@ final class LeakLensSourceTest extends TestCase
         $this->assertFalse($this->src->supports('ip'));
     }
 
-    public function test_request_is_a_valid_stateless_mcp_call(): void
+    public function testRequestIsAValidStatelessMcpCall(): void
     {
         $specs = $this->src->requests('phone', '8801712345678');
         $this->assertCount(1, $specs);
@@ -74,20 +74,21 @@ final class LeakLensSourceTest extends TestCase
         $this->assertSame('+8801712345678', $body['params']['arguments']['phone']);
     }
 
-    public function test_username_request_uses_search_username_tool(): void
+    public function testUsernameRequestUsesSearchUsernameTool(): void
     {
         $body = json_decode((string) $this->src->requests('username', 'someuser')[0]['body'], true);
         $this->assertSame('search_username', $body['params']['name']);
         $this->assertSame('someuser', $body['params']['arguments']['username']);
     }
 
-    public function test_hit_exposes_aggregates_and_drops_credential_fields(): void
+    public function testHitExposesAggregatesAndDropsCredentialFields(): void
     {
         $inner = [
             'isExposed' => true,
             'exposedCount' => 2,
             'results' => [
-                ['breach' => 'Collection1', 'date' => '2019-01-07', 'records' => 772904991, 'email' => 'victim@example.com', 'password' => 'hunter2'],
+                ['breach' => 'Collection1', 'date' => '2019-01-07', 'records' => 772904991,
+                 'email' => 'victim@example.com', 'password' => 'hunter2'],
                 ['source' => 'MyFitnessPal', 'year' => '2018'],
             ],
             'degraded' => true,
@@ -106,7 +107,7 @@ final class LeakLensSourceTest extends TestCase
         $this->assertStringNotContainsString('hunter2', $flat);
     }
 
-    public function test_string_results_become_labels(): void
+    public function testStringResultsBecomeLabels(): void
     {
         $inner = ['isExposed' => true, 'exposedCount' => 2, 'results' => ['BreachA', 'BreachB'], 'degraded' => false];
         $r = $this->src->parse('phone', '8801712345678', $this->responses($this->mcp($inner)));
@@ -114,7 +115,7 @@ final class LeakLensSourceTest extends TestCase
         $this->assertSame(['BreachA', 'BreachB'], $r['data']['records']);
     }
 
-    public function test_clean_when_not_exposed_and_not_degraded(): void
+    public function testCleanWhenNotExposedAndNotDegraded(): void
     {
         $inner = ['isExposed' => false, 'exposedCount' => 0, 'results' => [], 'degraded' => false];
         $r = $this->src->parse('phone', '8801712345678', $this->responses($this->mcp($inner)));
@@ -122,22 +123,23 @@ final class LeakLensSourceTest extends TestCase
         $this->assertSame(0, $r['data']['exposures']);
     }
 
-    public function test_degraded_clean_is_unavailable_never_fake_clean(): void
+    public function testDegradedCleanIsUnavailableNeverFakeClean(): void
     {
         // the core honesty rule: upstreams errored, so "not found" is not trustworthy
-        $inner = ['isExposed' => false, 'exposedCount' => 0, 'results' => [], 'degraded' => true, 'errors' => ['leakcheck', 'xposedornot']];
+        $inner = ['isExposed' => false, 'exposedCount' => 0, 'results' => [], 'degraded' => true,
+            'errors' => ['leakcheck', 'xposedornot']];
         $r = $this->src->parse('username', 'someuser', $this->responses($this->mcp($inner)));
         $this->assertSame('unavailable', $r['status']);
         $this->assertStringContainsString('leakcheck', $r['summary']);
     }
 
-    public function test_mcp_isError_is_unavailable(): void
+    public function testMcpIsErrorIsUnavailable(): void
     {
         $r = $this->src->parse('username', 'someuser', $this->responses($this->mcp(['whatever' => 1], true)));
         $this->assertSame('unavailable', $r['status']);
     }
 
-    public function test_transport_error_is_unavailable(): void
+    public function testTransportErrorIsUnavailable(): void
     {
         $r = $this->src->parse('username', 'someuser', []);
         $this->assertSame('unavailable', $r['status']);
@@ -147,18 +149,22 @@ final class LeakLensSourceTest extends TestCase
         $this->assertSame('unavailable', $r['status']);
     }
 
-    public function test_malformed_envelope_is_unavailable(): void
+    public function testMalformedEnvelopeIsUnavailable(): void
     {
         $garbage = new Response(new Psr7Response(200, ['Content-Type' => 'application/json'], 'not json'));
         $r = $this->src->parse('username', 'someuser', $this->responses($garbage));
         $this->assertSame('unavailable', $r['status']);
 
-        $noText = new Response(new Psr7Response(200, ['Content-Type' => 'application/json'], json_encode(['result' => ['content' => []]])));
+        $noText = new Response(new Psr7Response(
+            200,
+            ['Content-Type' => 'application/json'],
+            json_encode(['result' => ['content' => []]])
+        ));
         $r = $this->src->parse('username', 'someuser', $this->responses($noText));
         $this->assertSame('unavailable', $r['status']);
     }
 
-    public function test_records_cap_at_ten(): void
+    public function testRecordsCapAtTen(): void
     {
         $results = [];
         for ($i = 1; $i <= 25; $i++) {

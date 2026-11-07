@@ -25,7 +25,7 @@ final class DnsblSourceTest extends TestCase
         $this->src = new DnsblSource();
     }
 
-    public function test_supports_ip_only(): void
+    public function testSupportsIpOnly(): void
     {
         $this->assertTrue($this->src->supports('ip'));
         foreach (['email', 'username', 'phone', 'password', 'domain'] as $t) {
@@ -33,7 +33,7 @@ final class DnsblSourceTest extends TestCase
         }
     }
 
-    public function test_identity_fields(): void
+    public function testIdentityFields(): void
     {
         $this->assertSame('dnsbl', $this->src->key());
         $this->assertMatchesRegularExpression('/^[a-z][a-z0-9_]*$/', $this->src->key());
@@ -41,25 +41,25 @@ final class DnsblSourceTest extends TestCase
         $this->assertNotSame('', $this->src->label());
     }
 
-    public function test_no_http_requests_ever(): void
+    public function testNoHttpRequestsEver(): void
     {
         $this->assertSame([], $this->src->requests('ip', '8.8.8.8'));
     }
 
-    public function test_ipv6_not_assessed_honestly(): void
+    public function testIpv6NotAssessedHonestly(): void
     {
         $r = $this->src->parse('ip', '2001:db8::1', []);
         $this->assertSame('unavailable', $r['status']);
         $this->assertStringContainsStringIgnoringCase('IPv4', $r['summary'] . json_encode($r['data']));
     }
 
-    public function test_garbage_input_not_assessed(): void
+    public function testGarbageInputNotAssessed(): void
     {
         $r = $this->src->parse('ip', 'not-an-ip', []);
         $this->assertSame('unavailable', $r['status']);
     }
 
-    public function test_result_shape_when_no_dns_available(): void
+    public function testResultShapeWhenNoDnsAvailable(): void
     {
         // A valid IPv4 that cannot be resolved in this environment still
         // yields a well-formed result with the three contract keys — the

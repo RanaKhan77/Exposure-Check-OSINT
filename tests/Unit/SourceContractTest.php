@@ -33,7 +33,7 @@ class SourceContractTest extends TestCase
         return new OsintCheckService(new SettingsService());
     }
 
-    public function test_every_source_implements_the_interface(): void
+    public function testEverySourceImplementsTheInterface(): void
     {
         foreach (OsintCheckService::SOURCES as $cls) {
             $this->assertContains(OsintSource::class, class_implements($cls), "$cls must implement OsintSource");
@@ -41,18 +41,22 @@ class SourceContractTest extends TestCase
         $this->assertNotEmpty(OsintCheckService::SOURCES);
     }
 
-    public function test_source_keys_are_unique_snake_case(): void
+    public function testSourceKeysAreUniqueSnakeCase(): void
     {
         $keys = [];
         foreach ($this->sources() as $src) {
             $key = $src->key();
-            $this->assertMatchesRegularExpression('/^[a-z][a-z0-9_]*$/', $key, get_class($src) . ' key must be snake_case');
+            $this->assertMatchesRegularExpression(
+                '/^[a-z][a-z0-9_]*$/',
+                $key,
+                get_class($src) . ' key must be snake_case'
+            );
             $keys[] = $key;
         }
         $this->assertCount(count(array_unique($keys)), $keys, 'source keys must be unique');
     }
 
-    public function test_categories_are_known(): void
+    public function testCategoriesAreKnown(): void
     {
         $valid = ['stealer', 'breach', 'reputation', 'profile', 'email', 'infra'];
         foreach ($this->sources() as $src) {
@@ -61,7 +65,7 @@ class SourceContractTest extends TestCase
         }
     }
 
-    public function test_check_types_include_domain_infra(): void
+    public function testCheckTypesIncludeDomainInfra(): void
     {
         // v1.3.0: the domain type surfaces a domain's public infrastructure
         // footprint (CT-log history, registry data) — the fraud/trust signal.
@@ -69,7 +73,7 @@ class SourceContractTest extends TestCase
         $this->assertSame(['email', 'username', 'phone', 'password', 'domain', 'ip'], OsintCheckService::TYPES);
     }
 
-    public function test_support_matrix_has_coverage_for_every_type(): void
+    public function testSupportMatrixHasCoverageForEveryType(): void
     {
         $byType = array_fill_keys(OsintCheckService::TYPES, 0);
         foreach ($this->sources() as $src) {
@@ -84,7 +88,7 @@ class SourceContractTest extends TestCase
         }
     }
 
-    public function test_request_specs_are_well_formed_for_sample_identifiers(): void
+    public function testRequestSpecsAreWellFormedForSampleIdentifiers(): void
     {
         $samples = [
             'email' => 'test@example.com',
@@ -110,7 +114,7 @@ class SourceContractTest extends TestCase
         }
     }
 
-    public function test_normalize_validates_inputs(): void
+    public function testNormalizeValidatesInputs(): void
     {
         $svc = $this->service();
         $this->assertSame('', $svc->normalize('email', 'not-an-email'));
@@ -124,7 +128,7 @@ class SourceContractTest extends TestCase
         $this->assertSame('', $svc->normalize('ip', '999.999.999.999'));
     }
 
-    public function test_masking_never_reveals_full_identifier(): void
+    public function testMaskingNeverRevealsFullIdentifier(): void
     {
         $svc = $this->service();
         $this->assertSame('j***e@gmail.com', $svc->mask('email', 'johndoe@gmail.com'));
@@ -133,7 +137,7 @@ class SourceContractTest extends TestCase
         $this->assertStringStartsWith('SHA-1', $svc->mask('password', '21BD1'));
     }
 
-    public function test_sanitize_for_storage_strips_credential_lines(): void
+    public function testSanitizeForStorageStripsCredentialLines(): void
     {
         $svc = $this->service();
         $payload = [
