@@ -15,7 +15,16 @@ Please include: reproduction steps, affected file(s), impact assessment. We
 respond within 72 hours and credit reporters in release notes unless you
 prefer to stay anonymous.
 
+## Static analysis & code scanning coverage
+
+- **PHP (the core language):** GitHub CodeQL does not support PHP, so PHP static coverage comes from Codacy (Semgrep, PHPMD, PHPCS/PSR-12) plus PHPStan (blocking, in CI) and the lint + contract-test matrix on PHP 8.4 / 8.5.
+- **GitHub Actions workflows:** analyzed by CodeQL (default setup, on push and weekly).
+- **Secrets & dependencies:** secret scanning and Dependabot alerts are enabled on this repository.
+
+If the GitHub Security tab shows code scanning "not analyzing the primary language of this repository", that is the CodeQL/PHP limitation described above — PHP is covered by the toolchain listed here, not by CodeQL.
+
 ## Design principles this codebase is held to
+
 
 1. **Read-only lookups only.** Every outbound call is a GET/POST question to a
    public API. No exploit code, no credential stuffing, no scraping infrastructure.

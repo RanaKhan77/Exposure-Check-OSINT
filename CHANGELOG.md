@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.8.4] — 2026-11-11
+
+### Documentation
+
+- `SECURITY.md` now documents the static-analysis coverage stack: CodeQL has no
+  PHP support, so PHP coverage is provided by Codacy (Semgrep/PHPMD/PHPCS) plus
+  blocking PHPStan and the CI lint + contract-test matrix — this preempts the
+  common "code scanning is not analyzing the primary language" confusion on the
+  GitHub Security tab.
+
 ## [1.8.3] — 2026-11-11
 
 ### Supply chain & observability
