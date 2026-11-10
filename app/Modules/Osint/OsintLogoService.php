@@ -6,6 +6,7 @@ namespace App\Modules\Osint;
 
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -251,6 +252,9 @@ class OsintLogoService
                 Storage::disk('local')->delete($dir . '/' . $name . '.miss');
             }
         } catch (\Throwable $e) {
+            Log::warning('OsintLogoService: failed to clear miss marker', [
+                'dir' => $dir, 'name' => $name, 'error' => $e->getMessage(),
+            ]);
         }
     }
 

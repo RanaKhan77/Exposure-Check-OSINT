@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.8.3] — 2026-11-11
+
+### Supply chain & observability
+
+- `shivammathur/setup-php` pinned to a full commit SHA in `ci.yml` and
+  `phpstan.yml` (third-party actions should not float on a moving tag;
+  was `@v2`).
+- `OsintLogoService::clearMiss` no longer swallows storage failures in an
+  empty catch block — cleanup errors now log a warning instead of dying
+  silently.
+
 ## [1.8.2] — 2026-11-10
 
 ### Static analysis — for real this time
