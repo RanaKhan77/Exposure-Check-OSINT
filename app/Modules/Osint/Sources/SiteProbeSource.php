@@ -96,10 +96,6 @@ class SiteProbeSource implements OsintSource
      */
     public function parse(string $type, string $identifier, array $responses): array
     {
-        if ($type !== 'username') {
-            return [];
-        }
-
         $hits = [];
         $clean = 0;
         $unavailable = 0;
@@ -116,8 +112,10 @@ class SiteProbeSource implements OsintSource
             // fresh decoy verdict (from this check's bounded decoy fetch)
             $decoy = $responses['decoy:' . $name] ?? null;
             if ($decoy !== null) {
-                $verdict = $this->classify($site, $decoy);
-                $this->cacheDecoy($site, $verdict);
+                // A site that "finds" the clearly-nonexistent decoy username is
+                // unreliable - cache that string verdict (same contract as
+                // SiteHealthCommand; everything else stays uncached for re-probe).
+                $this->cacheDecoy($site, $this->classify($site, $decoy) === true ? 'unreliable' : null);
             }
 
             $decoyVerdict = $this->decoyVerdict($site);

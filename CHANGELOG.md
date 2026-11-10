@@ -1,5 +1,36 @@
 # Changelog
 
+## [1.8.2] — 2026-11-10
+
+### Static analysis — for real this time
+
+- **The PHPStan workflow was a silent no-op**: `vendor/bin/phpstan` was never a
+  dependency (the "No such file or directory" failure was masked by `|| true`
+  plus a `continue-on-error` job). It now runs for real and blocks the build.
+- `phpstan/phpstan` ^2.3 added to require-dev; `phpstan.neon.dist` added (level 5).
+- All 60 level-5 findings resolved:
+  - Model `@property` / `@method` docblocks added (`ExposureCheck`, `Setting`,
+    `CommunityLicense`) so static analysis understands the Laravel columns.
+  - 16 code cleanups, all behavior-neutral: doctor PHP floor now checks the real
+    8.4 requirement (was claiming 8.2), redundant `is_array` / `instanceof` /
+    `??` guards removed, unused `FRESH_TTL` constant dropped, `OsintCheckService`
+    uses an explicit `Log` facade import, dead `$osint` constructor property
+    removed, `SiteProbeSource` caches the decoy verdict as the string
+    `'unreliable'` (same contract as `SiteHealthCommand`) instead of leaking a
+    bool into the verdict cache.
+- `composer.lock` content-hash refreshed — `composer validate --strict` is clean
+  again (the hash had been stale since the v1.7.2 PHP-floor change).
+
+### Docs
+
+- README badge + nav anchors fixed to the current heading
+  (`#️⃣-the-26-source-lanes-310-site-checks` — the old `#the-25-sources` anchor
+  has been dead since the v1.8.0 rename).
+- Counts removed from `docs/FAQ.md` and `docs/SOURCES.md` (the "202 scanner
+  modules" and "25 sources" figures were stale; the main README keeps the
+  verified 310-checks / 26-lanes numbers, which match the shipped registry).
+
+
 ## [1.8.1] — 2026-11-08
 
 ### Quality — static-analysis zero on the v1.8.0 diff

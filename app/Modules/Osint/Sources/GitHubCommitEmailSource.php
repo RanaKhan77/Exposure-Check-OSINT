@@ -94,7 +94,7 @@ class GitHubCommitEmailSource implements OsintSource
         $resp = $responses[$this->key() . '.main'] ?? null;
         if (!$resp instanceof Response || !$resp->ok()) {
             $code = $resp instanceof Response ? $resp->status() : 0;
-            if ($code === 422 && $resp instanceof Response) {
+            if ($code === 422) {
                 // Qualifier-only commit search with ZERO matches (empirical
                 // GitHub semantics, see class docblock) — but ONLY when the
                 // error body is the documented "Search text is required /

@@ -70,7 +70,7 @@ class CommunityLicenseService
     public function installId(): string
     {
         $id = (string) config('license.install_id', env('LICENSE_INSTALL_ID', ''));
-        if ($id === '' || $id === null) {
+        if ($id === '') {
             $lines = @file($this->installIdFile(), FILE_IGNORE_NEW_LINES) ?: [];
             foreach ($lines as $ln) {
                 if (str_starts_with($ln, 'LICENSE_INSTALL_ID=')) {
@@ -79,7 +79,7 @@ class CommunityLicenseService
                 }
             }
         }
-        if ($id === '' || $id === null) {
+        if ($id === '') {
             $id = 'EC-' . strtoupper(substr(bin2hex(random_bytes(10)), 0, 20));
             $this->persistInstallId('LICENSE_INSTALL_ID', $id);
         }

@@ -113,7 +113,7 @@ class IpapiIsSource implements OsintSource
             'abuser' => (bool) ($ip['is_abuser'] ?? false),
             'risk_score' => $risk,
             'country' => (string) ($ip['country'] ?? ''),
-            'asn' => is_array($asn) ? (string) ($asn['org'] ?? '') : '',
+            'asn' => (string) ($asn['org'] ?? ''),
         ];
 
         if ($flags !== []) {

@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Modules\Osint\OsintCheckService;
 use App\Models\ExposureCheck;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 class DashboardController extends Controller
 {

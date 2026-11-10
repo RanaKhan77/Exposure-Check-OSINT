@@ -100,7 +100,10 @@ class EcDoctorCommand extends Command
 
     private function checkEnvironment(): void
     {
-        $this->add(PHP_VERSION_ID >= 80200 ? 'PASS' : 'FAIL', 'PHP version', PHP_VERSION . (PHP_VERSION_ID >= 80200 ? '' : ' — PHP 8.2+ required'));
+        // The doctor verifies the live CLI PHP, which can be older than the web
+        // runtime the app was installed with - keep the floor check explicit.
+        // @phpstan-ignore-next-line (looks constant to static analysis)
+        $this->add(PHP_VERSION_ID >= 80400 ? 'PASS' : 'FAIL', 'PHP version', PHP_VERSION . (PHP_VERSION_ID >= 80400 ? '' : ' — PHP 8.4+ required'));
 
         $required = ['curl', 'dom', 'mbstring', 'openssl', 'pdo_sqlite', 'sqlite3', 'json'];
         $missing = array_values(array_filter($required, static fn ($e) => !extension_loaded($e)));
@@ -259,10 +262,10 @@ class EcDoctorCommand extends Command
                 foreach ($probes as $key => $p) {
                     $req = $pool->as($key)->timeout($timeout);
                     $headers = $p['spec']['headers'] ?? [];
-                    if (is_array($headers) && $headers !== []) {
+                    if ($headers !== []) {
                         $req = $req->withHeaders($headers);
                     }
-                    $pending[] = strtoupper((string) ($p['spec']['method'] ?? 'GET')) === 'POST'
+                    $pending[] = strtoupper((string) $p['spec']['method']) === 'POST'
                         ? $req->post((string) $p['spec']['url'], $p['spec']['body'] ?? [])
                         : $req->get((string) $p['spec']['url']);
                 }

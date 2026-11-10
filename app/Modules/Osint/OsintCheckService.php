@@ -35,6 +35,7 @@ use App\Services\SettingsService;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Exposure Check orchestrator (Community Edition).
@@ -184,9 +185,7 @@ class OsintCheckService
                     if (!isset($headers['User-Agent']) && !isset($headers['user-agent'])) {
                         $headers['User-Agent'] = $ua;
                     }
-                    if ($headers !== []) {
-                        $p = $p->withHeaders($headers);
-                    }
+                    $p = $p->withHeaders($headers);
                     if (strtoupper($spec['method']) === 'POST') {
                         $pending[] = $p->post($spec['url'], $spec['body'] ?? []);
                     } else {
@@ -214,7 +213,7 @@ class OsintCheckService
             try {
                 $bySource[$src->key()] = $src->parse($type, $identifier, $mine);
             } catch (\Throwable $e) {
-                \Log::warning('osint source parse failed', [
+                Log::warning('osint source parse failed', [
                     'source' => $src->key(), 'type' => $type, 'error' => $e->getMessage(),
                 ]);
                 $bySource[$src->key()] = [
@@ -449,7 +448,7 @@ class OsintCheckService
                 if (filter_var($identifier, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
                     $g = explode(':', strtolower($identifier));
 
-                    return ($g[0] ?? '') . ':***:***:' . end($g);
+                    return $g[0] . ':***:***:' . end($g);
                 }
 
                 return '***.***.***.***';

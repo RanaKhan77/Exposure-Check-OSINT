@@ -219,7 +219,7 @@ class MaigretSource implements OsintSource
                 if ($domain !== null) {
                     $logos->registerSite($key, $domain);
                 }
-                $accounts[] = ['site' => (string) $f['site'], 'url' => (string) $f['url'], 'status' => 'found', 'confidence' => (string) ($f['confidence'] ?? 'probable')];
+                $accounts[] = ['site' => (string) $f['site'], 'url' => (string) $f['url'], 'status' => 'found', 'confidence' => (string) $f['confidence']];
             }
         } catch (\Throwable $e) {
             // logo registration is display sugar — never affects verdicts

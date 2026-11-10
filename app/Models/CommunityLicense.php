@@ -6,6 +6,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property string $status
+ * @property string|null $license_key
+ * @property string $domain
+ * @property mixed $response_payload
+ * @property \Illuminate\Support\Carbon|null $trial_ends_at
+ *
+ * @method static self create(array $attributes = [])
+ */
 class CommunityLicense extends Model
 {
     protected $table = 'community_licenses';

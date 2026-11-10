@@ -13,7 +13,6 @@ permissions:
 jobs:
   phpstan:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v7
       - name: Setup PHP
@@ -25,6 +24,6 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyse app config routes --level 5 --error-format=github --no-progress || true
+        run: vendor/bin/phpstan analyse --error-format=github --no-progress
       - name: PHPStan summary
-        run: echo "PHPStan analysis complete (annotations posted above; non-blocking)"
+        run: echo "PHPStan analysis complete - 0 errors (annotations above if any)"

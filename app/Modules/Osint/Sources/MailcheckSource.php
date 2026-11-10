@@ -39,9 +39,6 @@ class MailcheckSource implements OsintSource
 {
     private const URL = 'https://api.mailcheck.ai/domain/';
 
-    /** Fresh-response cache per domain (upstream is slow-changing data). */
-    private const FRESH_TTL = 86400; // 24 h
-
     /** Last-good stale-grace window when the API is rate-limited/down. */
     private const STALE_TTL = 604800; // 7 days
 

@@ -16,6 +16,17 @@ use Illuminate\Database\Eloquent\Model;
  *   - results : per-source aggregated results (no credential material -
  *     ProxyNova lines are stripped at the source-adapter level BEFORE
  *     anything reaches this table).
+ *
+ * @property int $id
+ * @property string $type
+ * @property string $identifier_masked
+ * @property int $total_sources
+ * @property int $hits
+ * @property int $exposure_score
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ *
+ * @method static self create(array $attributes = [])
  */
 class ExposureCheck extends Model
 {

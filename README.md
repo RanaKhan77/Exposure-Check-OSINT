@@ -10,16 +10,16 @@
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![PHP 8.4+](https://img.shields.io/badge/PHP-8.4%20%7C%208.5-777BB4.svg)](composer.json)
 [![No AI](https://img.shields.io/badge/verdicts-deterministic%20%C2%B7%20zero%20AI-22D3EE.svg)](#-why-no-ai-is-a-feature)
-[![Keyless](https://img.shields.io/badge/sources-310%20%C2%B7%20all%20keyless-34D399.svg)](#%EF%B8%8F-the-25-sources)
+[![Keyless](https://img.shields.io/badge/sources-310%20%C2%B7%20all%20keyless-34D399.svg)](#%EF%B8%8F-the-26-source-lanes-310-site-checks)
 [![Docker](https://img.shields.io/badge/install-one%20command-2496ED.svg)](#-quick-start)
 
 Check your personal identifiers against **310 keyless site checks across 26 source lanes** — breach databases,
 infostealer corpora, 11B+ leaked credential pairs, 200+ platform username registries —
 from your own server, with your own eyes.
 
-**The companion OSINT tool to the [202-scanner Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner).**
+**The companion OSINT tool to the [Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner).**
 
-[Quick Start](#-quick-start) · [The 6 Checks](#-the-6-checks) · [Sources](#%EF%B8%8F-the-25-sources) · [Why](#-why-this-exists) · [Privacy](#-privacy-by-design) · [FAQ](docs/FAQ.md) · [Donate](#-support-the-project)
+[Quick Start](#-quick-start) · [The 6 Checks](#-the-6-checks) · [Sources](#%EF%B8%8F-the-26-source-lanes-310-site-checks) · [Why](#-why-this-exists) · [Privacy](#-privacy-by-design) · [FAQ](docs/FAQ.md) · [Donate](#-support-the-project)
 
 </div>
 

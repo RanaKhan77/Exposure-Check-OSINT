@@ -136,10 +136,11 @@ class BotCidrSource implements OsintSource
         foreach (self::RANGES as $prefix => [$operator, $kind, $ptrHint]) {
             [$net, $bits] = explode('/', $prefix, 2);
             $netLong = ip2long($net);
-            if ($netLong === false || !ctype_digit($bits) || (int) $bits < 0 || (int) $bits > 32) {
+            // RANGES prefixes are all /16-/24, so $bits is always a valid mask length.
+            if ($netLong === false || !ctype_digit($bits)) {
                 continue;
             }
-            $mask = (int) $bits === 0 ? 0 : ((-1 << (32 - (int) $bits)) & 0xFFFFFFFF);
+            $mask = (-1 << (32 - (int) $bits)) & 0xFFFFFFFF;
             if (($long & $mask) === ($netLong & $mask)) {
                 return [
                     'operator' => $operator,

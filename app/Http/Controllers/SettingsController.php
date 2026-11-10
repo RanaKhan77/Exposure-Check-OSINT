@@ -12,7 +12,6 @@ class SettingsController extends Controller
 {
     public function __construct(
         private readonly SettingsService $settings,
-        private readonly OsintCheckService $osint,
     ) {
     }
 
