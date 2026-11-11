@@ -62,7 +62,7 @@ class CrtShSource implements OsintSource
                 'headers' => [
                     'Accept' => 'application/json',
                     // crt.sh intermittently 502s generic bot UAs; identify honestly.
-                    'User-Agent' => 'Exposure-Check-OSINT/1.8 (+https://github.com/RanaKhan77/Exposure-Check-OSINT)',
+                    'User-Agent' => $this->productUa(),
                 ],
             ],
             [
@@ -71,10 +71,24 @@ class CrtShSource implements OsintSource
                 'url' => self::CERTSPOTTER_URL . '?domain=' . urlencode($domain) . '&include_subdomains=true&expand=dns_names',
                 'headers' => [
                     'Accept' => 'application/json',
-                    'User-Agent' => 'Exposure-Check-OSINT/1.8 (+https://github.com/RanaKhan77/Exposure-Check-OSINT)',
+                    'User-Agent' => $this->productUa(),
                 ],
             ],
         ];
+    }
+
+    /**
+     * UA that names the product actually making the request: the 2mny platform
+     * in production, Exposure-Check-OSINT in the standalone repo. Same file
+     * ships in both trees (W118), so the sync stays drift-free.
+     */
+    private function productUa(): string
+    {
+        if (class_exists(\App\Services\GitHubTokenProvider::class)) {
+            return '2mny-trace/1.0 (+https://2mny.com)';
+        }
+
+        return 'Exposure-Check-OSINT/1.8 (+https://github.com/RanaKhan77/Exposure-Check-OSINT)';
     }
 
     public function parse(string $type, string $identifier, array $responses): array
