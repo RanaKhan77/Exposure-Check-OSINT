@@ -98,7 +98,6 @@ class SiteHealthCommand extends Command
         try {
             $r = Http::timeout(10)
                 ->withHeaders(['User-Agent' => self::UA, 'Accept-Language' => 'en-US,en;q=0.9'])
-                ->withoutVerifying()
                 ->get($url);
             return [$r->status(), (string) $r->body()];
         } catch (\Throwable $e) {

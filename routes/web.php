@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Public: login + display-image proxy (cached favicons/avatars).
 | Admin session: dashboard check page, history, reports, settings, license.
-| New checks additionally pass the community-license gate (trial -> free key).
+| New checks show a non-blocking optional-key reminder (no gate since v2).
 */
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

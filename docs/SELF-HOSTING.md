@@ -10,7 +10,7 @@ cd Exposure-Check-OSINT
 
 Open `http://localhost:8080/login` and sign in with the printed password.
 That is the whole install. Data (history, settings, license) lives in the
-`ec-db` and `ec-storage` Docker volumes and survives upgrades.
+`ec-storage` Docker volume and survives upgrades.
 
 Custom port: `./install.sh --port 9090`
 Custom password: `./install.sh --password 'your-strong-password'`
@@ -63,7 +63,7 @@ composer install --no-dev --optimize-autoloader
 cp .env.example .env
 php artisan key:generate
 sed -i "s|^ADMIN_PASSWORD=.*|ADMIN_PASSWORD=$(openssl rand -hex 12)|" .env
-touch database/database.sqlite
+touch storage/app/database.sqlite
 php artisan migrate --force
 php artisan serve --host 127.0.0.1 --port 8080
 ```

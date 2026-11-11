@@ -30,8 +30,8 @@ from your own server, with your own eyes.
 <img src="assets/dashboard-preview.png" width="880" alt="Exposure Check dashboard — one input, 6 identifier types, 26 keyless source lanes, live corpus stats"/>
 
 **The dashboard.** Paste any identifier — the type is auto-detected, the corpus stats
-(1,047+ breaches, 17.8B+ leaked records, 37M stealer infections) are computed from the
-actual local indexes, not marketing numbers.
+(1,047+ breaches, 17.8B+ leaked records, 37M stealer infections) come from the live
+HIBP corpus when reachable, with honest fallback estimates otherwise.
 
 <img src="assets/results-preview.png" width="880" alt="Live results view — exposure score gauge, CRITICAL EXPOSURE verdict, parallel source cards with severity badges"/>
 
@@ -66,7 +66,7 @@ That is the whole install: one Docker container (Apache + PHP + SQLite — no My
 Redis, no API keys), a generated admin password, and `http://localhost:8080` ready.
 Details and non-Docker paths: [docs/SELF-HOSTING.md](docs/SELF-HOSTING.md).
 
-Self-test the whole stack any time (25-source reachability, storage, database,
+Self-test the whole stack any time (26-source reachability, storage, database,
 site database — seconds, no real check performed):
 
 ```bash

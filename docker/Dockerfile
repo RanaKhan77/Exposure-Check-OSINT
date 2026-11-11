@@ -6,15 +6,14 @@
 # expose it remotely (see docs/SELF-HOSTING.md).
 #
 # Build:  docker build -t exposure-check-osint -f docker/Dockerfile .
-# Run:    docker run -p 8080:80 -v ec-data:/var/www/html/database \
-#             -v ec-storage:/var/www/html/storage exposure-check-osint
+# Run:    docker run -p 8080:80 -v ec-storage:/var/www/html/storage exposure-check-osint
 # =============================================================================
 
 FROM php:8.5-apache
 
 LABEL org.opencontainers.image.title="Exposure-Check-OSINT"
-LABEL org.opencontainers.image.description="Self-hosted personal exposure checker (email/username/phone/password/IP) — 19 keyless OSINT sources, no AI"
-LABEL org.opencontainers.image.version="1.1.0"
+LABEL org.opencontainers.image.description="Self-hosted personal exposure checker (email/username/phone/password/IP) — 26 keyless OSINT sources, no AI"
+LABEL org.opencontainers.image.version="1.8.4"
 LABEL org.opencontainers.image.licenses="Apache-2.0"
 LABEL org.opencontainers.image.source="https://github.com/RanaKhan77/Exposure-Check-OSINT"
 

@@ -8,7 +8,7 @@
 #  - ADMIN_PASSWORD replaces its placeholder line (never appends - phpdotenv
 #    is first-wins, appending after an empty placeholder bricks login).
 #  - The generated password is printed ONCE (first boot only).
-#  - Laravel scheduler runs in the background (license heartbeat/re-validation).
+#  - Laravel scheduler runs in the background (weekly site:health probes).
 #  - No config:cache (own-use app; keeps env()/storage fallbacks simple and
 #    honest - see AuthController reading config('app.admin_password')).
 # =============================================================================
@@ -55,7 +55,7 @@ chown -R www-data:www-data storage bootstrap/cache 2>/dev/null || true
 # 6. Migrations (idempotent)
 php artisan migrate --force || echo "(migration warning - check storage perms)"
 
-# 7. Laravel scheduler in the background (license validate/heartbeat)
+# 7. Laravel scheduler in the background (weekly site:health probes)
 nohup php artisan schedule:work >/dev/null 2>&1 &
 
 # 8. Apache in the foreground

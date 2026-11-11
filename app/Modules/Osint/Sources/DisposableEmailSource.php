@@ -53,17 +53,23 @@ class DisposableEmailSource implements OsintSource
             return ['status' => 'unavailable', 'summary' => 'Invalid email address.', 'data' => []];
         }
 
-        $list = Cache::remember(self::CACHE_KEY, 86400, function (): array {
+        // Never cache a failure: a transient fetch error cached for 24h would
+        // report the source as unavailable for a whole day.
+        $list = Cache::get(self::CACHE_KEY);
+        if (!is_array($list) || $list === []) {
             try {
                 $body = (string) \Illuminate\Support\Facades\Http::timeout(10)->get(self::LIST_URL)->body();
                 $list = array_filter(array_map('trim', explode("\n", $body)));
                 sort($list);
 
-                return array_flip($list);
+                $list = array_flip($list);
+                if ($list !== []) {
+                    Cache::put(self::CACHE_KEY, $list, 86400);
+                }
             } catch (\Throwable $e) {
-                return [];
+                $list = [];
             }
-        });
+        }
 
         if ($list === []) {
             return ['status' => 'unavailable', 'summary' => 'Disposable-domain list unavailable right now.', 'data' => []];

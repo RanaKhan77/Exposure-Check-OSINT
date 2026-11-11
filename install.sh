@@ -82,7 +82,7 @@ if [[ -f .env ]] && grep -q '^ADMIN_PASSWORD=' .env; then
   echo "   Password    : $(grep '^ADMIN_PASSWORD=' .env | cut -d= -f2-)"
 fi
 echo ""
-echo "   Data lives in docker volumes ec-db + ec-storage."
+echo "   Data lives in the ec-storage Docker volume (SQLite DB, .env copy, logs)."
 echo "   Stop:  $COMPOSE down"
 echo "   Logs:  $COMPOSE logs -f"
 echo "=============================================================="

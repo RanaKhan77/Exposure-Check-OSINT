@@ -62,7 +62,7 @@ class CrtShSource implements OsintSource
                 'headers' => [
                     'Accept' => 'application/json',
                     // crt.sh intermittently 502s generic bot UAs; identify honestly.
-                    'User-Agent' => '2mny-trace/1.0 (+https://2mny.com)',
+                    'User-Agent' => 'Exposure-Check-OSINT/1.8 (+https://github.com/RanaKhan77/Exposure-Check-OSINT)',
                 ],
             ],
             [
@@ -71,7 +71,7 @@ class CrtShSource implements OsintSource
                 'url' => self::CERTSPOTTER_URL . '?domain=' . urlencode($domain) . '&include_subdomains=true&expand=dns_names',
                 'headers' => [
                     'Accept' => 'application/json',
-                    'User-Agent' => '2mny-trace/1.0 (+https://2mny.com)',
+                    'User-Agent' => 'Exposure-Check-OSINT/1.8 (+https://github.com/RanaKhan77/Exposure-Check-OSINT)',
                 ],
             ],
         ];
