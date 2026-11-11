@@ -234,9 +234,12 @@ class GitHubCommitEmailSource implements OsintSource
         return $h;
     }
 
-    /** Server PAT (optional) — same discovery order as GitHubPublicSource. */
+    /** Works in the platform (DB-backed provider) and the standalone repo (env fallback). */
     private function token(): string
     {
+        if (class_exists(\App\Services\GitHubTokenProvider::class)) {
+            return (string) (\App\Services\GitHubTokenProvider::get() ?? '');
+        }
         if (!empty($_ENV['GITHUB_API_TOKEN'])) {
             return (string) $_ENV['GITHUB_API_TOKEN'];
         }
