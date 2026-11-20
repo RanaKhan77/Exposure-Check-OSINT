@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * W109: SiteProbeSource tests (no network, no Laravel container).
  *
- * Covers the registry integrity (85 decoy-gated sites, rule sanity, no
+ * Covers the registry integrity (92 decoy-gated sites, rule sanity, no
  * duplicate hosts), the request declaration shape, and the parse logic:
  * hit / clean / unreliable-decoy paths with hand-built Response objects.
  */

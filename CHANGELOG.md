@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.8.5] — 2026-11-20
+
+### Site Probe Registry (+7 tier-A platforms, 85 -> 92 sites)
+
+- New decoy-gated, exemplar-proven (both directions verified live on
+  2026-11-20 from our own egress): GitLab, dev.to, CodeWars, Goodreads,
+  Kaggle, Gitee, Docker Hub. RubyGems was probed but skipped - its host is
+  already covered by the Maigret lane (unique-host rule).
+- npm, LeetCode, lichess, Letterboxd, Product Hunt, speedrun.com rejected:
+  bot-walled (403) from a clean egress - they would only produce
+  unreliable verdicts.
+- Total site checks 310 -> 317 across the 26 keyless source lanes.
+
 ## [1.8.4] — 2026-11-11
 
 ### Documentation

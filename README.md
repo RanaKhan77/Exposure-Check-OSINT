@@ -10,16 +10,16 @@
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![PHP 8.4+](https://img.shields.io/badge/PHP-8.4%20%7C%208.5-777BB4.svg)](composer.json)
 [![No AI](https://img.shields.io/badge/verdicts-deterministic%20%C2%B7%20zero%20AI-22D3EE.svg)](#-why-no-ai-is-a-feature)
-[![Keyless](https://img.shields.io/badge/sources-310%20%C2%B7%20all%20keyless-34D399.svg)](#%EF%B8%8F-the-26-source-lanes-310-site-checks)
+[![Keyless](https://img.shields.io/badge/sources-317%20%C2%B7%20all%20keyless-34D399.svg)](#%EF%B8%8F-the-26-source-lanes-317-site-checks)
 [![Docker](https://img.shields.io/badge/install-one%20command-2496ED.svg)](#-quick-start)
 
-Check your personal identifiers against **310 keyless site checks across 26 source lanes** — breach databases,
+Check your personal identifiers against **317 keyless site checks across 26 source lanes** — breach databases,
 infostealer corpora, 11B+ leaked credential pairs, 200+ platform username registries —
 from your own server, with your own eyes.
 
 **The companion OSINT tool to the [Website Vulnerability Scanner CE](https://github.com/RanaKhan77/Website-Vulnerability-Scanner).**
 
-[Quick Start](#-quick-start) · [The 6 Checks](#-the-6-checks) · [Sources](#%EF%B8%8F-the-26-source-lanes-310-site-checks) · [Why](#-why-this-exists) · [Privacy](#-privacy-by-design) · [FAQ](docs/FAQ.md) · [Donate](#-support-the-project)
+[Quick Start](#-quick-start) · [The 6 Checks](#-the-6-checks) · [Sources](#%EF%B8%8F-the-26-source-lanes-317-site-checks) · [Why](#-why-this-exists) · [Privacy](#-privacy-by-design) · [FAQ](docs/FAQ.md) · [Donate](#-support-the-project)
 
 </div>
 
@@ -91,7 +91,7 @@ Export any stored check as JSON or CSV — report page, history table, or right 
 
 Full explanations with screenshots-level detail: [docs/CHECKS.md](docs/CHECKS.md).
 
-## 🛰️ The 26 Source Lanes (310 site checks)
+## 🛰️ The 26 Source Lanes (317 site checks)
 
 All **keyless** (no API key, no account, no cost), all read-only lookups (HTTPS or plain
 DNS), all toggleable on the Settings page:
@@ -99,7 +99,7 @@ DNS), all toggleable on the Settings page:
 **Breach & stealer (5):** HudsonRock infostealer corpus · XposedOrNot breach analytics ·
 ProxyNova COMB (11B+ pairs) · HIBP Pwned Passwords (k-anonymity) · LeakLens phone/username breach search
 
-**Username & social (6):** **Site Probe Registry (85 decoy-gated sites — NEW 1.8.0: independently re-derived & live-verified, 36 hosts deduped against the Maigret lane)** · Maigret + WhatsMyName corpus (200 sites, logo grid) ·
+**Username & social (6):** **Site Probe Registry (92 decoy-gated sites — v1.8.0 independently re-derived & live-verified, 36 hosts deduped against the Maigret lane; v1.8.5 adds 7 tier-A platforms: GitLab, dev.to, CodeWars, Goodreads, Kaggle, Gitee, Docker Hub)** · Maigret + WhatsMyName corpus (200 sites, logo grid) ·
 Bluesky (AT Protocol) · Hacker News · Keybase linked-identity proofs · GitHub commit-email pivot
 
 **Email intelligence (8):** Mailcheck · Gravatar · Disify · Kickbox Open · FachaTemp ·
