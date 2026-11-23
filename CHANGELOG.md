@@ -2,7 +2,7 @@
 
 ## [1.8.5] — 2026-11-20
 
-### Site Probe Registry (+7 tier-A platforms, 85 -> 92 sites)
+### Site Probe Registry (+7 tier-A platforms, 85 -> 98 sites)
 
 - New decoy-gated, exemplar-proven (both directions verified live on
   2026-11-20 from our own egress): GitLab, dev.to, CodeWars, Goodreads,
