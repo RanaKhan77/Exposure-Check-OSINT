@@ -32,6 +32,7 @@ if a source is down, its card shows `unavailable` and the check continues (per-s
 
 | 24 | Keybase | profile | username | `keybase.io/_/api/1.0/user/lookup.json` (keyless) | Identity-graph pivot: verified public proofs linking the username to Twitter/GitHub/Reddit/HackerNews/DNS domains and PGP keys — 3+ verified links score medium |
 | 25 | GitHub Commit Author Emails | profile | username | `api.github.com/search/commits` `author:{username}` (keyless) | Which real email addresses the account authored public commits with (masked, e.g. `t***s@…`) — probable tier, git author fields are spoofable; noreply-only accounts report good hygiene |
+| 26 | VPNDetection | reputation | ip | `api.vpndetection.io/{ip}` (keyless, no daily cap: [terms](https://vpndetection.io/terms#no-key), [privacy](https://vpndetection.io/privacy)) | VPN, Tor and privacy-relay (iCloud Private Relay) classification, plus ASN, its hosting type and country |
 
 ## Display images
 
