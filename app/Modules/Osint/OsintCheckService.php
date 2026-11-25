@@ -16,6 +16,7 @@ use App\Modules\Osint\Sources\GravatarSource;
 use App\Modules\Osint\Sources\HackerNewsSource;
 use App\Modules\Osint\Sources\HudsonRockSource;
 use App\Modules\Osint\Sources\IpapiIsSource;
+use App\Modules\Osint\Sources\VpnDetectionSource;
 use App\Modules\Osint\Sources\KeybaseSource;
 use App\Modules\Osint\Sources\KickboxDisposableSource;
 use App\Modules\Osint\Sources\MailcheckSource;
@@ -78,6 +79,7 @@ class OsintCheckService
         DisposableEmailSource::class,
         ShodanInternetDbSource::class,
         IpapiIsSource::class,
+        VpnDetectionSource::class,
         PhoneValiditySource::class,
         // OSINT Phase 1 (2026-10-20): free keyless sources, live-verified
         DisifySource::class,

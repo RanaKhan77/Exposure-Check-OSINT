@@ -105,7 +105,7 @@ Bluesky (AT Protocol) · Hacker News · Keybase linked-identity proofs · GitHub
 **Email intelligence (8):** Mailcheck · Gravatar · Disify · Kickbox Open · FachaTemp ·
 Presend · disposable-domain blocklist · GitHub public search
 
-**Phone & IP (5):** PhoneValidity (E.164) · Shodan InternetDB · ipapi.is · Bot-CIDR crawler
+**Phone & IP (6):** PhoneValidity (E.164) · Shodan InternetDB · ipapi.is · VPNDetection · Bot-CIDR crawler
 attribution · DNS blocklist reputation (Spamhaus ZEN, SpamCop, Barracuda — pure DNS, honest
 degradation when a zone refuses your resolver)
 
