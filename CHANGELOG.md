@@ -12,6 +12,9 @@
   bot-walled (403) from a clean egress - they would only produce
   unreliable verdicts.
 - Total site checks 310 -> 317 across the 26 keyless source lanes.
+- 2026-11-23: +6 more tier-A platforms (92 -> 98 sites), all decoy-gated and
+  exemplar-proven both directions: keybase, huggingface, launchpad,
+  drupal.org, wordpress.org profiles, atcoder (323 site checks).
 
 ## [1.8.4] — 2026-11-11
 
