@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.9.0] — 2026-11-26
+
+### New source + registry expansion
+
+- **VPNDetection** joined the Phone & IP lane as a keyless IP source —
+  VPN/proxy/hosting classification with no API key. Merged from community
+  PR #6, covered by unit tests (`VpnDetectionSourceTest`).
+- Site-probe registry 92 -> **98 sites**: six more tier-A platforms, all
+  decoy-gated and exemplar-proven in both directions from our own egress —
+  Keybase, Hugging Face, Launchpad, drupal.org, WordPress profiles, AtCoder.
+  Total site checks 317 -> **323** across the 26 keyless lanes.
+- README counts brought current (98 sites / 323 checks).
+
 ## [1.8.5] — 2026-11-20
 
 ### Site Probe Registry (+7 tier-A platforms, 85 -> 98 sites)

@@ -99,7 +99,7 @@ DNS), all toggleable on the Settings page:
 **Breach & stealer (5):** HudsonRock infostealer corpus · XposedOrNot breach analytics ·
 ProxyNova COMB (11B+ pairs) · HIBP Pwned Passwords (k-anonymity) · LeakLens phone/username breach search
 
-**Username & social (6):** **Site Probe Registry (92 decoy-gated sites — v1.8.0 independently re-derived & live-verified, 36 hosts deduped against the Maigret lane; v1.8.5 adds 7 tier-A platforms: GitLab, dev.to, CodeWars, Goodreads, Kaggle, Gitee, Docker Hub)** · Maigret + WhatsMyName corpus (200 sites, logo grid) ·
+**Username & social (6):** **Site Probe Registry (98 decoy-gated sites — v1.8.0 independently re-derived & live-verified, 36 hosts deduped against the Maigret lane; v1.8.5 adds 7 tier-A platforms (GitLab, dev.to, CodeWars, Goodreads, Kaggle, Gitee, Docker Hub) and v1.9.0 six more (Keybase, Hugging Face, Launchpad, drupal.org, WordPress profiles, AtCoder))** · Maigret + WhatsMyName corpus (200 sites, logo grid) ·
 Bluesky (AT Protocol) · Hacker News · Keybase linked-identity proofs · GitHub commit-email pivot
 
 **Email intelligence (8):** Mailcheck · Gravatar · Disify · Kickbox Open · FachaTemp ·
